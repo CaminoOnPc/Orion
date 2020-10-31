@@ -22,9 +22,27 @@
     <ClInclude Include="Tests.h">
       <Filter>Code</Filter>
     </ClInclude>
-    <ClInclude Include="main_Windows.h">
+    <ClInclude Include="common\WinMain.h">
       <Filter>Code</Filter>
     </ClInclude>
+    <ClInclude Include="game\IGame.h" />
+    <ClInclude Include="engine\public\IBase.h" />
+    <ClInclude Include="engine\public\IInterfaces.h" />
+    <ClInclude Include="common\abstract\includes\Includes.h" />
+    <ClInclude Include="engine\public\systems\settings\ISettings.h" />
+    <ClInclude Include="common\abstract\includes\math\IncludesMath.h" />
+    <ClInclude Include="common\abstract\includes\utils\IncludesUtils.h" />
+    <ClInclude Include="common\math\Math.h" />
+    <ClInclude Include="common\math\Math3D.h" />
+    <ClInclude Include="common\math\misc\Color.h" />
+    <ClInclude Include="common\math\misc\Vector.h" />
+    <ClInclude Include="common\utils\Utils.h" />
+    <ClInclude Include="engine\tiers\tier3\Tier3.h" />
+    <ClInclude Include="engine\tiers\tier2\Tier2.h" />
+    <ClInclude Include="engine\tiers\tier1\Tier1.h" />
+    <ClInclude Include="engine\tiers\tier0\Tier0.h" />
+    <ClInclude Include="engine\public\systems\rendering\IRendering.h" />
+    <ClInclude Include="engine\public\systems\rendering\IWicked.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -33,19 +51,26 @@
     <ClCompile Include="Tests.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="main_Windows.cpp">
+    <ClCompile Include="common\WinMain.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+    <ClCompile Include="game\IGame.cpp" />
+    <ClCompile Include="engine\public\IBase.cpp" />
+    <ClCompile Include="engine\public\IInterfaces.cpp" />
+    <ClCompile Include="engine\public\systems\settings\ISettings.cpp" />
+    <ClCompile Include="common\math\Math.cpp" />
+    <ClCompile Include="common\math\Math3D.cpp" />
+    <ClCompile Include="common\math\misc\Color.cpp" />
+    <ClCompile Include="common\math\misc\Vector.cpp" />
+    <ClCompile Include="common\utils\Utils.cpp" />
+    <ClCompile Include="engine\tiers\tier3\Tier3.cpp" />
+    <ClCompile Include="engine\tiers\tier2\Tier2.cpp" />
+    <ClCompile Include="engine\tiers\tier1\Tier1.cpp" />
+    <ClCompile Include="engine\tiers\tier0\Tier0.cpp" />
+    <ClCompile Include="engine\public\systems\rendering\IRendering.cpp" />
+    <ClCompile Include="engine\public\systems\rendering\IWicked.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Tests.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="images\HelloWorld.png">
-      <Filter>images</Filter>
-    </Image>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

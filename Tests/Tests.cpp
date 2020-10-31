@@ -121,8 +121,7 @@ void TestsRenderer::Load()
 	testSelector.AddItem("Inverse Kinematics");
 	testSelector.AddItem("65k Instances");
 	testSelector.SetMaxVisibleItemCount(10);
-	
-	/*
+
 	testSelector.OnSelect([=](wiEventArgs args) {
 
 		// Reset all state that tests might have modified:
@@ -155,6 +154,7 @@ void TestsRenderer::Load()
 			//	The second texture is a static image of "hello world" written on it
 			//	Then add some animations to the sprite to get a nice wobbly and color changing effect.
 			//	You can learn more in the Sprite test in RunSpriteTest() function
+			/*
 			static wiSprite sprite;
 			sprite = wiSprite("images/movingtex.png", "images/HelloWorld.png");
 			sprite.params.pos = XMFLOAT3(screenW / 2, screenH / 2, 0);
@@ -165,11 +165,12 @@ void TestsRenderer::Load()
 			sprite.anim.movingTexAnim.speedX = 0;
 			sprite.anim.movingTexAnim.speedY = 3;
 			this->AddSprite(&sprite);
+			*/
 			break;
 		}
 		case 1:
 			wiRenderer::SetTemporalAAEnabled(true);
-			wiScene::LoadModel("../models/teapot.wiscene");
+			wiScene::LoadModel("data/game/worlds/sponza.wiscene");
 			break;
 		case 2:
 			wiScene::LoadModel("../models/emitter_smoke.wiscene");
@@ -299,7 +300,7 @@ void TestsRenderer::Load()
 		}
 
 	});
-	*/
+
 	testSelector.SetSelected(0);
 	GetGUI().AddWidget(&testSelector);
 

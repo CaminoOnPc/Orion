@@ -30,6 +30,7 @@ public:
 
 	// Runs the main engine loop
 	void Run();
+	void OnUpdate();
 
 	// This will activate a RenderPath as the active one, so it will run its Update, FixedUpdate, Render and Compose functions
 	//	You can set a fade time and fade screen color so that switching components will happen when the screen is faded out. Then it will fade back to the new component

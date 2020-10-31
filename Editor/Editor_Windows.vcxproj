@@ -94,9 +94,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>..\cache\editor</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <OutDir>$(SolutionDir)BUILD\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <OutDir>..\editorbuild</OutDir>
     <MultiProcFXC>true</MultiProcFXC>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
