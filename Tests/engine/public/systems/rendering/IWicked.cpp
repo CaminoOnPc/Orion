@@ -9,10 +9,8 @@
 //-----------------------------------------------------------------------------
 // Activates IWicked initalization process
 //-----------------------------------------------------------------------------
-void IWicked::Start(IInterfaces* interfaces)
+void IWicked::Initialize()
 {
-	m_Interface = interfaces;
-
 	MainComponent::Initialize();
 
 	infoDisplay.active = true;
@@ -21,41 +19,15 @@ void IWicked::Start(IInterfaces* interfaces)
 	infoDisplay.resolution = true;
 	infoDisplay.heap_allocation_counter = true;
 
-	m_Renderer = new IWickedRenderer;
-	if (!m_Renderer)
-	{
-		return;
-	}
-
-	m_Renderer->Start(m_Interface);
-
-	m_Renderer->Load();
-	ActivatePath(&*m_Renderer);
-}
-
-//-----------------------------------------------------------------------------
-// Activates IWicked shutdown process
-//-----------------------------------------------------------------------------
-void IWicked::Stop()
-{
-	m_Interface = nullptr;
-}
-
-//-----------------------------------------------------------------------------
-// Processing a single frame of IWicked
-//-----------------------------------------------------------------------------
-void IWicked::Run()
-{
-	m_Renderer->Run();
+	m_Renderer.Load();
+	ActivatePath(&m_Renderer);
 }
 
 //-----------------------------------------------------------------------------
 // Activates IWickedRenderer initalization process
 //-----------------------------------------------------------------------------
-void IWickedRenderer::Start(IInterfaces* interfaces)
+void IWickedRenderer::Load()
 {
-	m_Interface = interfaces;
-
 	setSSREnabled(false);
 	setReflectionsEnabled(true);
 	setFXAAEnabled(false);
@@ -109,21 +81,85 @@ void IWickedRenderer::Start(IInterfaces* interfaces)
 		});
 	GetGUI().AddWidget(&volume);
 
-	RenderPath3D::Load();
-}
+	static wiComboBox testSelector;
+	testSelector.Create("TestSelector");
+	testSelector.SetText("Demo: ");
+	testSelector.SetSize(XMFLOAT2(140, 20));
+	testSelector.SetPos(XMFLOAT2(50, 200));
+	testSelector.SetColor(wiColor(255, 205, 43, 200), wiWidget::WIDGETSTATE::IDLE);
+	testSelector.SetColor(wiColor(255, 235, 173, 255), wiWidget::WIDGETSTATE::FOCUS);
+	testSelector.AddItem("HelloWorld");
+	testSelector.AddItem("Model");
+	testSelector.AddItem("EmittedParticle 1");
+	testSelector.AddItem("EmittedParticle 2");
+	testSelector.AddItem("HairParticle");
+	testSelector.AddItem("Lua Script");
+	testSelector.AddItem("Water Test");
+	testSelector.AddItem("Shadows Test");
+	testSelector.AddItem("Physics Test");
+	testSelector.AddItem("Cloth Physics Test");
+	testSelector.AddItem("Job System Test");
+	testSelector.AddItem("Font Test");
+	testSelector.AddItem("Volumetric Test");
+	testSelector.AddItem("Sprite Test");
+	testSelector.AddItem("Lightmap Bake Test");
+	testSelector.AddItem("Network Test");
+	testSelector.AddItem("Controller Test");
+	testSelector.AddItem("Inverse Kinematics");
+	testSelector.AddItem("65k Instances");
+	testSelector.SetMaxVisibleItemCount(10);
 
-//-----------------------------------------------------------------------------
-// Activates IWickedRenderer shutdown process
-//-----------------------------------------------------------------------------
-void IWickedRenderer::Stop()
-{
-	m_Interface = nullptr;
+	testSelector.OnSelect([=](wiEventArgs args) {
+
+		// Reset all state that tests might have modified:
+		wiRenderer::GetDevice()->SetVSyncEnabled(true);
+		wiRenderer::SetToDrawGridHelper(false);
+		wiRenderer::SetTemporalAAEnabled(false);
+		wiRenderer::ClearWorld();
+		wiScene::GetScene().weather = wiScene::WeatherComponent();
+		this->ClearSprites();
+		this->ClearFonts();
+		if (wiLua::GetLuaState() != nullptr) {
+			wiLua::KillProcesses();
+		}
+
+		// Reset camera position:
+		wiScene::TransformComponent transform;
+		transform.Translate(XMFLOAT3(0, 2.f, -4.5f));
+		transform.UpdateTransform();
+		wiRenderer::GetCamera().TransformCamera(transform);
+
+		float screenW = wiRenderer::GetDevice()->GetScreenWidth();
+		float screenH = wiRenderer::GetDevice()->GetScreenHeight();
+
+		// Based on combobox selection, start the appropriate test:
+		switch (args.iValue)
+		{
+		case 0:
+		{
+			break;
+		}
+		case 1:
+			wiRenderer::SetTemporalAAEnabled(true);
+			wiScene::LoadModel("data/game/worlds/sponza.wiscene");
+			break;
+
+		default:
+			assert(0);
+			break;
+		}
+	});
+
+	testSelector.SetSelected(0);
+	GetGUI().AddWidget(&testSelector);
+
+	RenderPath3D::Load();
 }
 
 //-----------------------------------------------------------------------------
 // Processing a single frame of IWickedRenderer
 //-----------------------------------------------------------------------------
-void IWickedRenderer::Run()
+void IWickedRenderer::Update(float dt)
 {
-	RenderPath3D::Update(0.01);
+	RenderPath3D::Update(dt);
 }

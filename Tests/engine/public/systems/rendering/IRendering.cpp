@@ -6,9 +6,6 @@
 
 #include "IRendering.h"
 
-#include "../Tests/Tests.h"
-Tests tests;
-
 //-----------------------------------------------------------------------------
 // Activates IRendering initalization process
 //-----------------------------------------------------------------------------
@@ -16,15 +13,11 @@ void IRendering::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
 
-	//m_Wicked = new IWicked;
-	//if (!m_Wicked)
-	//{
-	//	return;
-	//}
-
-	//m_Wicked->Start(m_Interface);
-
-	//tests.SetWindow(GetActiveWindow());
+	m_Wicked = new IWicked;
+	if (!m_Wicked)
+	{
+		return;
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -40,7 +33,5 @@ void IRendering::Stop()
 //-----------------------------------------------------------------------------
 void IRendering::Run()
 {
-	//m_Wicked->Run();
-
-	tests.Run();
+	m_Wicked->Run();
 }

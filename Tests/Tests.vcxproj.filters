@@ -13,13 +13,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Code</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Code</Filter>
-    </ClInclude>
-    <ClInclude Include="Tests.h">
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="common\WinMain.h">
@@ -43,14 +37,11 @@
     <ClInclude Include="engine\tiers\tier0\Tier0.h" />
     <ClInclude Include="engine\public\systems\rendering\IRendering.h" />
     <ClInclude Include="engine\public\systems\rendering\IWicked.h" />
+    <ClInclude Include="common\abstract\includes\stdafx.h">
+      <Filter>Code</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
-    <ClCompile Include="Tests.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="common\WinMain.cpp">
       <Filter>Code</Filter>
     </ClCompile>
@@ -69,6 +60,9 @@
     <ClCompile Include="engine\tiers\tier0\Tier0.cpp" />
     <ClCompile Include="engine\public\systems\rendering\IRendering.cpp" />
     <ClCompile Include="engine\public\systems\rendering\IWicked.cpp" />
+    <ClCompile Include="common\abstract\includes\stdafx.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -18,19 +18,14 @@ public:
 	// ---------------------------------------------
 
 	// Activates IWickedRenderer initalization process
-	void Start(IInterfaces* interfaces);
+	void Load() override;
 
-	// Activates IWickedRenderer shutdown process
-	void Stop();
-
-	// Processing a single frame of IWickedRenderer
-	void Run();
+	// Updating a single frame of IWickedRenderer
+	void Update(float dt) override;
 
 	// * Those are calls that are accessible by everyone 
 	// ---------------------------------------------
 
-protected:
-	IInterfaces* m_Interface;
 protected:
 	template <class T> void SafeRelease(T** ppT)
 	{
@@ -48,19 +43,11 @@ public:
 	// ---------------------------------------------
 
 	// Activates IWicked initalization process
-	void Start(IInterfaces* interfaces);
-
-	// Activates IWicked shutdown process
-	void Stop();
-
-	// Processing a single frame of IWicked
-	void Run();
+	void Initialize() override;
 
 	// * Those are calls that are accessible by everyone 
 	// ---------------------------------------------
 
-protected:
-	IInterfaces* m_Interface;
 protected:
 	template <class T> void SafeRelease(T** ppT)
 	{
@@ -70,5 +57,5 @@ protected:
 		}
 	}
 public:
-	IWickedRenderer* m_Renderer;
+	IWickedRenderer m_Renderer;
 };
