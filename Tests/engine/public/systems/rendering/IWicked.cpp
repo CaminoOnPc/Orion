@@ -61,6 +61,9 @@ void IWickedRenderer::Start(IInterfaces* interfaces)
 //-----------------------------------------------------------------------------
 void IWickedRenderer::Load()
 {
+	// Demonstrates that loading screen is working
+	Sleep(1000);
+
 	m_Interface->m_Tier0->m_Rendering->m_RenderPath = this;
 
 	setSSREnabled(false);
