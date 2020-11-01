@@ -16,8 +16,6 @@ void Tier3::Start(IInterfaces* interfaces)
 		return;
 	}
 
-	m_IGame->Start(m_Interface);
-
 	return;
 }
 

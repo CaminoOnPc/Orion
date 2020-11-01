@@ -15,7 +15,7 @@ class ISettings;
 
 class IInterfaces;
 
-class IBase : public MainComponent
+class IBase
 {
 public:
 	// * Those are calls allocated for class initialization and running

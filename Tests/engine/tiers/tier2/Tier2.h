@@ -9,6 +9,10 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
+#include "../../public/interfaces/panel/surface/ISurface.h"
+
+class ISurface;
+
 class IInterfaces;
 
 class Tier2
@@ -36,4 +40,6 @@ protected:
 			*ppT = nullptr;
 		}
 	}
+public:
+	ISurface* m_ISurface;
 };

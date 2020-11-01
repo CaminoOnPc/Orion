@@ -18,6 +18,8 @@ void IRendering::Start(IInterfaces* interfaces)
 	{
 		return;
 	}
+
+	m_Wicked->Start(m_Interface);
 }
 
 //-----------------------------------------------------------------------------

@@ -9,6 +9,10 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
+#include "../loadingscreen/ILoading.h"
+
+class ILoading;
+
 class IInterfaces;
 
 class IWickedRenderer : public RenderPath3D
@@ -17,7 +21,10 @@ public:
 	// * Those are calls allocated for class initialization and running
 	// ---------------------------------------------
 
-	// Activates IWickedRenderer initalization process
+	// Activates IWicked initalization process
+	void Start(IInterfaces* interfaces);
+
+	// Activates IWickedRenderer loading process
 	void Load() override;
 
 	// Updating a single frame of IWickedRenderer
@@ -26,6 +33,8 @@ public:
 	// * Those are calls that are accessible by everyone 
 	// ---------------------------------------------
 
+protected:
+	IInterfaces* m_Interface;
 protected:
 	template <class T> void SafeRelease(T** ppT)
 	{
@@ -43,11 +52,16 @@ public:
 	// ---------------------------------------------
 
 	// Activates IWicked initalization process
+	void Start(IInterfaces* interfaces);
+
+	// Activates IWicked loading process
 	void Initialize() override;
 
 	// * Those are calls that are accessible by everyone 
 	// ---------------------------------------------
 
+protected:
+	IInterfaces* m_Interface;
 protected:
 	template <class T> void SafeRelease(T** ppT)
 	{
@@ -57,5 +71,7 @@ protected:
 		}
 	}
 public:
-	IWickedRenderer m_Renderer;
+	IWickedRenderer* m_Renderer;
+public:
+	ILoading* m_Loading;
 };

@@ -40,6 +40,10 @@
     <ClInclude Include="common\abstract\includes\stdafx.h">
       <Filter>Code</Filter>
     </ClInclude>
+    <ClInclude Include="engine\entities\IObject.h" />
+    <ClInclude Include="engine\public\systems\loadingscreen\ILoading.h" />
+    <ClInclude Include="engine\public\interfaces\panel\surface\ISurface.h" />
+    <ClInclude Include="engine\public\interfaces\panel\HFont.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\WinMain.cpp">
@@ -63,6 +67,10 @@
     <ClCompile Include="common\abstract\includes\stdafx.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+    <ClCompile Include="engine\entities\IObject.cpp" />
+    <ClCompile Include="engine\public\systems\loadingscreen\ILoading.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\surface\ISurface.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\HFont.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

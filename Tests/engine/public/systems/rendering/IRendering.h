@@ -45,4 +45,6 @@ protected:
 	}
 public:
 	IWicked* m_Wicked;
+public:
+	RenderPath* m_RenderPath;
 };

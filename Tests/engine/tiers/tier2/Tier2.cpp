@@ -10,6 +10,14 @@ void Tier2::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
 
+	m_ISurface = new ISurface;
+	if (!m_ISurface)
+	{
+		return;
+	}
+
+	m_ISurface->Start(m_Interface);
+
 	return;
 }
 

@@ -1,5 +1,5 @@
 /*
-    File: IGame.h
+    File: IObject.h
 
     Copyright (C) 2019-2020 Bionic Interactive. All rights reserved
 */
@@ -11,20 +11,32 @@
 
 class IInterfaces;
 
-class IGame
+class IObject
 {
 public:
     // * Those are calls allocated for class initialization and running
     // ---------------------------------------------
 
-    // Activates IGame initialization process
+    // Activates IObject initalization process
     void Start(IInterfaces* interfaces);
 
-    // Activates IGame shutdown process
+    // Activates IObject shutdown process
     void Stop();
 
-    // Processing a single frame of IGame
+    // Processing a single frame of IObject
     void Run();
+
+    // * Those are calls that are accessible by everyone 
+    // ---------------------------------------------
+
+    void SetScale(Vector scale);
+    Vector GetScale();
+
+    void SetRotation(Vector rotation);
+    Vector GetRotation();
+
+    void SetPosition(Vector position);
+    Vector GetPosition();
 
 protected:
     IInterfaces* m_Interface;
@@ -36,4 +48,8 @@ protected:
             *ppT = nullptr;
         }
     }
+public:
+    Vector m_Position;
+    Vector m_Rotation;
+    Vector m_Scale;
 };

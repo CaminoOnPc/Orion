@@ -1,5 +1,5 @@
 /*
-    File: IGame.h
+    File: ILoading.h
 
     Copyright (C) 2019-2020 Bionic Interactive. All rights reserved
 */
@@ -11,20 +11,23 @@
 
 class IInterfaces;
 
-class IGame
+class ILoading : public LoadingScreen
 {
 public:
     // * Those are calls allocated for class initialization and running
     // ---------------------------------------------
 
-    // Activates IGame initialization process
+    // Activates ILoading initalization process
     void Start(IInterfaces* interfaces);
 
-    // Activates IGame shutdown process
-    void Stop();
+    // Activates ILoading loading process
+    void Load() override;
 
-    // Processing a single frame of IGame
-    void Run();
+    // Processing a single frame of ILoading
+    void Update(float dt) override;
+
+    // * Those are calls that are accessible by everyone 
+    // ---------------------------------------------
 
 protected:
     IInterfaces* m_Interface;
@@ -36,4 +39,7 @@ protected:
             *ppT = nullptr;
         }
     }
+public:
+    wiSpriteFont m_Font;
+    wiSprite m_Image;
 };

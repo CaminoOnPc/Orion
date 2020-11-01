@@ -7,20 +7,53 @@
 #include "IWicked.h"
 
 //-----------------------------------------------------------------------------
+// Activates IRendering initalization process
+//-----------------------------------------------------------------------------
+void IWicked::Start(IInterfaces* interfaces)
+{
+	m_Interface = interfaces;
+}
+
+//-----------------------------------------------------------------------------
 // Activates IWicked initalization process
 //-----------------------------------------------------------------------------
 void IWicked::Initialize()
 {
 	MainComponent::Initialize();
 
-	infoDisplay.active = true;
-	infoDisplay.watermark = false;
-	infoDisplay.fpsinfo = true;
-	infoDisplay.resolution = true;
-	infoDisplay.heap_allocation_counter = true;
+	m_Loading = new ILoading;
+	if (!m_Loading)
+	{
+		return;
+	}
 
-	m_Renderer.Load();
-	ActivatePath(&m_Renderer);
+	m_Loading->Start(m_Interface);
+
+	m_Renderer = new IWickedRenderer;
+	if (!m_Renderer)
+	{
+		return;
+	}
+
+	m_Renderer->Start(m_Interface);
+
+	m_Loading->addLoadingComponent(&*m_Renderer, this, 0.2f);
+	ActivatePath(&*m_Loading, 0.2f);
+	m_Loading->onFinished([&] 
+	{
+		m_Renderer->Load();
+		ActivatePath(&*m_Renderer);
+
+		m_Interface->m_Tier3->m_IGame->Start(m_Interface);
+	});
+}
+
+//-----------------------------------------------------------------------------
+// Activates IRendering initalization process
+//-----------------------------------------------------------------------------
+void IWickedRenderer::Start(IInterfaces* interfaces)
+{
+	m_Interface = interfaces;
 }
 
 //-----------------------------------------------------------------------------
@@ -28,10 +61,13 @@ void IWicked::Initialize()
 //-----------------------------------------------------------------------------
 void IWickedRenderer::Load()
 {
+	m_Interface->m_Tier0->m_Rendering->m_RenderPath = this;
+
 	setSSREnabled(false);
 	setReflectionsEnabled(true);
 	setFXAAEnabled(false);
 
+	/*
 	static wiAudio::Sound sound;
 	static wiAudio::SoundInstance soundinstance;
 
@@ -152,6 +188,7 @@ void IWickedRenderer::Load()
 
 	testSelector.SetSelected(0);
 	GetGUI().AddWidget(&testSelector);
+	*/
 
 	RenderPath3D::Load();
 }

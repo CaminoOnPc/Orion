@@ -12,6 +12,9 @@
 void IGame::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
+
+	wiRenderer::SetTemporalAAEnabled(true);
+	wiScene::LoadModel("data/game/worlds/sponza.wiscene");
 }
 
 //-----------------------------------------------------------------------------
@@ -26,4 +29,8 @@ void IGame::Stop()
 //-----------------------------------------------------------------------------
 void IGame::Run()
 {
+	if (m_Interface)
+	{
+
+	}
 }
