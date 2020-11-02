@@ -53,6 +53,18 @@ IObject* IWorld::CreateObject(const char* model, const char* material, Vector po
 	object->m_Position = position;
 	object->m_Rotation = rotation;
 
+	for (size_t i = 0; i < m_Interface->m_Tier2->m_IFileSystem->m_Objects.capacity(); i++)
+	{
+		for (std::vector<HObject*>::reverse_iterator i = m_Interface->m_Tier2->m_IFileSystem->m_Objects.rbegin(); i != m_Interface->m_Tier2->m_IFileSystem->m_Objects.rend(); ++i)
+		{
+			HObject* objects = *i;
+			if (objects->m_ModelName == model)
+			{
+				object->m_Data.m_ModelName = objects->m_ModelPath.c_str();
+			}
+		}
+	}
+
 	object->Start(m_Interface);
 
 	m_Objects.push_back(object);

@@ -10,8 +10,12 @@
 #include <Includes.h>
 
 #include "../../public/interfaces/panel/surface/ISurface.h"
+#include "../../public/systems/filesystem/filesystem/IFileSystem.h"
+#include "../../public/interfaces/world/IWorld.h"
 
+class IFileSystem;
 class ISurface;
+class IWorld;
 
 class IInterfaces;
 
@@ -41,5 +45,7 @@ protected:
 		}
 	}
 public:
+	IFileSystem* m_IFileSystem;
 	ISurface* m_ISurface;
+	IWorld* m_IWorld;
 };

@@ -12,6 +12,13 @@
 void IObject::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
+
+	wiScene::TransformComponent transform;
+	transform.RotateRollPitchYaw(XMFLOAT3(XMConvertToRadians(m_Rotation.x), XMConvertToRadians(m_Rotation.y), XMConvertToRadians(m_Rotation.z)));
+	transform.Translate(XMFLOAT3(m_Position.x, m_Position.y, m_Position.z));
+	transform.UpdateTransform();
+	
+	wiScene::LoadModel(m_Data.m_ModelName, transform.GetLocalMatrix());
 }
 
 //-----------------------------------------------------------------------------

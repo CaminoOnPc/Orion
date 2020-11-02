@@ -10,6 +10,14 @@ void Tier2::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
 
+	m_IFileSystem = new IFileSystem;
+	if (!m_IFileSystem)
+	{
+		return;
+	}
+
+	m_IFileSystem->Start(m_Interface);
+
 	m_ISurface = new ISurface;
 	if (!m_ISurface)
 	{
@@ -17,6 +25,14 @@ void Tier2::Start(IInterfaces* interfaces)
 	}
 
 	m_ISurface->Start(m_Interface);
+
+	m_IWorld = new IWorld;
+	if (!m_IWorld)
+	{
+		return;
+	}
+
+	m_IWorld->Start(m_Interface);
 
 	return;
 }

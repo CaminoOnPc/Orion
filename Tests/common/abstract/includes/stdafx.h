@@ -7,3 +7,7 @@
 #pragma once
 
 #include "WickedEngine.h"
+
+#include <filesystem>
+
+#include <rapidxml.hpp>

@@ -76,7 +76,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Release</OutDir>
-    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\RapidXml;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,7 +89,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Debug</OutDir>
-    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\RapidXml;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -109,6 +109,7 @@
       <AdditionalIncludeDirectories>../WickedEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -192,7 +193,9 @@
     <ClInclude Include="engine\public\interfaces\panel\HFont.h" />
     <ClInclude Include="engine\public\interfaces\panel\surface\ISurface.h" />
     <ClInclude Include="engine\public\interfaces\world\IWorld.h" />
-    <ClInclude Include="engine\public\systems\loadingscreen\ILoading.h" />
+    <ClInclude Include="engine\public\systems\filesystem\filesystem\IFileSystem.h" />
+    <ClInclude Include="engine\public\systems\filesystem\HObject.h" />
+    <ClInclude Include="game\gui\loadingscreen\ILoading.h" />
     <ClInclude Include="engine\public\systems\rendering\IRendering.h" />
     <ClInclude Include="engine\public\systems\rendering\IWicked.h" />
     <ClInclude Include="engine\public\systems\settings\ISettings.h" />
@@ -220,7 +223,9 @@
     <ClCompile Include="engine\public\interfaces\panel\HFont.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\surface\ISurface.cpp" />
     <ClCompile Include="engine\public\interfaces\world\IWorld.cpp" />
-    <ClCompile Include="engine\public\systems\loadingscreen\ILoading.cpp" />
+    <ClCompile Include="engine\public\systems\filesystem\filesystem\IFileSystem.cpp" />
+    <ClCompile Include="engine\public\systems\filesystem\HObject.cpp" />
+    <ClCompile Include="game\gui\loadingscreen\ILoading.cpp" />
     <ClCompile Include="engine\public\systems\rendering\IRendering.cpp" />
     <ClCompile Include="engine\public\systems\rendering\IWicked.cpp" />
     <ClCompile Include="engine\public\systems\settings\ISettings.cpp" />

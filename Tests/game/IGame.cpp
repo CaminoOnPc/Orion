@@ -21,10 +21,10 @@ void IGame::Start(IInterfaces* interfaces)
 
 	m_Camera->Start(m_Interface);
 
-	wiRenderer::SetTemporalAAEnabled(true);
-	wiScene::LoadModel("data/game/worlds/sponza.wiscene");
+	//wiRenderer::SetTemporalAAEnabled(true);
+	//wiScene::LoadModel("data/game/worlds/sponza.wiscene");
 
-	
+	m_Interface->m_Tier2->m_IWorld->CreateObject("test", "", Vector(0, 5, 0), Vector(0, 0, 0));
 }
 
 //-----------------------------------------------------------------------------

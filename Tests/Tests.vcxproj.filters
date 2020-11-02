@@ -40,7 +40,6 @@
     <ClInclude Include="common\abstract\includes\stdafx.h">
       <Filter>Code</Filter>
     </ClInclude>
-    <ClInclude Include="engine\public\systems\loadingscreen\ILoading.h" />
     <ClInclude Include="engine\public\interfaces\panel\surface\ISurface.h" />
     <ClInclude Include="engine\public\interfaces\panel\HFont.h" />
     <ClInclude Include="engine\public\interfaces\world\IWorld.h" />
@@ -48,6 +47,9 @@
     <ClInclude Include="engine\entities\sound\ISound.h" />
     <ClInclude Include="engine\entities\camera\ICamera.h" />
     <ClInclude Include="engine\public\interfaces\debug\debugcamera\IDebugCamera.h" />
+    <ClInclude Include="game\gui\loadingscreen\ILoading.h" />
+    <ClInclude Include="engine\public\systems\filesystem\filesystem\IFileSystem.h" />
+    <ClInclude Include="engine\public\systems\filesystem\HObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\WinMain.cpp">
@@ -71,7 +73,6 @@
     <ClCompile Include="common\abstract\includes\stdafx.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="engine\public\systems\loadingscreen\ILoading.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\surface\ISurface.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\HFont.cpp" />
     <ClCompile Include="engine\public\interfaces\world\IWorld.cpp" />
@@ -79,6 +80,9 @@
     <ClCompile Include="engine\entities\sound\ISound.cpp" />
     <ClCompile Include="engine\entities\camera\ICamera.cpp" />
     <ClCompile Include="engine\public\interfaces\debug\debugcamera\IDebugCamera.cpp" />
+    <ClCompile Include="game\gui\loadingscreen\ILoading.cpp" />
+    <ClCompile Include="engine\public\systems\filesystem\filesystem\IFileSystem.cpp" />
+    <ClCompile Include="engine\public\systems\filesystem\HObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -38,6 +38,13 @@ public:
     void SetPosition(Vector position);
     Vector GetPosition();
 
+    struct EData
+    {
+        const char* m_ModelName;
+    };
+
+    EData m_Data;
+
 protected:
     IInterfaces* m_Interface;
 protected:
@@ -47,7 +54,7 @@ protected:
         {
             *ppT = nullptr;
         }
-    }
+    } 
 public:
     Vector m_Position;
     Vector m_Rotation;

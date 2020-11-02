@@ -9,7 +9,7 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
-#include "../loadingscreen/ILoading.h"
+#include "../../../../game/gui/loadingscreen/ILoading.h"
 
 class ILoading;
 
