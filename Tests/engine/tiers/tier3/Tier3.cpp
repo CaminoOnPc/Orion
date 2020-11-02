@@ -30,7 +30,5 @@ void Tier3::Stop()
 
 void Tier3::Run()
 {
-	m_IGame->Run();
-
 	return;
 }

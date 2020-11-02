@@ -131,11 +131,6 @@ void MainComponent::ActivatePath(RenderPath* component, float fadeSeconds, wiCol
 	fadeManager.Update(0); // If user calls ActivatePath without fadeout, it will be instant
 }
 
-void MainComponent::OnUpdate()
-{
-	Run();
-}
-
 void MainComponent::Run()
 {
 	if (!initialized)

@@ -100,6 +100,13 @@ namespace wiRenderer
 		uint32_t flags = DRAWSCENE_OPAQUE
 	);
 
+	// Render mip levels for textures that reqested it:
+	void ProcessDeferredMipGenRequests(wiGraphics::CommandList cmd);
+
+	// Compute essential atmospheric scattering textures for skybox, fog and clouds
+	void RenderAtmosphericScatteringTextures(wiGraphics::CommandList cmd);
+	// Update atmospheric scattering primarily for environment probes.
+	void RefreshAtmosphericScatteringTextures(wiGraphics::CommandList cmd);
 	// Draw skydome centered to camera.
 	void DrawSky(wiGraphics::CommandList cmd);
 	// A black skydome will be draw with only the sun being visible on it

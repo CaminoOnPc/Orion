@@ -9,6 +9,10 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
+#include "../engine/public/interfaces/debug/debugcamera/IDebugCamera.h"
+
+class IDebugCamera;
+
 class IInterfaces;
 
 class IGame
@@ -24,7 +28,7 @@ public:
     void Stop();
 
     // Processing a single frame of IGame
-    void Run();
+    void Run(float dt);
 
 protected:
     IInterfaces* m_Interface;
@@ -36,4 +40,6 @@ protected:
             *ppT = nullptr;
         }
     }
+public:
+    IDebugCamera* m_Camera;
 };

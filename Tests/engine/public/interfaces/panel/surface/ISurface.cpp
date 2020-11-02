@@ -32,10 +32,12 @@ void ISurface::Run()
 
 //-----------------------------------------------------------------------------
 // End processing of a single frame
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void ISurface::StartFrame()
 {
-	
+	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
+	path->ClearSprites();
+	path->ClearFonts();
 }
 
 //-----------------------------------------------------------------------------
@@ -43,7 +45,7 @@ void ISurface::StartFrame()
 //-----------------------------------------------------------------------------
 void ISurface::EndFrame()
 {
-	
+
 }
 
 //-----------------------------------------------------------------------------
@@ -99,8 +101,8 @@ void ISurface::DrawText(HFont* font, const char* text, int x, int y, int flags, 
 			x,
 			y,
 			font->m_Font.m_Size,
-			WIFALIGN_CENTER,
-			WIFALIGN_CENTER));
+			WIFALIGN_LEFT,
+			WIFALIGN_LEFT));
 
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 	path->AddFont(&textSprite);
@@ -172,9 +174,9 @@ void ISurface::DrawBitmap(const char* image, int x, int y, float w, float h, flo
 	static wiSprite imageSprite;
 	imageSprite = wiSprite(image);
 	imageSprite.params.pos = XMFLOAT3(x, y, 0.0f);
-	imageSprite.params.siz = XMFLOAT2(1024, 512);
+	imageSprite.params.siz = XMFLOAT2(w, h);
 	imageSprite.params.opacity = alpha / 255;
-	imageSprite.params.enableFullScreen();
+	//imageSprite.params.enableFullScreen();
 
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 	path->AddSprite(&imageSprite);

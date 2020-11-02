@@ -76,7 +76,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Release</OutDir>
-    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\Glm\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,7 +89,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Debug</OutDir>
-    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\Glm\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -174,6 +174,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="common\abstract\includes\glmath\IncludesGlm.h" />
     <ClInclude Include="common\abstract\includes\Includes.h" />
     <ClInclude Include="common\abstract\includes\math\IncludesMath.h" />
     <ClInclude Include="common\abstract\includes\utils\IncludesUtils.h" />
@@ -183,11 +184,15 @@
     <ClInclude Include="common\math\misc\Vector.h" />
     <ClInclude Include="common\utils\Utils.h" />
     <ClInclude Include="common\WinMain.h" />
-    <ClInclude Include="engine\entities\IObject.h" />
+    <ClInclude Include="engine\entities\camera\ICamera.h" />
+    <ClInclude Include="engine\entities\object\IObject.h" />
+    <ClInclude Include="engine\entities\sound\ISound.h" />
     <ClInclude Include="engine\public\IBase.h" />
     <ClInclude Include="engine\public\IInterfaces.h" />
+    <ClInclude Include="engine\public\interfaces\debug\debugcamera\IDebugCamera.h" />
     <ClInclude Include="engine\public\interfaces\panel\HFont.h" />
     <ClInclude Include="engine\public\interfaces\panel\surface\ISurface.h" />
+    <ClInclude Include="engine\public\interfaces\world\IWorld.h" />
     <ClInclude Include="engine\public\systems\loadingscreen\ILoading.h" />
     <ClInclude Include="engine\public\systems\rendering\IRendering.h" />
     <ClInclude Include="engine\public\systems\rendering\IWicked.h" />
@@ -207,11 +212,15 @@
     <ClCompile Include="common\math\misc\Vector.cpp" />
     <ClCompile Include="common\utils\Utils.cpp" />
     <ClCompile Include="common\WinMain.cpp" />
-    <ClCompile Include="engine\entities\IObject.cpp" />
+    <ClCompile Include="engine\entities\camera\ICamera.cpp" />
+    <ClCompile Include="engine\entities\object\IObject.cpp" />
+    <ClCompile Include="engine\entities\sound\ISound.cpp" />
     <ClCompile Include="engine\public\IBase.cpp" />
     <ClCompile Include="engine\public\IInterfaces.cpp" />
+    <ClCompile Include="engine\public\interfaces\debug\debugcamera\IDebugCamera.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\HFont.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\surface\ISurface.cpp" />
+    <ClCompile Include="engine\public\interfaces\world\IWorld.cpp" />
     <ClCompile Include="engine\public\systems\loadingscreen\ILoading.cpp" />
     <ClCompile Include="engine\public\systems\rendering\IRendering.cpp" />
     <ClCompile Include="engine\public\systems\rendering\IWicked.cpp" />

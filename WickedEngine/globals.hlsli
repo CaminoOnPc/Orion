@@ -12,6 +12,9 @@ TEXTURECUBE(texture_globalenvmap, float4, TEXSLOT_GLOBALENVMAP);
 TEXTURE2D(texture_globallightmap, float4, TEXSLOT_GLOBALLIGHTMAP);
 TEXTURECUBEARRAY(texture_envmaparray, float4, TEXSLOT_ENVMAPARRAY);
 TEXTURE2D(texture_decalatlas, float4, TEXSLOT_DECALATLAS);
+TEXTURE2D(texture_skyviewlut, float4, TEXSLOT_SKYVIEWLUT);
+TEXTURE2D(texture_transmittancelut, float4, TEXSLOT_TRANSMITTANCELUT);
+TEXTURE2D(texture_multiscatteringlut, float4, TEXSLOT_MULTISCATTERINGLUT);
 TEXTURE2DARRAY(texture_shadowarray_2d, float, TEXSLOT_SHADOWARRAY_2D);
 TEXTURECUBEARRAY(texture_shadowarray_cube, float, TEXSLOT_SHADOWARRAY_CUBE);
 TEXTURE2DARRAY(texture_shadowarray_transparent, float4, TEXSLOT_SHADOWARRAY_TRANSPARENT);
@@ -298,8 +301,8 @@ inline float3 reconstructPosition(in float2 uv, in float z)
 	return reconstructPosition(uv, z, g_xCamera_InvVP);
 }
 
-
-// For storing normal in gbuffer in world space, we convert to spherical coordinates:
+#if 0
+// http://aras-p.info/texts/CompactNormalStorage.html Method#3: Spherical coords
 //  [Commented out optimized parts, because we don't need to normalize range when storing to float format]
 inline float2 encodeNormal(in float3 N)
 {
@@ -313,6 +316,24 @@ inline float3 decodeNormal(in float2 spherical)
 	sinCosPhi = float2(sqrt(1.0 - spherical.y * spherical.y), spherical.y);
 	return float3(sinCosTheta.y * sinCosPhi.x, sinCosTheta.x * sinCosPhi.x, sinCosPhi.y);
 }
+#else
+// http://aras-p.info/texts/CompactNormalStorage.html Method#4: Spheremap transform
+float2 encodeNormal(float3 n)
+{
+	float f = sqrt(8 * n.z + 8);
+	return n.xy / f + 0.5;
+}
+float3 decodeNormal(float2 enc)
+{
+	float2 fenc = enc * 4 - 2;
+	float f = dot(fenc, fenc);
+	float g = sqrt(1 - f / 4);
+	float3 n;
+	n.xy = fenc * g;
+	n.z = 1 - f / 2;
+	return n;
+}
+#endif 
 
 
 // Convert texture coordinates on a cubemap face to cubemap sampling coordinates:
