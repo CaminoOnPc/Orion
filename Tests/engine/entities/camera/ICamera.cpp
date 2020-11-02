@@ -43,7 +43,7 @@ void ICamera::Run(float dt)
 	{
 		wiScene::TransformComponent transform;
 
-		transform.RotateRollPitchYaw(XMFLOAT3(m_Rotation.x, m_Rotation.y, m_Rotation.z));
+		transform.RotateRollPitchYaw(XMFLOAT3(XMConvertToRadians(m_Rotation.x), XMConvertToRadians(m_Rotation.y), XMConvertToRadians(m_Rotation.z)));
 		transform.Translate(XMFLOAT3(m_Position.x, m_Position.y, m_Position.z));
 		transform.UpdateTransform();
 
