@@ -48,7 +48,6 @@
     <ClInclude Include="engine\entities\sound\ISound.h" />
     <ClInclude Include="engine\entities\camera\ICamera.h" />
     <ClInclude Include="engine\public\interfaces\debug\debugcamera\IDebugCamera.h" />
-    <ClInclude Include="common\abstract\includes\glmath\IncludesGlm.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\WinMain.cpp">

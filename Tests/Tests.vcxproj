@@ -76,7 +76,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Release</OutDir>
-    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\Glm\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,7 +89,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Debug</OutDir>
-    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\Glm\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -174,7 +174,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="common\abstract\includes\glmath\IncludesGlm.h" />
     <ClInclude Include="common\abstract\includes\Includes.h" />
     <ClInclude Include="common\abstract\includes\math\IncludesMath.h" />
     <ClInclude Include="common\abstract\includes\utils\IncludesUtils.h" />
