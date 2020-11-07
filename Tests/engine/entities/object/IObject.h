@@ -29,6 +29,8 @@ public:
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------
 
+    void LoadModel();
+
     void SetScale(Vector scale);
     Vector GetScale();
 

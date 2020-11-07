@@ -25,4 +25,19 @@ namespace Utils
 	{
 		return boost::filesystem::current_path().make_preferred().string();
 	}
+
+	static std::string get_font_directory()
+	{
+		WCHAR winDir[MAX_PATH];
+		GetWindowsDirectory(winDir, MAX_PATH);
+
+		std::wstring wsFontFile;
+		wsFontFile.clear();
+
+		std::wstringstream ss;
+		ss << winDir << "\\Fonts\\" << wsFontFile;
+		wsFontFile = ss.str();
+
+		return std::string(wsFontFile.begin(), wsFontFile.end());
+	}
 }

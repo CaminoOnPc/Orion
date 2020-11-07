@@ -31,7 +31,7 @@ using namespace wiRectPacker;
 
 namespace wiFont_Internal
 {
-	string				FONTPATH = wiHelper::GetOriginalWorkingDirectory() + "data/game/gui/fonts/";
+	string				FONTPATH = wiHelper::GetOriginalWorkingDirectory() + "../WickedEngine/fonts/";
 	GPUBuffer			constantBuffer;
 	BlendState			blendState;
 	RasterizerState		rasterizerState;
@@ -559,7 +559,7 @@ float textHeight_internal(const T* text, const wiFontParams& params)
 template<typename T>
 void Draw_internal(const T* text, size_t text_length, const wiFontParams& params, CommandList cmd)
 {
-	if (!initialized.load())
+	if (text_length <= 0 || !initialized.load())
 	{
 		return;
 	}
@@ -584,6 +584,12 @@ void Draw_internal(const T* text, size_t text_length, const wiFontParams& params
 	}
 	volatile FontVertex* textBuffer = (volatile FontVertex*)mem.data;
 	const uint32_t quadCount = WriteVertices(textBuffer, text, newProps);
+	UpdatePendingGlyphs();
+
+	if (quadCount <= 0)
+	{
+	    return;
+	}
 
 	device->EventBegin("Font", cmd);
 
@@ -614,6 +620,46 @@ void Draw_internal(const T* text, size_t text_length, const wiFontParams& params
 		device->DrawInstanced(4, quadCount, 0, 0, cmd);
 	}
 
+	if (newProps.outlineColor.getA() > 0)
+	{
+		// font outline render:
+		XMStoreFloat4x4(&cb.g_xFont_Transform,
+			XMMatrixTranslation((float)newProps.posX - 1, (float)newProps.posY, 0)
+			* Projection
+		);
+		cb.g_xFont_Color = newProps.outlineColor.toFloat4();
+		device->UpdateBuffer(&constantBuffer, &cb, cmd);
+
+		device->DrawInstanced(4, quadCount, 0, 0, cmd);
+
+		XMStoreFloat4x4(&cb.g_xFont_Transform,
+			XMMatrixTranslation((float)newProps.posX, (float)newProps.posY - 1, 0)
+			* Projection
+		);
+		cb.g_xFont_Color = newProps.outlineColor.toFloat4();
+		device->UpdateBuffer(&constantBuffer, &cb, cmd);
+
+		device->DrawInstanced(4, quadCount, 0, 0, cmd);
+
+		XMStoreFloat4x4(&cb.g_xFont_Transform,
+			XMMatrixTranslation((float)newProps.posX + 1, (float)newProps.posY, 0)
+			* Projection
+		);
+		cb.g_xFont_Color = newProps.outlineColor.toFloat4();
+		device->UpdateBuffer(&constantBuffer, &cb, cmd);
+
+		device->DrawInstanced(4, quadCount, 0, 0, cmd);
+
+		XMStoreFloat4x4(&cb.g_xFont_Transform,
+			XMMatrixTranslation((float)newProps.posX, (float)newProps.posY + 1, 0)
+			* Projection
+		);
+		cb.g_xFont_Color = newProps.outlineColor.toFloat4();
+		device->UpdateBuffer(&constantBuffer, &cb, cmd);
+
+		device->DrawInstanced(4, quadCount, 0, 0, cmd);
+	}
+
 	// font base render:
 	XMStoreFloat4x4(&cb.g_xFont_Transform, 
 		XMMatrixTranslation((float)newProps.posX, (float)newProps.posY, 0)
@@ -625,8 +671,6 @@ void Draw_internal(const T* text, size_t text_length, const wiFontParams& params
 	device->DrawInstanced(4, quadCount, 0, 0, cmd);
 
 	device->EventEnd(cmd);
-
-	UpdatePendingGlyphs();
 }
 
 void Draw(const char* text, const wiFontParams& params, CommandList cmd)

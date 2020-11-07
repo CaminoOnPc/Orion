@@ -9,8 +9,10 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
+#include "../engine/public/interfaces/debug/debugdisplay/IDebugDisplay.h"
 #include "../engine/public/interfaces/debug/debugcamera/IDebugCamera.h"
 
+class IDebugDisplay;
 class IDebugCamera;
 
 class IInterfaces;
@@ -41,5 +43,6 @@ protected:
         }
     }
 public:
-    IDebugCamera* m_Camera;
+    IDebugDisplay* m_DebugDisplay;
+    IDebugCamera* m_DebugCamera;
 };

@@ -43,7 +43,6 @@ public:
     HFont* CreateFont(const char* font, int size, int flags);
 
     void DrawText(HFont* font, const char* text, int x, int y, Color color);
-    void DrawText(HFont* font, const char* text, int x, int y, int flags, Color color);
 
     void DrawRect(int x, int y, float w, float h, Color color);
     void DrawRect(int x, int y, float w, float h, bool outline, Color color);

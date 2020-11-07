@@ -35,5 +35,5 @@ void IRendering::Stop()
 //-----------------------------------------------------------------------------
 void IRendering::Run()
 {
-	m_Wicked->Run();
+	m_Wicked->Run(); 
 }

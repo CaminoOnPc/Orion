@@ -14,6 +14,7 @@
 
 class IObject;
 class ISound;
+class ICache;
 
 class IInterfaces;
 
@@ -54,4 +55,39 @@ protected:
 public:
     std::vector< IObject* > m_Objects;
     std::vector< ISound* > m_Sounds;
+    std::vector< ICache* > m_Cache;
+};
+
+class ICache
+{
+public:
+    // * Those are calls allocated for class initialization and running
+    // ---------------------------------------------
+
+    // Activates IWorld initalization process
+    void Start(IInterfaces* interfaces);
+
+    // Activates IWorld shutdown process
+    void Stop();
+
+    // Processing a single frame of IWorld
+    void Run();
+
+    // * Those are calls that are accessible by everyone 
+    // ---------------------------------------------
+
+protected:
+    IInterfaces* m_Interface;
+protected:
+    template <class T> void SafeRelease(T** ppT)
+    {
+        if (*ppT)
+        {
+            *ppT = nullptr;
+        }
+    }
+public:
+    const char* m_ModelName;
+public:
+    wiECS::Entity m_Entity;
 };

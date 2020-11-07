@@ -61,9 +61,10 @@ HFont* ISurface::CreateFont(const char* font, int size, int flags)
 //-----------------------------------------------------------------------------
 void ISurface::DrawText(HFont* font, const char* text, int x, int y, Color color)
 {
+	static wiSpriteFont textSprite;
+
 	if (!font->m_Font.m_Flag)
 	{
-		static wiSpriteFont textSprite;
 		textSprite = wiSpriteFont(
 			text,
 			wiFontParams(
@@ -71,7 +72,9 @@ void ISurface::DrawText(HFont* font, const char* text, int x, int y, Color color
 			y,
 			font->m_Font.m_Size,
 			WIFALIGN_LEFT,
-			WIFALIGN_LEFT));
+			WIFALIGN_LEFT,
+			wiColor(color.r(), color.g(), color.b(), color.a())
+			));
 
 		RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 		path->AddFont(&textSprite);
@@ -79,33 +82,21 @@ void ISurface::DrawText(HFont* font, const char* text, int x, int y, Color color
 
 	if (font->m_Font.m_Flag && FONTFLAGS_OUTLINE)
 	{
-		DrawText(font, text, x, y, 1, Color(0, 0, 0, 255));
-		DrawText(font, text, x - 1, y, 1, Color(0, 0, 0, 255));
-		DrawText(font, text, x, y - 1, 1, Color(0, 0, 0, 255));
-		DrawText(font, text, x + 1, y, 1, Color(0, 0, 0, 255));
-		DrawText(font, text, x, y + 1, 1, Color(0, 0, 0, 255));
+		textSprite = wiSpriteFont(
+			text,
+			wiFontParams(
+				x,
+				y,
+				font->m_Font.m_Size,
+				WIFALIGN_LEFT,
+				WIFALIGN_LEFT,
+				wiColor(color.r(), color.g(), color.b(), color.a()),
+				wiColor(0, 0, 0, 0),
+				wiColor::Black()));
 
-		DrawText(font, text, x, y, 0, color);
+		RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
+		path->AddFont(&textSprite);
 	}
-}
-
-//-----------------------------------------------------------------------------
-// Draw text with custom flags
-//-----------------------------------------------------------------------------
-void ISurface::DrawText(HFont* font, const char* text, int x, int y, int flags, Color color)
-{
-	static wiSpriteFont textSprite;
-	textSprite = wiSpriteFont(
-		text,
-		wiFontParams(
-			x,
-			y,
-			font->m_Font.m_Size,
-			WIFALIGN_LEFT,
-			WIFALIGN_LEFT));
-
-	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
-	path->AddFont(&textSprite);
 }
 
 //-----------------------------------------------------------------------------

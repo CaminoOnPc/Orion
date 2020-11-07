@@ -50,6 +50,7 @@
     <ClInclude Include="game\gui\loadingscreen\ILoading.h" />
     <ClInclude Include="engine\public\systems\filesystem\filesystem\IFileSystem.h" />
     <ClInclude Include="engine\public\systems\filesystem\HObject.h" />
+    <ClInclude Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\WinMain.cpp">
@@ -83,6 +84,7 @@
     <ClCompile Include="game\gui\loadingscreen\ILoading.cpp" />
     <ClCompile Include="engine\public\systems\filesystem\filesystem\IFileSystem.cpp" />
     <ClCompile Include="engine\public\systems\filesystem\HObject.cpp" />
+    <ClCompile Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
