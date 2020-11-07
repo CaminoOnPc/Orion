@@ -61,7 +61,7 @@ HFont* ISurface::CreateFont(const char* font, int size, int flags)
 //-----------------------------------------------------------------------------
 void ISurface::DrawText(HFont* font, const char* text, int x, int y, Color color)
 {
-	static wiSpriteFont textSprite;
+	wiSpriteFont textSprite;
 
 	if (!font->m_Font.m_Flag)
 	{
@@ -104,7 +104,7 @@ void ISurface::DrawText(HFont* font, const char* text, int x, int y, Color color
 //-----------------------------------------------------------------------------
 void ISurface::DrawRect(int x, int y, float w, float h, Color color)
 {
-	static wiSprite rectSprite;
+	wiSprite rectSprite;
 	rectSprite.params.pos = XMFLOAT3(x, y, 0.0f);
 	rectSprite.params.siz = XMFLOAT2(w, h);
 	rectSprite.params.pivot = XMFLOAT2(0.5f, 0.5f);
@@ -119,7 +119,7 @@ void ISurface::DrawRect(int x, int y, float w, float h, Color color)
 //-----------------------------------------------------------------------------
 void ISurface::DrawRect(int x, int y, float w, float h, bool outline, Color color)
 {
-	static wiSprite rectSprite;
+	wiSprite rectSprite;
 	rectSprite.params.pos = XMFLOAT3(x, y, 0.0f);
 	rectSprite.params.siz = XMFLOAT2(w, h);
 	rectSprite.params.pivot = XMFLOAT2(0.5f, 0.5f);
@@ -130,7 +130,7 @@ void ISurface::DrawRect(int x, int y, float w, float h, bool outline, Color colo
 
 	if (outline)
 	{
-		static wiSprite rectSpriteOutline;
+		wiSprite rectSpriteOutline;
 		rectSpriteOutline.params.pos = XMFLOAT3(x - 1, y - 1, 0.0f);
 		rectSpriteOutline.params.siz = XMFLOAT2(w + 1, h + 1);
 		rectSpriteOutline.params.pivot = XMFLOAT2(0.5f, 0.5f);
@@ -162,13 +162,12 @@ void ISurface::DrawLine(int x0, int y0, int x1, int y1, float width, Color color
 //-----------------------------------------------------------------------------
 void ISurface::DrawBitmap(const char* image, int x, int y, float w, float h, float alpha)
 {
-	static wiSprite imageSprite;
-	imageSprite = wiSprite(image);
-	imageSprite.params.pos = XMFLOAT3(x, y, 0.0f);
-	imageSprite.params.siz = XMFLOAT2(w, h);
-	imageSprite.params.opacity = alpha / 255;
+	wiSprite* imageSprite = new wiSprite(image);
+	imageSprite->params.pos = XMFLOAT3(x, y, 0.0f);
+	imageSprite->params.siz = XMFLOAT2(w, h);
+	imageSprite->params.opacity = alpha / 255;
 	//imageSprite.params.enableFullScreen();
 
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
-	path->AddSprite(&imageSprite);
+	path->AddSprite(&*imageSprite);
 }

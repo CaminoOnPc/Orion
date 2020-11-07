@@ -29,14 +29,6 @@ void IGame::Start(IInterfaces* interfaces)
 
 	m_DebugDisplay->Start(m_Interface);
 
-	//wiProfiler::SetEnabled(true);
-	
-	wiRenderer::ClearWorld();
-	wiScene::GetScene().weather = wiScene::WeatherComponent();
-
-	
-
-	const float scale = 0.05f;
 	int count = 16;
 	for (int i = 0; i < count; ++i)
 	{
@@ -55,6 +47,17 @@ void IGame::Start(IInterfaces* interfaces)
 	weather.horizon = XMFLOAT3(0.38f, 0.38f, 0.38f);
 	weather.zenith = XMFLOAT3(0.42f, 0.42f, 0.42f);
 	weather.cloudiness = 0.0f;
+
+	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
+
+	m_UI = wiSprite("data/game/gui/images/ui.png");
+	m_UI.params.sampleFlag = SAMPLEMODE_CLAMP;
+	m_UI.params.blendFlag = BLENDMODE_ALPHA;
+	m_UI.params.quality = QUALITY_LINEAR;
+	m_UI.params.pos = XMFLOAT3(0, 0, 0.0f);
+	m_UI.params.enableFullScreen();
+
+	path->AddSprite(&m_UI);
 }
 
 //-----------------------------------------------------------------------------
