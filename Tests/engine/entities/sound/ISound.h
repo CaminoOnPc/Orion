@@ -32,9 +32,9 @@ public:
     void SetPosition(Vector position);
     Vector GetPosition();
 
-    void Pause();
-    void Stop();
-    void Play();
+    void PauseSound();
+    void StopSound();
+    void PlaySound();
 
     struct EData
     {
@@ -55,7 +55,7 @@ protected:
         }
     }
 public:
-    wiScene::SoundComponent& m_SoundComponent;
+    wiScene::SoundComponent m_SoundComponent;
     wiAudio::SoundInstance m_SoundInstance;
     wiAudio::Sound m_Sound;
 public:

@@ -82,7 +82,7 @@ Vector ISound::GetPosition()
 //-----------------------------------------------------------------------------
 // Pauses the audio playback
 //-----------------------------------------------------------------------------
-void ISound::Pause()
+void ISound::PauseSound()
 {
 	if (m_SoundComponent.IsPlaying())
 	{
@@ -93,7 +93,7 @@ void ISound::Pause()
 //-----------------------------------------------------------------------------
 // Stops the audio playback
 //-----------------------------------------------------------------------------
-void ISound::Stop()
+void ISound::StopSound()
 {
 	if (!m_SoundComponent.IsPlaying())
 	{
@@ -104,7 +104,7 @@ void ISound::Stop()
 //-----------------------------------------------------------------------------
 // Starts the audio playback
 //-----------------------------------------------------------------------------
-void ISound::Play()
+void ISound::PlaySound()
 {
 	if (!m_SoundComponent.IsPlaying())
 	{
