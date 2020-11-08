@@ -947,6 +947,5 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)skyAtmosphere_multiScatteredLuminanceLutCS.hlsl">
       <Filter>CS</Filter>
     </FxCompile>
-    <FxCompile Include="$(MSBuildThisFileDirectory)trailVS.hlsl" />
   </ItemGroup>
 </Project>

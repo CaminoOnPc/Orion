@@ -6,6 +6,8 @@
 
 #include "IGame.h"
 
+IObject* object;
+
 //-----------------------------------------------------------------------------
 // Activates IGame initalization process
 //-----------------------------------------------------------------------------
@@ -29,18 +31,14 @@ void IGame::Start(IInterfaces* interfaces)
 
 	m_DebugDisplay->Start(m_Interface);
 
-	int count = 16;
+	int count = 32;
 	for (int i = 0; i < count; ++i)
 	{
 		for (int j = 0; j < count; ++j)
 		{
-			//m_Interface->m_Tier2->m_IWorld->CreateObject("marvin", "", Vector(float(i) * 6, 0, float(j) * 6), Vector(90, 0, 0));
+			m_Interface->m_Tier2->m_IWorld->CreateObject("marvin", "", Vector(float(i) * 6, 0, float(j) * 6), Vector(-90, 0, 0));
 		}
 	}
-
-	m_Interface->m_Tier2->m_IWorld->CreateObject("marvin", "", Vector(0, 0, 0), Vector(90, 0, 0));
-	m_Interface->m_Tier2->m_IWorld->CreateObject("marvin", "", Vector(10, 0, 0), Vector(90, 0, 0));
-	m_Interface->m_Tier2->m_IWorld->CreateObject("marvin", "", Vector(10, 0, 0), Vector(90, 0, 0));
 
 	auto& weather = wiScene::GetScene().weathers.Create(wiECS::CreateEntity());
 	weather.ambient = XMFLOAT3(0.2f, 0.2f, 0.2f);

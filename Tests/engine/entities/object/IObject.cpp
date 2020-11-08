@@ -27,22 +27,16 @@ void IObject::Start(IInterfaces* interfaces)
 
 	if (skip)
 	{
-		wiECS::Entity duplicate = wiScene::GetScene().Entity_Duplicate(cached->m_Entity);
-		if (duplicate)
+		m_Entity = wiScene::GetScene().Entity_Duplicate(cached->m_Entity);
+		if (m_Entity)
 		{
-			std::cout << "Duplicate: " << (void*)duplicate << std::endl;
-
-			wiScene::GetScene().transforms.Create(duplicate);
-			wiScene::TransformComponent* transform = wiScene::GetScene().transforms.GetComponent(duplicate);
+			wiScene::TransformComponent* transform = wiScene::GetScene().transforms.GetComponent(m_Entity);
 			if (transform)
-			{
-				std::cout << "Transform: " << (void*)transform << std::endl;
-
+			{	
+				transform->ClearTransform();
 				transform->RotateRollPitchYaw(XMFLOAT3(XMConvertToRadians(m_Rotation.x), XMConvertToRadians(m_Rotation.y), XMConvertToRadians(m_Rotation.z)));
 				transform->Translate(XMFLOAT3(m_Position.x, m_Position.y, m_Position.z));
 				transform->UpdateTransform();
-
-				std::cout << "Position: " << m_Position.x << " " << m_Position.y << " " << m_Position.z << " " << std::endl;
 			}
 		}
 		return;
@@ -53,11 +47,11 @@ void IObject::Start(IInterfaces* interfaces)
 	transform.Translate(XMFLOAT3(m_Position.x, m_Position.y, m_Position.z));
 	transform.UpdateTransform();
 
-	wiECS::Entity entity = wiScene::LoadModel(m_Data.m_ModelName, transform.GetLocalMatrix());
+	m_Entity = wiScene::LoadModel(m_Data.m_ModelName, transform.GetLocalMatrix(), true);
 
 	cached = new ICache;
 	cached->m_ModelName = m_Data.m_ModelName;
-	cached->m_Entity = entity;
+	cached->m_Entity = m_Entity;
 
 	m_Interface->m_Tier2->m_IWorld->m_Cache.push_back(cached);
 }
@@ -107,6 +101,12 @@ Vector IObject::GetScale()
 void IObject::SetRotation(Vector rotation)
 {
 	m_Rotation = rotation;
+
+	wiScene::TransformComponent* transform = wiScene::GetScene().transforms.GetComponent(m_Entity);
+	if (transform)
+	{
+		transform->RotateRollPitchYaw(XMFLOAT3(XMConvertToRadians(rotation.x), XMConvertToRadians(rotation.y), XMConvertToRadians(rotation.z)));
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -123,6 +123,12 @@ Vector IObject::GetRotation()
 void IObject::SetPosition(Vector position)
 {
 	m_Position = position;
+
+	wiScene::TransformComponent* transform = wiScene::GetScene().transforms.GetComponent(m_Entity);
+	if (transform)
+	{
+		transform->Translate(XMFLOAT3(position.x, position.y, position.z));
+	}
 }
 
 //-----------------------------------------------------------------------------

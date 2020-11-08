@@ -58,6 +58,8 @@ protected:
         }
     } 
 public:
+    wiECS::Entity m_Entity;
+public:
     Vector m_Position;
     Vector m_Rotation;
     Vector m_Scale;
