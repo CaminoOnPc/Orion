@@ -35,6 +35,8 @@ public:
 
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------
+        
+    void CreateWorld(const char* world);
 
     IObject* CreateObject(const char* model, const char* material, Vector position, Vector rotation);
     void ObjectDelete(IObject* object);
@@ -52,6 +54,8 @@ protected:
             *ppT = nullptr;
         }
     }
+public:
+    wiECS::Entity m_World;
 public:
     std::vector< IObject* > m_Objects;
     std::vector< ISound* > m_Sounds;

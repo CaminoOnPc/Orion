@@ -23,8 +23,6 @@ void ILoading::Load()
 {
 	m_Interface->m_Tier0->m_Rendering->m_RenderPath = this;
 
-	m_Interface->m_Tier2->m_ISurface->StartFrame();
-
 	m_Interface->m_Tier2->m_ISurface->DrawBitmap("data/game/materials/textures/loadscreen/loading_1.png", 0, 0, wiRenderer::GetDevice()->GetScreenWidth(), wiRenderer::GetDevice()->GetScreenHeight(), 255);
 
 	//static HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("Arial", 16, ISurface::EFontFlags::FONTFLAGS_OUTLINE);

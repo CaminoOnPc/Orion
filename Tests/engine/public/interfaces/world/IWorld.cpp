@@ -39,6 +39,57 @@ void IWorld::Run()
 }
 
 //-----------------------------------------------------------------------------
+// Creates and loads a world
+//-----------------------------------------------------------------------------
+void IWorld::CreateWorld(const char* world)
+{
+	m_World = wiScene::LoadModel(world);
+
+	Color horizon = Color(101, 101, 227);
+	Color ambient = Color(33, 47, 127);
+	Color zenith = Color(99, 133, 255);
+
+	auto& weather = wiScene::GetScene().weathers.Create(wiECS::CreateEntity());
+	weather.cloudiness = 0.0f;
+	weather.horizon = XMFLOAT3(horizon.rBase(), horizon.gBase(), horizon.bBase());
+	weather.ambient = XMFLOAT3(ambient.rBase(), ambient.gBase(), ambient.bBase());
+	weather.zenith = XMFLOAT3(zenith.rBase(), zenith.gBase(), zenith.bBase());
+	weather.SetRealisticSky(true);
+
+	RenderPath3D* path = (RenderPath3D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
+	if (path)
+	{
+		path->setVolumetricCloudsEnabled(true);
+
+		for (size_t i = 0; i < wiScene::GetScene().lights.GetCount(); i++)
+		{
+			wiScene::LightComponent* light = wiScene::GetScene().lights.GetComponent(wiScene::GetScene().lights.GetEntity(i));
+			if (light->type == wiScene::LightComponent::LightType::DIRECTIONAL)
+			{
+				wiScene::TransformComponent* transform = wiScene::GetScene().transforms.GetComponent(wiScene::GetScene().Entity_FindByName("sun"));
+				if (transform)
+				{
+					transform->ClearTransform();
+					transform->RotateRollPitchYaw(XMFLOAT3(XMConvertToRadians(45), XMConvertToRadians(0), XMConvertToRadians(0)));
+					transform->Translate(XMFLOAT3(0, 0, 0));
+					transform->UpdateTransform();
+				}
+
+				for (size_t i = 1; i < 15; i++)
+				{
+					std::string flare = "data/game/materials/textures/effects/flare_";
+					flare.append(std::to_string(i));
+					flare.append(".png");
+
+					light->lensFlareRimTextures.push_back(wiResourceManager::Load(flare));
+					light->lensFlareNames.push_back(flare);
+				}
+			}
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
 // Creates and loads new object
 //-----------------------------------------------------------------------------
 IObject* IWorld::CreateObject(const char* model, const char* material, Vector position, Vector rotation)
@@ -135,27 +186,4 @@ void IWorld::SoundObjectDelete(ISound* sound)
 			SafeRelease(&m_Sounds.at(i));
 		}
 	}
-}
-
-//-----------------------------------------------------------------------------
-// Activates ICache initalization process
-//-----------------------------------------------------------------------------
-void ICache::Start(IInterfaces* interfaces)
-{
-	m_Interface = interfaces;
-}
-
-//-----------------------------------------------------------------------------
-// Activates ICache shutdown process
-//-----------------------------------------------------------------------------
-void ICache::Stop()
-{
-	SafeRelease(&m_Interface);
-}
-
-//-----------------------------------------------------------------------------
-// Processing a single frame of ICache
-//-----------------------------------------------------------------------------
-void ICache::Run()
-{
 }

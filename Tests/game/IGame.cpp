@@ -31,6 +31,8 @@ void IGame::Start(IInterfaces* interfaces)
 
 	m_DebugDisplay->Start(m_Interface);
 
+	m_Interface->m_Tier2->m_IWorld->CreateWorld("data/game/worlds/world_empty.wiscene");
+
 	int count = 32;
 	for (int i = 0; i < count; ++i)
 	{
@@ -40,14 +42,6 @@ void IGame::Start(IInterfaces* interfaces)
 		}
 	}
 
-	auto& weather = wiScene::GetScene().weathers.Create(wiECS::CreateEntity());
-	weather.ambient = XMFLOAT3(0.2f, 0.2f, 0.2f);
-	weather.horizon = XMFLOAT3(0.38f, 0.38f, 0.38f);
-	weather.zenith = XMFLOAT3(0.42f, 0.42f, 0.42f);
-	weather.cloudiness = 0.0f;
-
-	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
-
 	m_UI = wiSprite("data/game/materials/textures/ui/ui.png");
 	m_UI.params.sampleFlag = SAMPLEMODE_CLAMP;
 	m_UI.params.blendFlag = BLENDMODE_ALPHA;
@@ -55,6 +49,7 @@ void IGame::Start(IInterfaces* interfaces)
 	m_UI.params.pos = XMFLOAT3(0, 0, 0.0f);
 	m_UI.params.enableFullScreen();
 
+	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 	path->AddSprite(&m_UI);
 }
 

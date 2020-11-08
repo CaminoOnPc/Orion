@@ -31,6 +31,19 @@ public:
 
     void SetPosition(Vector position);
     Vector GetPosition();
+
+    void Pause();
+    void Stop();
+    void Play();
+
+    struct EData
+    {
+        const char* m_SoundName;
+        int m_SoundType;
+    };
+
+    EData m_Data;
+
 protected:
     IInterfaces* m_Interface;
 protected:
@@ -41,6 +54,10 @@ protected:
             *ppT = nullptr;
         }
     }
+public:
+    wiScene::SoundComponent& m_SoundComponent;
+    wiAudio::SoundInstance m_SoundInstance;
+    wiAudio::Sound m_Sound;
 public:
     Vector m_Position;
 };
