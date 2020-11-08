@@ -25,7 +25,7 @@ void ILoading::Load()
 
 	m_Interface->m_Tier2->m_ISurface->StartFrame();
 
-	m_Interface->m_Tier2->m_ISurface->DrawBitmap("data/game/gui/images/loading_1.png", 0, 0, wiRenderer::GetDevice()->GetScreenWidth(), wiRenderer::GetDevice()->GetScreenHeight(), 255);
+	m_Interface->m_Tier2->m_ISurface->DrawBitmap("data/game/materials/textures/loadscreen/loading_1.png", 0, 0, wiRenderer::GetDevice()->GetScreenWidth(), wiRenderer::GetDevice()->GetScreenHeight(), 255);
 
 	//static HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("Arial", 16, ISurface::EFontFlags::FONTFLAGS_OUTLINE);
 	//std::string version;

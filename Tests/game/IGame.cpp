@@ -36,7 +36,7 @@ void IGame::Start(IInterfaces* interfaces)
 	{
 		for (int j = 0; j < count; ++j)
 		{
-			m_Interface->m_Tier2->m_IWorld->CreateObject("marvin", "", Vector(float(i) * 6, 0, float(j) * 6), Vector(-90, 0, 0));
+			m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", "", Vector(float(i) * 6, 0, float(j) * 6), Vector(-90, 0, 0));
 		}
 	}
 
@@ -48,7 +48,7 @@ void IGame::Start(IInterfaces* interfaces)
 
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 
-	m_UI = wiSprite("data/game/gui/images/ui.png");
+	m_UI = wiSprite("data/game/materials/textures/ui/ui.png");
 	m_UI.params.sampleFlag = SAMPLEMODE_CLAMP;
 	m_UI.params.blendFlag = BLENDMODE_ALPHA;
 	m_UI.params.quality = QUALITY_LINEAR;
