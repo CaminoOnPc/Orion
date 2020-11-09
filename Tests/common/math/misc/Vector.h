@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <math.h>
+
 class Vector
 {
 public:
@@ -33,4 +35,9 @@ public:
 
 	bool operator==(const Vector&) const;
 	bool operator!=(const Vector&) const;
+
+	float Length2D(void) const;
+	float Length(void) const;
+
+	float Distance(Vector v);
 };

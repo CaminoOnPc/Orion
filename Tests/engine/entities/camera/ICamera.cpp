@@ -37,8 +37,6 @@ void ICamera::Stop()
 //-----------------------------------------------------------------------------
 void ICamera::Run(float dt)
 {
-	wiScene::CameraComponent& camera = wiRenderer::GetCamera();
-
 	if (m_IsActive)
 	{
 		wiScene::TransformComponent transform;
@@ -47,6 +45,7 @@ void ICamera::Run(float dt)
 		transform.Translate(XMFLOAT3(m_Position.x, m_Position.y, m_Position.z));
 		transform.UpdateTransform();
 
+		wiScene::CameraComponent& camera = wiRenderer::GetCamera();
 		camera.TransformCamera(transform);
 		camera.UpdateCamera();
 	}

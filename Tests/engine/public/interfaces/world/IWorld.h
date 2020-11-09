@@ -38,10 +38,10 @@ public:
         
     void CreateWorld(const char* world);
 
-    IObject* CreateObject(const char* model, const char* material, Vector position, Vector rotation);
+    IObject* CreateObject(const char* model, Vector position, Vector rotation);
     void ObjectDelete(IObject* object);
 
-    ISound* CreateSoundObject(const char* audio, float distance, Vector position, Vector rotation);
+    ISound* CreateSoundObject(const char* audio, float distance, Vector position);
     ISound* CreateSoundObject2D(const char* audio);
     void SoundObjectDelete(ISound* object);
 protected:

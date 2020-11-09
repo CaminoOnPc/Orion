@@ -6,7 +6,9 @@
 
 #pragma once
 
-#include "../abstract/includes/Includes.h"
+#include <Includes.h>
+
+class Vector;
 
 class Math
 {

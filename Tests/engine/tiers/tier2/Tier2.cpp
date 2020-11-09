@@ -46,5 +46,7 @@ void Tier2::Stop()
 
 void Tier2::Run()
 {
+	m_IWorld->Run();
+
 	return;
 }

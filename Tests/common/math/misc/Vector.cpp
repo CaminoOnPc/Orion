@@ -125,3 +125,18 @@ bool Vector::operator!=(const Vector& e) const
 {
 	return e.x != x || e.y != y || e.z != z;
 }
+
+float Vector::Distance(Vector v)
+{
+	return (*this - (v)).Length();
+}
+
+float Vector::Length(void) const
+{
+	return sqrtf(x * x + y * y + z * z);
+}
+
+float Vector::Length2D(void) const
+{
+	return sqrtf(x * x + y * y);
+}

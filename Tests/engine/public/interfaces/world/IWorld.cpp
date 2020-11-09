@@ -92,7 +92,7 @@ void IWorld::CreateWorld(const char* world)
 //-----------------------------------------------------------------------------
 // Creates and loads new object
 //-----------------------------------------------------------------------------
-IObject* IWorld::CreateObject(const char* model, const char* material, Vector position, Vector rotation)
+IObject* IWorld::CreateObject(const char* model, Vector position, Vector rotation)
 {
 	IObject* object = new IObject;
 	if (!object)
@@ -139,7 +139,7 @@ void IWorld::ObjectDelete(IObject* object)
 //-----------------------------------------------------------------------------
 // Creates and loads new sound in 3D
 //-----------------------------------------------------------------------------
-ISound* IWorld::CreateSoundObject(const char* audio, float distance, Vector position, Vector rotation)
+ISound* IWorld::CreateSoundObject(const char* audio, float distance, Vector position)
 {
 	ISound* sound = new ISound;
 	if (!sound)
@@ -147,6 +147,11 @@ ISound* IWorld::CreateSoundObject(const char* audio, float distance, Vector posi
 		// TODO@: Add assert message (Warning)
 		return nullptr;
 	}
+
+	sound->m_Data.m_SoundName = audio;
+
+	sound->m_Data.m_SoundDistance = distance;
+	sound->m_Data.m_SoundType = 0;
 
 	sound->m_Position = position;
 
@@ -167,6 +172,9 @@ ISound * IWorld::CreateSoundObject2D(const char* audio)
 		// TODO@: Add assert message (Warning)
 		return nullptr;
 	}
+
+	sound->m_Data.m_SoundName = audio;
+	sound->m_Data.m_SoundType = 1;
 
 	sound->Start(m_Interface);
 

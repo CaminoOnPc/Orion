@@ -32,13 +32,13 @@ public:
     void SetPosition(Vector position);
     Vector GetPosition();
 
-    void PauseSound();
     void StopSound();
     void PlaySound();
 
     struct EData
     {
         const char* m_SoundName;
+        float m_SoundDistance;
         int m_SoundType;
     };
 
@@ -55,9 +55,11 @@ protected:
         }
     }
 public:
-    wiScene::SoundComponent m_SoundComponent;
+    wiScene::SoundComponent* m_SoundComponent;
     wiAudio::SoundInstance m_SoundInstance;
     wiAudio::Sound m_Sound;
+public:
+    wiECS::Entity m_Entity;
 public:
     Vector m_Position;
 };

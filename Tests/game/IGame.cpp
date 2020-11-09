@@ -38,7 +38,7 @@ void IGame::Start(IInterfaces* interfaces)
 	{
 		for (int j = 0; j < count; ++j)
 		{
-			m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", "", Vector(float(i) * 6, 0, float(j) * 6), Vector(-90, 0, 0));
+			m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 6, 0, float(j) * 6), Vector(-90, 0, 0));
 		}
 	}
 
@@ -51,6 +51,8 @@ void IGame::Start(IInterfaces* interfaces)
 
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 	path->AddSprite(&m_UI);
+
+	m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
 }
 
 //-----------------------------------------------------------------------------
