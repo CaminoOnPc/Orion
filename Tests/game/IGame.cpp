@@ -52,6 +52,19 @@ void IGame::Start(IInterfaces* interfaces)
 
 	ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
 	music->SetVolume(0.1f);
+
+	/*
+	* TODO@: 
+	* Lod support
+	* Support for relative paths that go backwards in editor 
+	* 
+	* Console
+	* Rework surface interface to behave more like a widget
+	* Pottentially add Direct2D back and use it as a widget instead of dynamic panel to save fps (TODO@: Test in Orion V1.0 if that will actually help with fps)
+	* 
+	* Add scripting language support - squirrel
+	* Add archieve system to store assets in them rather than trying to access files dirrectly
+	*/
 }
 
 //-----------------------------------------------------------------------------
