@@ -29,14 +29,14 @@ void IGame::Start(IInterfaces* interfaces)
 
 	m_DebugDisplay->Start(m_Interface);
 
-	m_Interface->m_Tier2->m_IWorld->CreateWorld("data/game/worlds/world_empty.ent");
+	m_Interface->m_Tier2->m_IWorld->CreateWorld("data/game/worlds/world_empty.wiscene");
 
 	int count = 32;
 	for (int i = 0; i < count; ++i)
 	{
 		for (int j = 0; j < count; ++j)
 		{
-			m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 6, 0, float(j) * 6), Vector(-90, 0, 0));
+			m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 4, 0, float(j) * 4), Vector(-90, 0, 0));
 		}
 	}
 
