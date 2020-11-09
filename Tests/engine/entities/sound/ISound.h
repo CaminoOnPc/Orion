@@ -32,6 +32,9 @@ public:
     void SetPosition(Vector position);
     Vector GetPosition();
 
+    void SetVolume(float volume);
+    float GetVolume();
+
     void StopSound();
     void PlaySound();
 
@@ -56,10 +59,10 @@ protected:
     }
 public:
     wiScene::SoundComponent* m_SoundComponent;
-    wiAudio::SoundInstance m_SoundInstance;
-    wiAudio::Sound m_Sound;
 public:
     wiECS::Entity m_Entity;
 public:
     Vector m_Position;
+public:
+    float m_Volume;
 };

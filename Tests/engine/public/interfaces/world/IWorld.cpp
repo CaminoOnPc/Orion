@@ -43,6 +43,8 @@ void IWorld::Run()
 //-----------------------------------------------------------------------------
 void IWorld::CreateWorld(const char* world)
 {
+	m_WorldName = world;
+	
 	m_World = wiScene::LoadModel(world);
 
 	Color horizon = Color(101, 101, 227);

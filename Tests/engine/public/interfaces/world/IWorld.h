@@ -55,6 +55,7 @@ protected:
         }
     }
 public:
+    std::string m_WorldName;
     wiECS::Entity m_World;
 public:
     std::vector< IObject* > m_Objects;

@@ -6,8 +6,6 @@
 
 #include "IGame.h"
 
-IObject* object;
-
 //-----------------------------------------------------------------------------
 // Activates IGame initalization process
 //-----------------------------------------------------------------------------
@@ -31,7 +29,7 @@ void IGame::Start(IInterfaces* interfaces)
 
 	m_DebugDisplay->Start(m_Interface);
 
-	m_Interface->m_Tier2->m_IWorld->CreateWorld("data/game/worlds/world_empty.wiscene");
+	m_Interface->m_Tier2->m_IWorld->CreateWorld("data/game/worlds/world_empty.ent");
 
 	int count = 32;
 	for (int i = 0; i < count; ++i)
@@ -52,7 +50,8 @@ void IGame::Start(IInterfaces* interfaces)
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 	path->AddSprite(&m_UI);
 
-	m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
+	ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
+	music->SetVolume(0.1f);
 }
 
 //-----------------------------------------------------------------------------
