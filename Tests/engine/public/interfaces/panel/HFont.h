@@ -11,7 +11,7 @@
 class HFont
 {
 public:
-    HFont(const char* font, int size, int flags);
+    HFont(const char* font, int size, int flags, int style);
     ~HFont();
 
     struct EFontData
@@ -19,6 +19,7 @@ public:
         wchar_t* m_Name;
         int m_Size;
         int m_Flag;
+        int m_Style;
     };
 
     EFontData m_Font;

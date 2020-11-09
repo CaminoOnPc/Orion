@@ -53,7 +53,10 @@ void ISurface::EndFrame()
 //-----------------------------------------------------------------------------
 HFont* ISurface::CreateFont(const char* font, int size, int flags)
 {
-	return new HFont(font, size, flags);
+	std::string fontPath = "data/game/materials/opentype/";
+	fontPath.append(font);
+
+	return new HFont(font, size, flags, wiFont::AddFontStyle(fontPath));
 }
 
 //-----------------------------------------------------------------------------

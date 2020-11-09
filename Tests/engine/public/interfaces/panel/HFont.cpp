@@ -9,7 +9,7 @@
 //-----------------------------------------------------------------------------
 // Creates HFont font handle
 //-----------------------------------------------------------------------------
-HFont::HFont(const char* font, int size, int flags)
+HFont::HFont(const char* font, int size, int flags, int style)
 {
 	int length = strlen(font);
 
@@ -19,6 +19,7 @@ HFont::HFont(const char* font, int size, int flags)
 	m_Font.m_Name = m_Name;
 	m_Font.m_Size = size;
 	m_Font.m_Flag = flags;
+	m_Font.m_Style = style;
 }
 
 //-----------------------------------------------------------------------------
