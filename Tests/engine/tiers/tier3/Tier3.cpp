@@ -28,7 +28,7 @@ void Tier3::Stop()
 	return;
 }
 
-void Tier3::Run()
+void Tier3::Run(float dt)
 {
 	return;
 }

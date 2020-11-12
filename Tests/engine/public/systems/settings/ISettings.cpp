@@ -33,7 +33,7 @@ void ISettings::Stop()
 //-----------------------------------------------------------------------------
 // Processing a single frame of ISettings
 //-----------------------------------------------------------------------------
-void ISettings::Run()
+void ISettings::Run(float dt)
 {
 	return;
 }

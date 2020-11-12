@@ -33,7 +33,7 @@ void IRendering::Stop()
 //-----------------------------------------------------------------------------
 // Processing a single frame of IRendering
 //-----------------------------------------------------------------------------
-void IRendering::Run()
+void IRendering::Run(float dt)
 {
 	m_Wicked->Run(); 
 }

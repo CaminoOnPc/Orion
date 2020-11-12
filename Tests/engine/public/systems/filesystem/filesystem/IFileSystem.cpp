@@ -59,7 +59,7 @@ void IFileSystem::Stop()
 //-----------------------------------------------------------------------------
 // Processing a single frame of IFileSystem
 //-----------------------------------------------------------------------------
-void IFileSystem::Run()
+void IFileSystem::Run(float dt)
 {
 	return;
 }

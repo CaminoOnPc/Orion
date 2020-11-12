@@ -29,8 +29,8 @@ public:
 	bool EOnInit(IBase* base);
 	bool EOnFinish();
 
-	bool EOnFrame();
-	bool EOnUpdate();
+	bool EOnFrame(float dt);
+	bool EOnUpdate(float dt);
 
 protected:
 	template <class T> void SafeRelease(T** ppT)

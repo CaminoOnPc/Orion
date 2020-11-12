@@ -28,9 +28,9 @@ void Tier0::Stop()
 	return;
 }
 
-void Tier0::Run()
+void Tier0::Run(float dt)
 {
-	m_Rendering->Run();
+	m_Rendering->Run(dt);
 
 	return;
 }

@@ -44,9 +44,9 @@ void Tier2::Stop()
 	return;
 }
 
-void Tier2::Run()
+void Tier2::Run(float dt)
 {
-	m_IWorld->Run();
+	m_IWorld->Run(dt);
 
 	return;
 }

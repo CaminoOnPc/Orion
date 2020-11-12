@@ -25,7 +25,7 @@ void ISurface::Stop()
 //-----------------------------------------------------------------------------
 // Processing a single frame of ISurface
 //-----------------------------------------------------------------------------
-void ISurface::Run()
+void ISurface::Run(float dt)
 {
 	return;
 }

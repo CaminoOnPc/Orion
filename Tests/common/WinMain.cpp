@@ -6,13 +6,18 @@
 #include "WinMain.h"
 #include "stdafx.h"
 
+float g_TicksTime;
+
+INT64 g_Frequency;
+INT64 g_Time;
+
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
-//#ifdef DEBUG
+#ifdef DEVELOPER
     AllocConsole();
     AttachConsole(GetCurrentProcessId());
     freopen("CON", "w", stdout);
-//#endif // DEBUG
+#endif // DEVELOPER
 
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -33,6 +38,12 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
     m_Base->EOnInit(m_hInstance);
 
+    QueryPerformanceFrequency((LARGE_INTEGER*)&g_Frequency);
+
+    g_TicksTime = (float)(g_Frequency / 1000);
+
+    QueryPerformanceCounter((LARGE_INTEGER*)&g_Time);
+
     MSG msg = { 0 };
     while (WM_QUIT != msg.message)
     {
@@ -43,7 +54,15 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		}
 		else 
         {
-            m_Base->EOnFrame();
+            INT64 time;
+
+            QueryPerformanceCounter((LARGE_INTEGER*)&time);
+
+            float timeDifference = (float)(time - g_Time);
+
+            g_Time = time;
+
+            m_Base->EOnFrame(timeDifference / g_TicksTime);
 		}
 	}
 

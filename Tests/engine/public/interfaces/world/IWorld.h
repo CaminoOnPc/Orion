@@ -31,7 +31,7 @@ public:
     void Stop();
 
     // Processing a single frame of IWorld
-    void Run();
+    void Run(float dt);
 
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------
@@ -76,7 +76,7 @@ public:
     void Stop();
 
     // Processing a single frame of IWorld
-    void Run();
+    void Run(float dt);
 
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------

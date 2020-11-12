@@ -24,8 +24,8 @@ public:
 	bool EOnInit(HINSTANCE instance);
 	bool EOnFinish();
 
-	void EOnFrame();
-	void EOnUpdate();
+	void EOnFrame(float dt);
+	void EOnUpdate(float dt);
 public:
 	IInterfaces* m_Interfaces;
 protected:

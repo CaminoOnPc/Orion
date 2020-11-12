@@ -20,7 +20,7 @@ void Tier1::Stop()
 	return;
 }
 
-void Tier1::Run()
+void Tier1::Run(float dt)
 {
 	return;
 }

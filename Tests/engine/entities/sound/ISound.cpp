@@ -55,7 +55,7 @@ void ISound::Stop()
 //-----------------------------------------------------------------------------
 // Processing a single frame of ISound
 //-----------------------------------------------------------------------------
-void ISound::Run()
+void ISound::Run(float dt)
 {
 	if (m_Data.m_SoundType == 0)
 	{

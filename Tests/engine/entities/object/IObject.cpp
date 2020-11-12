@@ -67,7 +67,7 @@ void IObject::Stop()
 //-----------------------------------------------------------------------------
 // Processing a single frame of IObject
 //-----------------------------------------------------------------------------
-void IObject::Run()
+void IObject::Run(float dt)
 {
 }
 
@@ -77,6 +77,12 @@ void IObject::Run()
 void IObject::SetScale(Vector scale)
 {
 	m_Scale = scale;
+
+	wiScene::TransformComponent* transform = wiScene::GetScene().transforms.GetComponent(m_Entity);
+	if (transform)
+	{
+		transform->Scale(XMFLOAT3(m_Scale.x, m_Scale.y, m_Scale.z));
+	}
 }
 
 //-----------------------------------------------------------------------------

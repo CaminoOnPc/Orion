@@ -25,16 +25,16 @@ void IWorld::Stop()
 //-----------------------------------------------------------------------------
 // Processing a single frame of IWorld
 //-----------------------------------------------------------------------------
-void IWorld::Run()
+void IWorld::Run(float dt)
 {
 	for (size_t i = 0; i < m_Objects.capacity(); i++)
 	{
-		m_Objects[i]->Run();
+		m_Objects[i]->Run(dt);
 	}
 
 	for (size_t i = 0; i < m_Sounds.capacity(); i++)
 	{
-		m_Sounds[i]->Run();
+		m_Sounds[i]->Run(dt);
 	}
 }
 
@@ -89,6 +89,7 @@ void IWorld::CreateWorld(const char* world)
 	}
 
 	m_WorldName = world;
+	Utils::string_replace(m_WorldName, ".wiscene", ".ent");
 }
 
 //-----------------------------------------------------------------------------

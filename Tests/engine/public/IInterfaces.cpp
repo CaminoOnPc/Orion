@@ -66,20 +66,20 @@ bool IInterfaces::EOnFinish()
 	return true;
 }
 
-bool IInterfaces::EOnFrame()
+bool IInterfaces::EOnFrame(float dt)
 {
 	// Tiers
-	m_Tier0->Run();
-	m_Tier1->Run();
-	m_Tier2->Run();
-	m_Tier3->Run();
+	m_Tier0->Run(dt);
+	m_Tier1->Run(dt);
+	m_Tier2->Run(dt);
+	m_Tier3->Run(dt);
 
 	return true;
 }
 
-bool IInterfaces::EOnUpdate()
+bool IInterfaces::EOnUpdate(float dt)
 {
-	if (!EOnFrame())
+	if (!EOnFrame(dt))
 	{
 		return false;
 	}

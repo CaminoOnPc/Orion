@@ -28,7 +28,7 @@ public:
 	void Stop();
 
 	// Processing a single frame of IFileSystem
-	void Run();
+	void Run(float dt);
 
 	// * Those are calls that are accessible by everyone 
 	// ---------------------------------------------

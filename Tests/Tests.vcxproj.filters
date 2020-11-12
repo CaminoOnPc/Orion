@@ -51,6 +51,7 @@
     <ClInclude Include="engine\public\systems\filesystem\filesystem\IFileSystem.h" />
     <ClInclude Include="engine\public\systems\filesystem\HObject.h" />
     <ClInclude Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.h" />
+    <ClInclude Include="engine\public\interfaces\console\IConsole.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\WinMain.cpp">
@@ -85,6 +86,7 @@
     <ClCompile Include="engine\public\systems\filesystem\filesystem\IFileSystem.cpp" />
     <ClCompile Include="engine\public\systems\filesystem\HObject.cpp" />
     <ClCompile Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.cpp" />
+    <ClCompile Include="engine\public\interfaces\console\IConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

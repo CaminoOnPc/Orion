@@ -64,6 +64,8 @@ void IWickedRenderer::Load()
 	// Demonstrates that loading screen is working
 	Sleep(1000);
 
+	wiRenderer::GetDevice()->SetVSyncEnabled(false);
+
 	m_Interface->m_Tier0->m_Rendering->m_RenderPath = this;
 
 	m_Interface->m_Tier3->m_IGame->Start(m_Interface);

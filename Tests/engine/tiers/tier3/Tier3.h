@@ -28,7 +28,7 @@ public:
 	void Stop();
 
 	// Processing a single frame of Tier3
-	void Run();
+	void Run(float dt);
 
 protected:
 	IInterfaces* m_Interface;

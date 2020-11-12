@@ -88,17 +88,17 @@ bool IBase::EOnFinish()
 //-----------------------------------------------------------------------------
 // Processing a single frame of IBase
 //-----------------------------------------------------------------------------
-void IBase::EOnUpdate()
+void IBase::EOnUpdate(float dt)
 {
-	m_Interfaces->EOnUpdate();
+	m_Interfaces->EOnUpdate(dt);
 }
 
 //-----------------------------------------------------------------------------
 // Processing a single frame of IBase
 //-----------------------------------------------------------------------------
-void IBase::EOnFrame()
+void IBase::EOnFrame(float dt)
 {
-	m_Interfaces->EOnFrame();
+	m_Interfaces->EOnFrame(dt);
 }
 
 //-----------------------------------------------------------------------------

@@ -36,9 +36,13 @@ void IGame::Start(IInterfaces* interfaces)
 	{
 		for (int j = 0; j < count; ++j)
 		{
-			m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 4, 0, float(j) * 4), Vector(-90, 0, 0));
+			IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 4, 0, float(j) * 4), Vector(-90, 0, 0));
+			object->SetScale(Vector(1, 1, 1));
 		}
 	}
+
+	//IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("zuccini", Vector(float(0) * 4, 0, float(0) * 4), Vector(0, 0, 0));
+	//object->SetScale(Vector(100, 100, 100));
 
 	m_UI = wiSprite("data/game/materials/textures/ui/ui.png");
 	m_UI.params.sampleFlag = SAMPLEMODE_CLAMP;
