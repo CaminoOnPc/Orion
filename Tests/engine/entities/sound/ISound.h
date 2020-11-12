@@ -59,7 +59,6 @@ protected:
     }
 public:
     wiScene::SoundComponent* m_SoundComponent;
-public:
     wiECS::Entity m_Entity;
 public:
     Vector m_Position;
