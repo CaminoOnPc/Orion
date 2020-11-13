@@ -211,3 +211,4 @@ ModelManifest.xml
 
 # Visual studio code project files
 .vscode/
+*.obj
