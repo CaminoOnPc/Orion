@@ -76,7 +76,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Release</OutDir>
-    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\RapidXml;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Github\Orion2\src;D:\Github\Orion2\src\engine\public;D:\Github\Orion2\src\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\RapidXml;D:\Github\Orion2\WickedEngine\WickedEngine;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,7 +89,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Debug</OutDir>
-    <IncludePath>D:\Github\Orion2\Tests;D:\Github\Orion2\Tests\engine\public;D:\Github\Orion2\Tests\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\RapidXml;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Github\Orion2\src;D:\Github\Orion2\src\engine\public;D:\Github\Orion2\src\common\abstract\includes;D:\Github\Orion2\dependencies\Ini\inipp;D:\Github\Orion2\dependencies\RapidXml;D:\Github\Orion2\WickedEngine\WickedEngine;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
