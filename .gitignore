@@ -211,3 +211,13 @@ ModelManifest.xml
 
 # Visual studio code project files
 .vscode/
+*.obj
+
+# Tlogs
+*.command.1.tlog
+*.write.1.tlog
+*.read.1.tlog
+*.tlog
+
+# Objs
+/cache

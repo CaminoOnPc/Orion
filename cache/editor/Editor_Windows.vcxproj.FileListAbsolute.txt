@@ -1,2 +1,0 @@
-D:\Github\Orion2\editorbuild\startup.lua
-D:\Github\Orion2\editorbuild\config.ini
