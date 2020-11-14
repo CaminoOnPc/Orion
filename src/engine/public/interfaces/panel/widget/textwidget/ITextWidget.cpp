@@ -172,11 +172,14 @@ void ITextWidget::Update()
 		}
 	}
 
+	if (m_Data.m_Size > 0)
+	{
+		m_Widget->params.size = m_Data.m_Size;
+	}
+
 	m_Widget->params.color = wiColor(m_Data.m_Color.r(), m_Data.m_Color.g(), m_Data.m_Color.b(), m_Data.m_Color.a());
 	m_Widget->params.posX = m_Data.m_Position.x;
 	m_Widget->params.posY = m_Data.m_Position.y;
-
-	m_Widget->params.size = m_Data.m_Size;
 
 	m_Widget->SetHidden(m_Data.m_Hidden);
 }
