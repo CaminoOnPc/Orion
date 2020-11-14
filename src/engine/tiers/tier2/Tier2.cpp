@@ -26,14 +26,6 @@ void Tier2::Start(IInterfaces* interfaces)
 
 	m_ISurface->Start(m_Interface);
 
-	m_IConsole = new IConsole;
-	if (!m_IConsole)
-	{
-		return;
-	}
-
-	m_IConsole->Start(m_Interface);
-
 	m_IWorld = new IWorld;
 	if (!m_IWorld)
 	{
@@ -41,6 +33,14 @@ void Tier2::Start(IInterfaces* interfaces)
 	}
 
 	m_IWorld->Start(m_Interface);
+
+	m_IConsole = new IConsole;
+	if (!m_IConsole)
+	{
+		return;
+	}
+
+	//m_IConsole->Start(m_Interface);
 
 	return;
 }

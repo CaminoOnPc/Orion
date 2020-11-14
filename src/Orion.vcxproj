@@ -196,6 +196,9 @@
     <ClInclude Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.h" />
     <ClInclude Include="engine\public\interfaces\panel\HFont.h" />
     <ClInclude Include="engine\public\interfaces\panel\surface\ISurface.h" />
+    <ClInclude Include="engine\public\interfaces\panel\widget\imagewidget\IImageWidget.h" />
+    <ClInclude Include="engine\public\interfaces\panel\widget\IWidget.h" />
+    <ClInclude Include="engine\public\interfaces\panel\widget\textwidget\ITextWidget.h" />
     <ClInclude Include="engine\public\interfaces\world\IWorld.h" />
     <ClInclude Include="engine\public\systems\filesystem\filesystem\IFileSystem.h" />
     <ClInclude Include="engine\public\systems\filesystem\HObject.h" />
@@ -229,6 +232,9 @@
     <ClCompile Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\HFont.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\surface\ISurface.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\widget\imagewidget\IImageWidget.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\widget\IWidget.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\widget\textwidget\ITextWidget.cpp" />
     <ClCompile Include="engine\public\interfaces\world\IWorld.cpp" />
     <ClCompile Include="engine\public\systems\filesystem\filesystem\IFileSystem.cpp" />
     <ClCompile Include="engine\public\systems\filesystem\HObject.cpp" />

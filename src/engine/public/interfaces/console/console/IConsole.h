@@ -38,6 +38,7 @@ public:
     void ExecuteCommand(const char* command, int args);
 
     void InternalExecuteCommand(const char* command, const char* args, float fargs, int iargs);
+    void LogCommand(const char* text);
 public:
     void Callback_r_vsync(int value);   
 protected:
@@ -54,4 +55,15 @@ public:
     std::vector< HCvar* > m_Cvars;
 public:
     HCvar* r_vsync;
+public:
+    bool m_Active;
+
+    wiSpriteFont m_OutputText;
+    wiSpriteFont m_InputText;
+    wiSprite m_Background;
+    wiSprite m_Input;  
+
+    std::string m_FirstOutput;
+    std::string m_Output;
+    int m_Lines;
 };

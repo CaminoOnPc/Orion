@@ -166,10 +166,13 @@ void ISurface::DrawLine(int x0, int y0, int x1, int y1, float width, Color color
 void ISurface::DrawBitmap(const char* image, int x, int y, float w, float h, float alpha)
 {
 	wiSprite* imageSprite = new wiSprite(image);
+	//imageSprite->params.
 	imageSprite->params.pos = XMFLOAT3(x, y, 0.0f);
 	imageSprite->params.siz = XMFLOAT2(w, h);
 	imageSprite->params.opacity = alpha / 255;
 	//imageSprite.params.enableFullScreen();
+
+	//imageSprite->params.scale
 
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 	path->AddSprite(&*imageSprite);

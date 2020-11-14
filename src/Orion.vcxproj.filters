@@ -53,6 +53,9 @@
     <ClInclude Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.h" />
     <ClInclude Include="engine\public\interfaces\console\console\IConsole.h" />
     <ClInclude Include="engine\public\interfaces\console\HCvar.h" />
+    <ClInclude Include="engine\public\interfaces\panel\widget\IWidget.h" />
+    <ClInclude Include="engine\public\interfaces\panel\widget\imagewidget\IImageWidget.h" />
+    <ClInclude Include="engine\public\interfaces\panel\widget\textwidget\ITextWidget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\WinMain.cpp">
@@ -89,6 +92,9 @@
     <ClCompile Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.cpp" />
     <ClCompile Include="engine\public\interfaces\console\console\IConsole.cpp" />
     <ClCompile Include="engine\public\interfaces\console\HCvar.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\widget\IWidget.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\widget\imagewidget\IImageWidget.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\widget\textwidget\ITextWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

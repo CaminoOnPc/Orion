@@ -41,6 +41,8 @@ void IGame::Start(IInterfaces* interfaces)
 		}
 	}
 
+	
+
 	//IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("zuccini", Vector(float(0) * 4, 0, float(0) * 4), Vector(0, 0, 0));
 	//object->SetScale(Vector(100, 100, 100));
 
@@ -54,23 +56,48 @@ void IGame::Start(IInterfaces* interfaces)
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 	path->AddSprite(&m_UI);
 
-	ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
-	music->SetVolume(0.1f);
+	m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
+
+	//ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
+	//music->SetVolume(0.1f);
+
+	IImageWidget* ui = new IImageWidget;
+	ui->Start(m_Interface);
+	//ui->SetColor(Color(255, 255, 0));
+	ui->SetImage("data/game/materials/textures/effects/flare_9.png");
+	ui->SetPos(0, 0);
+	ui->SetScale(100, 100);
+
+
+
+	//ITextWidget* text = new ITextWidget;
+	//text->Start(m_Interface);
+
+	//HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 72, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+	//text->SetFont(font);
+
+	//text->SetText("test");
+
 
 
 	m_Interface->m_Tier2->m_IConsole->ExecuteCommand("r_vsync", 1);
+
+	m_Interface->m_Tier2->m_IConsole->ExecuteCommand("fff", 1);
 
 	/*
 	* TODO@: 
 	* Lod support
 	* Support for relative paths that go backwards in editor 
 	* 
-	* Console
+	* Console [Execution done] TODO: GUI console
 	* Rework surface interface to behave more like a widget
 	* Pottentially add Direct2D back and use it as a widget instead of dynamic panel to save fps (TODO@: Test in Orion V1.0 if that will actually help with fps)
 	* 
 	* Add scripting language support - squirrel
 	* Add archieve system to store assets in them rather than trying to access files dirrectly
+	* 
+	* Terrain with full support of features that DayZ/Arma supports
+	* Tool that converts all DayZ models to usable format
 	*/
 }
 
@@ -97,5 +124,7 @@ void IGame::Run(float dt)
 		{
 			m_DebugDisplay->Run(dt);
 		}	
+
+		m_Interface->m_Tier2->m_IConsole->Run(dt);
 	}
 }
