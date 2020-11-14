@@ -9,7 +9,7 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
-#include "../HFont.h"
+class HFont;
     
 class IInterfaces;
 

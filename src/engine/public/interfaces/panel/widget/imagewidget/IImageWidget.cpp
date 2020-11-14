@@ -36,6 +36,40 @@ void IImageWidget::Run(float dt)
 }
 
 //-----------------------------------------------------------------------------
+// Sets a widget position
+//-----------------------------------------------------------------------------
+void IImageWidget::SetPos(float x, float y)
+{
+	m_Widget->params.pos = XMFLOAT3(x, y, 0.0f);
+}
+
+//-----------------------------------------------------------------------------
+// Returns a widget position
+//-----------------------------------------------------------------------------
+void IImageWidget::GetPos(float& x, float& y)
+{
+	x = m_Widget->params.pos.x;
+	y = m_Widget->params.pos.y;
+}
+
+//-----------------------------------------------------------------------------
+// Sets a widget size
+//-----------------------------------------------------------------------------
+void IImageWidget::SetSize(float height, float width)
+{
+	m_Widget->params.siz = XMFLOAT2(height, width);
+}
+
+//-----------------------------------------------------------------------------
+// Returns a widget size
+//-----------------------------------------------------------------------------
+void IImageWidget::GetSize(float& height, float& width)
+{
+	height = m_Widget->params.siz.y;
+	width = m_Widget->params.siz.x;
+}
+
+//-----------------------------------------------------------------------------
 // Sets a widget image
 //-----------------------------------------------------------------------------
 void IImageWidget::SetImage(const char* image)
@@ -73,72 +107,4 @@ void IImageWidget::SetColor(Color color)
 void IImageWidget::GetColor(Color& color)
 {
 	color = Color(m_Widget->params.color.x, m_Widget->params.color.y, m_Widget->params.color.z, m_Widget->params.color.w);
-}
-
-//-----------------------------------------------------------------------------
-// Sets a widget position
-//-----------------------------------------------------------------------------
-void IImageWidget::SetPos(float x, float y)
-{
-	m_Widget->params.pos = XMFLOAT3(x, y, 0.0f);
-}
-
-//-----------------------------------------------------------------------------
-// Returns a widget position
-//-----------------------------------------------------------------------------
-void IImageWidget::GetPos(float& x, float& y)
-{
-	x = m_Widget->params.pos.x;
-	y = m_Widget->params.pos.y;
-}
-
-//-----------------------------------------------------------------------------
-// Sets a widget size
-//-----------------------------------------------------------------------------
-void IImageWidget::SetSize(float height, float width)
-{
-	m_Widget->params.siz = XMFLOAT2(height, width);
-}
-
-//-----------------------------------------------------------------------------
-// Returns a widget size
-//-----------------------------------------------------------------------------
-void IImageWidget::GetSize(float& height, float& width)
-{
-	height = m_Widget->params.siz.y;
-	width = m_Widget->params.siz.x;
-}
-
-//-----------------------------------------------------------------------------
-// Sets a widget rotation
-//-----------------------------------------------------------------------------
-void IImageWidget::SetRotation(float roll)
-{
-	m_Widget->params.rotation = roll;
-}
-
-//-----------------------------------------------------------------------------
-// Returns a widget rotation
-//-----------------------------------------------------------------------------
-void IImageWidget::GetRotation(float& roll)
-{
-	roll = m_Widget->params.rotation;
-}
-
-//-----------------------------------------------------------------------------
-// Sets a widget scale
-//-----------------------------------------------------------------------------
-void IImageWidget::SetScale(float height, float width)
-{
-	m_Widget->params.scale.y = height;
-	m_Widget->params.scale.x = width;
-}
-
-//-----------------------------------------------------------------------------
-// Returns a widget scale
-//-----------------------------------------------------------------------------
-void IImageWidget::GetScale(float& height, float& width)
-{
-	height = m_Widget->params.scale.y;
-	width = m_Widget->params.scale.x;
 }

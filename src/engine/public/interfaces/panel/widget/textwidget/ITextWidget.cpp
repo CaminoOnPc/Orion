@@ -36,54 +36,6 @@ void ITextWidget::Run(float dt)
 }
 
 //-----------------------------------------------------------------------------
-// Sets a widget font
-//-----------------------------------------------------------------------------
-void ITextWidget::SetFont(HFont* font)
-{
-	m_RenderPath->RemoveFont(m_Widget);
-
-	m_Widget = new wiSpriteFont();
-	m_RenderPath->AddFont(&*m_Widget);
-
-	m_Widget->params.style = font->m_Font.m_Style;
-	m_Widget->params.size = font->m_Font.m_Size;
-
-	if (font->m_Font.m_Flag && IWidget::EFontFlags::FONTFLAGS_OUTLINE)
-	{
-		m_Widget->params.outlineColor = wiColor::Black();
-	}
-
-	if (font->m_Font.m_Flag && IWidget::EFontFlags::FONTFLAGS_SHADOW)
-	{
-		m_Widget->params.shadowColor = wiColor::Black();
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Returns a widget font
-//-----------------------------------------------------------------------------
-void ITextWidget::GetFont(HFont& font)
-{
-
-}
-
-//-----------------------------------------------------------------------------
-// Sets a widget text
-//-----------------------------------------------------------------------------
-void ITextWidget::SetText(const char* text)
-{
-	m_Widget->SetText(text);
-}
-
-//-----------------------------------------------------------------------------
-// Returns a widget text
-//-----------------------------------------------------------------------------
-void ITextWidget::GetText(const char*& text)
-{
-	text = m_Widget->GetTextA().c_str();
-}
-
-//-----------------------------------------------------------------------------
 // Sets a widget position
 //-----------------------------------------------------------------------------
 void ITextWidget::SetPos(float x, float y)
@@ -118,17 +70,51 @@ void ITextWidget::GetSize(int& size)
 }
 
 //-----------------------------------------------------------------------------
-// Sets a widget scale
+// Sets a widget text
 //-----------------------------------------------------------------------------
-void ITextWidget::SetScale(float scale)
+void ITextWidget::SetText(const char* text)
 {
-	m_Widget->params.scaling = scale;
+	m_Widget->SetText(text);
 }
 
 //-----------------------------------------------------------------------------
-// Returns a widget scale
+// Returns a widget text
 //-----------------------------------------------------------------------------
-void ITextWidget::GetScale(float& scale)
+void ITextWidget::GetText(const char*& text)
 {
-	scale = m_Widget->params.scaling;
+	text = m_Widget->GetTextA().c_str();
+}
+
+//-----------------------------------------------------------------------------
+// Sets a widget font
+//-----------------------------------------------------------------------------
+void ITextWidget::SetFont(HFont* font)
+{
+	m_RenderPath->RemoveFont(m_Widget);
+
+	m_Widget = new wiSpriteFont();
+	m_RenderPath->AddFont(&*m_Widget);
+
+	m_Widget->params.style = font->m_Font.m_Style;
+	m_Widget->params.size = font->m_Font.m_Size;
+
+	if (font->m_Font.m_Flag && IWidget::EFontFlags::FONTFLAGS_OUTLINE)
+	{
+		m_Widget->params.outlineColor = wiColor::Black();
+	}
+
+	if (font->m_Font.m_Flag && IWidget::EFontFlags::FONTFLAGS_SHADOW)
+	{
+		m_Widget->params.shadowColor = wiColor::Black();
+	}
+
+	m_Font = font;
+}
+
+//-----------------------------------------------------------------------------
+// Returns a widget font
+//-----------------------------------------------------------------------------
+void ITextWidget::GetFont(HFont*& font)
+{
+	font = m_Font;
 }

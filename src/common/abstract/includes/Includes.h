@@ -45,4 +45,10 @@
 //-----------------------------------------------------------------------------
 #include "../includes/math/IncludesMath.h"
 
+//-----------------------------------------------------------------------------
+// Orion Widget includes
+//-----------------------------------------------------------------------------
+#include "../../../engine/public/interfaces/panel/widget/IWidget.h"
+#include "../../../engine/public/interfaces/panel/HFont.h"
+
 #pragma endregion Includes

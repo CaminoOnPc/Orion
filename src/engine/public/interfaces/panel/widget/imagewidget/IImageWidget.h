@@ -29,23 +29,17 @@ public:
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------
 
-    void SetImage(const char* image);
-    void GetImage(const char*& image);
-
-    void SetColor(Color color);
-    void GetColor(Color& color);
-
     void SetPos(float x, float y);
     void GetPos(float& x, float& y);
 
     void SetSize(float height, float width);
     void GetSize(float& height, float& width);
 
-    void SetRotation(float roll);
-    void GetRotation(float& roll);
+    void SetImage(const char* image);
+    void GetImage(const char*& image);
 
-    void SetScale(float height, float width);
-    void GetScale(float& height, float& width);
+    void SetColor(Color color);
+    void GetColor(Color& color);
 
 protected:
     IInterfaces* m_Interface;
