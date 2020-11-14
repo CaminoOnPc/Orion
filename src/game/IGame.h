@@ -12,10 +12,7 @@
 #include "../engine/public/interfaces/debug/debugdisplay/IDebugDisplay.h"
 #include "../engine/public/interfaces/debug/debugcamera/IDebugCamera.h"
 
-#include "../engine/public/interfaces/panel/widget/imagewidget/IImageWidget.h"
-#include "../engine/public/interfaces/panel/widget/textwidget/ITextWidget.h"
-
-
+class IGradientWidget;
 class IImageWidget;
 class ITextWidget;
 

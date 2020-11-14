@@ -15,44 +15,32 @@ void IConsole::Start(IInterfaces* interfaces)
 
 	r_vsync = new HCvar("r_vsync");
 	r_vsync->m_Cvar.m_IntValue = 0;
-	m_Cvars.push_back(r_vsync);
+	
 
-	HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 72, ISurface::EFontFlags::FONTFLAGS_NONE);
+	m_Background = new IImageWidget;
+	m_Background->Start(m_Interface);
 
-	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
+	m_Background->SetColor(Color(75, 75, 75, 255));
+	m_Background->SetPos(10, 10);
+	m_Background->SetSize(m_Interface->m_Base->m_Settings->m_width - 20, (m_Interface->m_Base->m_Settings->m_height / 2) - 10);
 
-	Color backgroundColor = Color(75, 75, 75, 255);
-	m_Background.params.pos = XMFLOAT3(m_Interface->m_Base->m_Settings->m_width / 2, m_Interface->m_Base->m_Settings->m_height / 4, 0.0f);
-	m_Background.params.siz = XMFLOAT2(m_Interface->m_Base->m_Settings->m_width - 10, (m_Interface->m_Base->m_Settings->m_height / 2) - 10);
-	m_Background.params.pivot = XMFLOAT2(0.5f, 0.5f);
-	m_Background.params.color = XMFLOAT4(backgroundColor.rBase(), backgroundColor.gBase(), backgroundColor.bBase(), backgroundColor.aBase());
+	m_Input = new IImageWidget;
+	m_Input->Start(m_Interface);
+	
+	m_Input->SetColor(Color(50, 50, 50, 255));
+	m_Input->SetPos(10, (m_Interface->m_Base->m_Settings->m_height / 2) + 10.f);
+	m_Input->SetSize(m_Interface->m_Base->m_Settings->m_width - 20, 25);
 
-	path->AddSprite(&m_Background);
-
-	Color inputColor = Color(50, 50, 50, 255);
-	m_Input.params.pos = XMFLOAT3(m_Interface->m_Base->m_Settings->m_width / 2, (m_Interface->m_Base->m_Settings->m_height / 2) + 12.5f, 0.0f);
-	m_Input.params.siz = XMFLOAT2(m_Interface->m_Base->m_Settings->m_width - 10, 25);
-	m_Input.params.pivot = XMFLOAT2(0.5f, 0.5f);
-	m_Input.params.color = XMFLOAT4(inputColor.rBase(), inputColor.gBase(), inputColor.bBase(), inputColor.aBase());
-
-	path->AddSprite(&m_Input);
+	HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 16, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
 
 	std::string outputText;
 	outputText.append(m_Output);
-	m_OutputText = wiSpriteFont(
-		outputText,
-		wiFontParams(
-			20,
-			20,
-			16,
-			WIFALIGN_LEFT,
-			WIFALIGN_LEFT,
-			wiColor::White(),
-			wiColor(0, 0, 0, 0),
-			wiColor::Black()));
-	m_OutputText.params.style = font->m_Font.m_Style;
 
-	path->AddFont(&m_OutputText);
+	m_OutputText = new ITextWidget;
+	m_OutputText->Start(m_Interface);
+
+	m_OutputText->SetFont(font);
+	m_OutputText->SetPos(20, 20);
 
 	m_Active = true;
 }
@@ -89,17 +77,17 @@ void IConsole::Run(float dt)
 		m_Active = !m_Active;
 		if (m_Active)
 		{
-			path->AddFont(&m_OutputText);
-			path->AddFont(&m_InputText);
-			path->AddSprite(&m_Background);
-			path->AddSprite(&m_Input);
+			//path->AddFont(&m_OutputText);
+			//path->AddFont(&m_InputText);
+			//path->AddSprite(&m_Background);
+			//path->AddSprite(&m_Input);
 		}
 		else
 		{
-			path->RemoveFont(&m_OutputText);
-			path->RemoveFont(&m_InputText);
-			path->RemoveSprite(&m_Background);
-			path->RemoveSprite(&m_Input);
+			//path->RemoveFont(&m_OutputText);
+			//path->RemoveFont(&m_InputText);
+			//path->RemoveSprite(&m_Background);
+			//path->RemoveSprite(&m_Input);
 		}
 		// 19 lines should be the limit
 
@@ -113,7 +101,7 @@ void IConsole::Run(float dt)
 
 	if (m_Active)
 	{
-		m_OutputText.SetText(m_Output);
+		m_OutputText->SetText(m_Output.c_str());
 		if (m_Lines >= 19)
 		{
 

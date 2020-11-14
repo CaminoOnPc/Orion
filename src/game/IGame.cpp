@@ -31,7 +31,7 @@ void IGame::Start(IInterfaces* interfaces)
 
 	m_Interface->m_Tier2->m_IWorld->CreateWorld("data/game/worlds/world_empty.wiscene");
 
-	int count = 32;
+	int count = 16;
 	for (int i = 0; i < count; ++i)
 	{
 		for (int j = 0; j < count; ++j)
@@ -56,19 +56,19 @@ void IGame::Start(IInterfaces* interfaces)
 	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
 	path->AddSprite(&m_UI);
 
-	m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
+	//m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
 
 	//ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
 	//music->SetVolume(0.1f);
 
-	IImageWidget* ui = new IImageWidget;
-	ui->Start(m_Interface);
+	//IImageWidget* ui = new IImageWidget;
+	//ui->Start(m_Interface);
 	//ui->SetColor(Color(255, 255, 0));
-	ui->SetImage("data/game/materials/textures/effects/flare_9.png");
-	ui->SetPos(0, 0);
-	ui->SetScale(100, 100);
+	//ui->SetImage("data/game/materials/textures/effects/flare_9.png");
+	//ui->SetPos(0, 0);
+	//ui->SetSize(100, 100);
 
-
+	//ui->SetHidden(true);
 
 	//ITextWidget* text = new ITextWidget;
 	//text->Start(m_Interface);
@@ -78,11 +78,23 @@ void IGame::Start(IInterfaces* interfaces)
 
 	//text->SetText("test");
 
+	IGradientWidget* gradient = new IGradientWidget;
+	gradient->Start(m_Interface);
 
+	gradient->SetColor(Color(255, 255, 0), Color(255, 0, 255));
+	gradient->SetPos(0, 100);
+	gradient->SetSize(100, 100);
+
+	//gradient->SetHidden(true);
+	//gradient->SetHidden(false);
 
 	m_Interface->m_Tier2->m_IConsole->ExecuteCommand("r_vsync", 1);
 
 	m_Interface->m_Tier2->m_IConsole->ExecuteCommand("fff", 1);
+
+
+
+	
 
 	/*
 	* TODO@: 

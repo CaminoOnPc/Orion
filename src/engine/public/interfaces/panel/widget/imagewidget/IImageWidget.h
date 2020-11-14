@@ -32,14 +32,19 @@ public:
     void SetPos(float x, float y);
     void GetPos(float& x, float& y);
 
-    void SetSize(float height, float width);
-    void GetSize(float& height, float& width);
+    void SetSize(float width, float height);
+    void GetSize(float& width, float& height);
+
+    void SetHidden(bool hidden);
+    void GetHidden(bool& hidden);
 
     void SetImage(const char* image);
     void GetImage(const char*& image);
 
     void SetColor(Color color);
     void GetColor(Color& color);
+
+    void Update();
 
 protected:
     IInterfaces* m_Interface;
@@ -53,5 +58,15 @@ protected:
     }
 public:
     RenderPath2D* m_RenderPath;
+public:
     wiSprite* m_Widget;
+public:
+    Color m_Color;
+
+    Vector m_Position;
+    Vector m_Size;
+
+    const char* m_Image;
+
+    bool m_Hidden;
 };

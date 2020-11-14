@@ -43,6 +43,8 @@ public:
     void SetFont(HFont* font);
     void GetFont(HFont*& font);
 
+    void Update();
+
 protected:
     IInterfaces* m_Interface;
 protected:

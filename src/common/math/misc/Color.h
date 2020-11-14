@@ -65,6 +65,11 @@ public:
 		return !(operator==(rhs));
 	}
 
+	Color operator - (const Color& rhs) const
+	{
+		return Color(r() - rhs.r(), g() - rhs.g(), b() - rhs.b(), a() - rhs.a());
+	}
+
 	float Hue() const
 	{
 		if (m_Color[0] == m_Color[1] && m_Color[1] == m_Color[2])

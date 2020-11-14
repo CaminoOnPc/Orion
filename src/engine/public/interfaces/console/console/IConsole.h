@@ -11,6 +11,8 @@
 
 #include "../HCvar.h"
 
+class IImageWidget;
+class ITextWidget;
 class HCvar;
 
 class IInterfaces;
@@ -58,10 +60,12 @@ public:
 public:
     bool m_Active;
 
-    wiSpriteFont m_OutputText;
-    wiSpriteFont m_InputText;
-    wiSprite m_Background;
-    wiSprite m_Input;  
+    ITextWidget* m_OutputText;
+    ITextWidget* m_InputText;
+    IImageWidget* m_Background;
+    IImageWidget* m_Input;
+
+   
 
     std::string m_FirstOutput;
     std::string m_Output;
