@@ -61,12 +61,15 @@ public:
 public:
     wiSprite* m_Widget;
 public:
-    Color m_Color;
+    struct EWidgetData
+    {
+        const char* m_Image;
+        Vector m_Position;
+        Vector m_Size;
+        Color m_Color;
 
-    Vector m_Position;
-    Vector m_Size;
+        bool m_Hidden;
+    };
 
-    const char* m_Image;
-
-    bool m_Hidden;
+    EWidgetData m_Data;
 };

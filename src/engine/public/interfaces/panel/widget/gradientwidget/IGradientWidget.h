@@ -58,11 +58,15 @@ public:
 public:
     std::vector<wiSprite*> m_Widgets;
 public:
-    Color m_Start;
-    Color m_End;
+    struct EWidgetData
+    {
+        Vector m_Position;
+        Vector m_Size;
+        Color m_Start;
+        Color m_End;
 
-    Vector m_Position;
-    Vector m_Size;
+        bool m_Hidden;
+    };
 
-    bool m_Hidden;
+    EWidgetData m_Data;
 };

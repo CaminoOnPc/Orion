@@ -40,7 +40,7 @@ void IImageWidget::Run(float dt)
 //-----------------------------------------------------------------------------
 void IImageWidget::SetPos(float x, float y)
 {
-	m_Position = Vector(x, y, 0.0f);
+	m_Data.m_Position = Vector(x, y, 0.0f);
 
 	m_Widget->params.pos = XMFLOAT3(x, y, 0.0f);
 }
@@ -59,7 +59,7 @@ void IImageWidget::GetPos(float& x, float& y)
 //-----------------------------------------------------------------------------
 void IImageWidget::SetSize(float width, float height)
 {
-	m_Size = Vector(width, height, 0.0f);
+	m_Data.m_Size = Vector(width, height, 0.0f);
 
 	m_Widget->params.siz = XMFLOAT2(width, height);
 }
@@ -69,8 +69,8 @@ void IImageWidget::SetSize(float width, float height)
 //-----------------------------------------------------------------------------
 void IImageWidget::GetSize(float& width, float& height)
 {
-	height = m_Size.y;
-	width = m_Size.x;
+	height = m_Data.m_Size.y;
+	width = m_Data.m_Size.x;
 }
 
 //-----------------------------------------------------------------------------
@@ -78,9 +78,9 @@ void IImageWidget::GetSize(float& width, float& height)
 //-----------------------------------------------------------------------------
 void IImageWidget::SetHidden(bool hidden)
 {
-	m_Hidden = hidden;
+	m_Data.m_Hidden = hidden;
 
-	m_Widget->SetHidden(m_Hidden);
+	m_Widget->SetHidden(m_Data.m_Hidden);
 }
 
 //-----------------------------------------------------------------------------
@@ -88,7 +88,7 @@ void IImageWidget::SetHidden(bool hidden)
 //-----------------------------------------------------------------------------
 void IImageWidget::GetHidden(bool& hidden)
 {
-	hidden = m_Hidden;
+	hidden = m_Data.m_Hidden;
 }
 
 //-----------------------------------------------------------------------------
@@ -96,7 +96,7 @@ void IImageWidget::GetHidden(bool& hidden)
 //-----------------------------------------------------------------------------
 void IImageWidget::SetImage(const char* image)
 {
-	m_Image = image;
+	m_Data.m_Image = image;
 
 	m_RenderPath->RemoveSprite(m_Widget);
 
@@ -109,7 +109,7 @@ void IImageWidget::SetImage(const char* image)
 //-----------------------------------------------------------------------------
 void IImageWidget::GetImage(const char*& image)
 {
-	image = m_Image;
+	image = m_Data.m_Image;
 }
 
 //-----------------------------------------------------------------------------
@@ -117,7 +117,7 @@ void IImageWidget::GetImage(const char*& image)
 //-----------------------------------------------------------------------------
 void IImageWidget::SetColor(Color color)
 {
-	m_Color = color;
+	m_Data.m_Color = color;
 
 	m_RenderPath->RemoveSprite(m_Widget);
 
@@ -132,7 +132,7 @@ void IImageWidget::SetColor(Color color)
 //-----------------------------------------------------------------------------
 void IImageWidget::GetColor(Color& color)
 {
-	color = m_Color;
+	color = m_Data.m_Color;
 }
 
 //-----------------------------------------------------------------------------

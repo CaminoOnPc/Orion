@@ -70,13 +70,17 @@ void IGame::Start(IInterfaces* interfaces)
 
 	//ui->SetHidden(true);
 
-	//ITextWidget* text = new ITextWidget;
-	//text->Start(m_Interface);
+	ITextWidget* text = new ITextWidget;
+	text->Start(m_Interface);
 
-	//HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 72, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
-	//text->SetFont(font);
+	HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 72, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+	text->SetFont(font);
 
-	//text->SetText("test");
+	text->SetText("test");
+
+	text->SetPos(100, 100);
+
+
 
 	IGradientWidget* gradient = new IGradientWidget;
 	gradient->Start(m_Interface);

@@ -37,7 +37,7 @@ void IGradientWidget::Run(float dt)
 //-----------------------------------------------------------------------------
 void IGradientWidget::SetPos(float x, float y)
 {
-	m_Position = Vector(x, y, 0.0f);
+	m_Data.m_Position = Vector(x, y, 0.0f);
 
 	Update();
 }
@@ -47,8 +47,8 @@ void IGradientWidget::SetPos(float x, float y)
 //-----------------------------------------------------------------------------
 void IGradientWidget::GetPos(float& x, float& y)
 {
-	x = m_Position.x;
-	y = m_Position.y;
+	x = m_Data.m_Position.x;
+	y = m_Data.m_Position.y;
 }
 
 //-----------------------------------------------------------------------------
@@ -56,7 +56,7 @@ void IGradientWidget::GetPos(float& x, float& y)
 //-----------------------------------------------------------------------------
 void IGradientWidget::SetSize(float width, float height)
 {
-	m_Size = Vector(width, height, 0.0f);
+	m_Data.m_Size = Vector(width, height, 0.0f);
 
 	Update();
 }
@@ -66,8 +66,8 @@ void IGradientWidget::SetSize(float width, float height)
 //-----------------------------------------------------------------------------
 void IGradientWidget::GetSize(float& width, float& height)
 {
-	height = m_Size.y;
-	width = m_Size.x;
+	height = m_Data.m_Size.y;
+	width = m_Data.m_Size.x;
 }
 
 //-----------------------------------------------------------------------------
@@ -75,7 +75,7 @@ void IGradientWidget::GetSize(float& width, float& height)
 //-----------------------------------------------------------------------------
 void IGradientWidget::SetHidden(bool hidden)
 {
-	m_Hidden = hidden;
+	m_Data.m_Hidden = hidden;
 
 	Update();
 }
@@ -85,7 +85,7 @@ void IGradientWidget::SetHidden(bool hidden)
 //-----------------------------------------------------------------------------
 void IGradientWidget::GetHidden(bool& hidden)
 {
-	hidden = m_Hidden;
+	hidden = m_Data.m_Hidden;
 }
 
 //-----------------------------------------------------------------------------
@@ -93,8 +93,8 @@ void IGradientWidget::GetHidden(bool& hidden)
 //-----------------------------------------------------------------------------
 void IGradientWidget::SetColor(Color start, Color end)
 {
-	m_Start = start;
-	m_End = end;
+	m_Data.m_Start = start;
+	m_Data.m_End = end;
 
 	Update();
 }
@@ -104,8 +104,8 @@ void IGradientWidget::SetColor(Color start, Color end)
 //-----------------------------------------------------------------------------
 void IGradientWidget::GetColor(Color& start, Color& end)
 {
-	start = m_Start;
-	end = m_End;
+	start = m_Data.m_Start;
+	end = m_Data.m_End;
 }
 
 //-----------------------------------------------------------------------------
@@ -120,22 +120,22 @@ void IGradientWidget::Update()
 
 	m_Widgets.clear();
 
-	float differenceR = (float)(m_End.r() - m_Start.r()) / (float)m_Size.y;
-	float differenceG = (float)(m_End.g() - m_Start.g()) / (float)m_Size.y;
-	float differenceB = (float)(m_End.b() - m_Start.b()) / (float)m_Size.y;
+	float differenceR = (float)(m_Data.m_End.r() - m_Data.m_Start.r()) / (float)m_Data.m_Size.y;
+	float differenceG = (float)(m_Data.m_End.g() - m_Data.m_Start.g()) / (float)m_Data.m_Size.y;
+	float differenceB = (float)(m_Data.m_End.b() - m_Data.m_Start.b()) / (float)m_Data.m_Size.y;
 
-	for (float i = 0.f; i < m_Size.y; i++)
+	for (float i = 0.f; i < m_Data.m_Size.y; i++)
 	{
-		Color color = Color(m_Start.r() + (differenceR * i), m_Start.g() + (differenceG * i), m_Start.b() + (differenceB * i), m_Start.a());
+		Color color = Color(m_Data.m_Start.r() + (differenceR * i), m_Data.m_Start.g() + (differenceG * i), m_Data.m_Start.b() + (differenceB * i), m_Data.m_Start.a());
 		wiSprite* gradient = new wiSprite();
 		if (gradient)
 		{
 			m_RenderPath->AddSprite(&*gradient);
 			gradient->params.color = XMFLOAT4(color.rBase(), color.gBase(), color.bBase(), color.aBase());
-			gradient->params.pos = XMFLOAT3(m_Position.x, m_Position.y + i, 0.0f);
-			gradient->params.siz = XMFLOAT2(m_Size.x, 1);
+			gradient->params.pos = XMFLOAT3(m_Data.m_Position.x, m_Data.m_Position.y + i, 0.0f);
+			gradient->params.siz = XMFLOAT2(m_Data.m_Size.x, 1);
 
-			gradient->SetHidden(m_Hidden);
+			gradient->SetHidden(m_Data.m_Hidden);
 
 			m_Widgets.push_back(gradient);
 		}

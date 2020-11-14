@@ -37,8 +37,14 @@ public:
     void SetSize(int size);
     void GetSize(int& size);
 
-    void SetText(const char* text);
-    void GetText(const char*& text);
+    void SetHidden(bool hidden);
+    void GetHidden(bool& hidden);
+
+    void SetText(std::string text);
+    void GetText(std::string& text);
+
+    void SetColor(Color color);
+    void GetColor(Color& color);
 
     void SetFont(HFont* font);
     void GetFont(HFont*& font);
@@ -57,7 +63,19 @@ protected:
     }
 public:
     RenderPath2D* m_RenderPath;
+public:
     wiSpriteFont* m_Widget;
 public:
-    HFont* m_Font;
+    struct EWidgetData
+    {
+        std::string m_Text;
+        Vector m_Position;
+        Color m_Color;
+        int m_Size;
+
+        HFont* m_Font;
+        bool m_Hidden;
+    };
+
+    EWidgetData m_Data;
 };
