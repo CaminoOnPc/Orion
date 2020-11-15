@@ -70,15 +70,15 @@ void IGame::Start(IInterfaces* interfaces)
 
 	//ui->SetHidden(true);
 
-	ITextWidget* text = new ITextWidget;
-	text->Start(m_Interface);
+	//ITextWidget* text = new ITextWidget;
+	//text->Start(m_Interface);
 
-	HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 72, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
-	text->SetFont(font);
+	//HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 72, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+	//text->SetFont(font);
 
-	text->SetText("test");
+	//text->SetText("test");
 
-	text->SetPos(100, 100);
+	//text->SetPos(100, 100);
 
 
 
@@ -97,7 +97,14 @@ void IGame::Start(IInterfaces* interfaces)
 	m_Interface->m_Tier2->m_IConsole->ExecuteCommand("fff", 1);
 
 
+	// TODO:
 
+	// https://i.ytimg.com/vi/4xHuXq4VvGE/maxresdefault.jpg
+	// https://www.youtube.com/watch?v=uk6-Oq-lr2Y
+	// Gradient for console title like that
+	// Finish console functionallity
+
+	// Fix/tests shadow and outline for text
 	
 
 	/*
