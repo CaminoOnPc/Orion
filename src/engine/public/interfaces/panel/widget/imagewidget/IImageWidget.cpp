@@ -13,10 +13,7 @@ void IImageWidget::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
 
-	m_Widget = new wiSprite();
-
 	m_RenderPath = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
-	m_RenderPath->AddSprite(&*m_Widget);
 }
 
 //-----------------------------------------------------------------------------
@@ -42,7 +39,7 @@ void IImageWidget::SetPos(float x, float y)
 {
 	m_Data.m_Position = Vector(x, y, 0.0f);
 
-	m_Widget->params.pos = XMFLOAT3(x, y, 0.0f);
+	Update();
 }
 
 //-----------------------------------------------------------------------------
@@ -61,7 +58,7 @@ void IImageWidget::SetSize(float width, float height)
 {
 	m_Data.m_Size = Vector(width, height, 0.0f);
 
-	m_Widget->params.siz = XMFLOAT2(width, height);
+	Update();
 }
 
 //-----------------------------------------------------------------------------
@@ -80,7 +77,7 @@ void IImageWidget::SetHidden(bool hidden)
 {
 	m_Data.m_Hidden = hidden;
 
-	m_Widget->SetHidden(m_Data.m_Hidden);
+	Update();
 }
 
 //-----------------------------------------------------------------------------
@@ -94,20 +91,17 @@ void IImageWidget::GetHidden(bool& hidden)
 //-----------------------------------------------------------------------------
 // Sets a widget image
 //-----------------------------------------------------------------------------
-void IImageWidget::SetImage(const char* image)
+void IImageWidget::SetImage(std::string image)
 {
 	m_Data.m_Image = image;
 
-	m_RenderPath->RemoveSprite(m_Widget);
-
-	m_Widget = new wiSprite(image);
-	m_RenderPath->AddSprite(&*m_Widget);
+	Update();
 }
 
 //-----------------------------------------------------------------------------
 // Returns a widget image
 //-----------------------------------------------------------------------------
-void IImageWidget::GetImage(const char*& image)
+void IImageWidget::GetImage(std::string& image)
 {
 	image = m_Data.m_Image;
 }
@@ -118,13 +112,8 @@ void IImageWidget::GetImage(const char*& image)
 void IImageWidget::SetColor(Color color)
 {
 	m_Data.m_Color = color;
-
-	m_RenderPath->RemoveSprite(m_Widget);
-
-	m_Widget = new wiSprite();
-	m_RenderPath->AddSprite(&*m_Widget);
-
-	m_Widget->params.color = XMFLOAT4(color.rBase(), color.gBase(), color.bBase(), color.aBase());
+	
+	Update();
 }
 
 //-----------------------------------------------------------------------------
@@ -140,5 +129,25 @@ void IImageWidget::GetColor(Color& color)
 //-----------------------------------------------------------------------------
 void IImageWidget::Update()
 {
-	
+	m_RenderPath->RemoveSprite(m_Widget);
+
+	m_Widget = new wiSprite();
+	m_RenderPath->AddSprite(&*m_Widget);
+
+	if (!m_Data.m_Image.empty())
+	{
+		m_RenderPath->RemoveSprite(m_Widget);
+
+		m_Widget = new wiSprite(m_Data.m_Image);
+		m_RenderPath->AddSprite(&*m_Widget);
+	}
+	else
+	{
+		m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase(), m_Data.m_Color.gBase(), m_Data.m_Color.bBase(), m_Data.m_Color.aBase());
+	}
+
+	m_Widget->params.pos = XMFLOAT3(m_Data.m_Position.x, m_Data.m_Position.y, 0.0f);
+	m_Widget->params.siz = XMFLOAT2(m_Data.m_Size.x, m_Data.m_Size.y);
+
+	m_Widget->SetHidden(m_Data.m_Hidden);
 }

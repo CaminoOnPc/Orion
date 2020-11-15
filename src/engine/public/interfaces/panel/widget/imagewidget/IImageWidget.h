@@ -38,8 +38,8 @@ public:
     void SetHidden(bool hidden);
     void GetHidden(bool& hidden);
 
-    void SetImage(const char* image);
-    void GetImage(const char*& image);
+    void SetImage(std::string image);
+    void GetImage(std::string& image);
 
     void SetColor(Color color);
     void GetColor(Color& color);
@@ -63,7 +63,7 @@ public:
 public:
     struct EWidgetData
     {
-        const char* m_Image;
+        std::string m_Image;
         Vector m_Position;
         Vector m_Size;
         Color m_Color;
