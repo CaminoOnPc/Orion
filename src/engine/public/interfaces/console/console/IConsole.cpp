@@ -31,7 +31,7 @@ void IConsole::Start(IInterfaces* interfaces)
 	m_Input->SetPos(10, (m_Interface->m_Base->m_Settings->m_height / 2) + 10.f);
 	m_Input->SetSize(m_Interface->m_Base->m_Settings->m_width - 20, 25);
 
-	HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 16, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+	HFont* font = m_Interface->m_Tier2->m_IWidget->CreateFont("ApexMk2-Regular.otf", 16, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
 
 	std::string outputText;
 	outputText.append(m_Output);

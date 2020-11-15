@@ -40,7 +40,6 @@
     <ClInclude Include="common\abstract\includes\stdafx.h">
       <Filter>Code</Filter>
     </ClInclude>
-    <ClInclude Include="engine\public\interfaces\panel\surface\ISurface.h" />
     <ClInclude Include="engine\public\interfaces\panel\HFont.h" />
     <ClInclude Include="engine\public\interfaces\world\IWorld.h" />
     <ClInclude Include="engine\entities\object\IObject.h" />
@@ -80,7 +79,6 @@
     <ClCompile Include="common\abstract\includes\stdafx.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="engine\public\interfaces\panel\surface\ISurface.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\HFont.cpp" />
     <ClCompile Include="engine\public\interfaces\world\IWorld.cpp" />
     <ClCompile Include="engine\entities\object\IObject.cpp" />

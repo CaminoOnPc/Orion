@@ -11,6 +11,8 @@
 
 #include "../HFont.h"
     
+class HFont;
+
 class IInterfaces;
 
 class IWidget
@@ -38,19 +40,7 @@ public:
         FONTFLAGS_OUTLINE = 0x002,
     };
 
-    virtual void SetPos(float x, float y);
-    virtual void GetPos(float& x, float& y);
-
-    virtual void SetSize(float x, float y);
-    virtual void GetSize(float& height, float& width);
-
-    virtual void SetRotation(float roll);
-    virtual void GetRotation(float &roll);
-
-    virtual void SetScale(float height, float width);
-    virtual void GetScale(float& height, float& width);
-
-    void GetScreenPos(float &x, float &y);
+    void SetScreenSize(float height, float width);
     void GetScreenSize(float& height, float& width);
 
     HFont* CreateFont(const char* font, int size, int flags);
@@ -64,5 +54,4 @@ protected:
             *ppT = nullptr;
         }
     }
-public:
 };

@@ -44,7 +44,7 @@ void IDebugDisplay::Start(IInterfaces* interfaces)
 
 	m_CpuData.m_CpuTick = GetTickCount();
 
-	HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("Arame-Mono.ttf", 24, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+	HFont* font = m_Interface->m_Tier2->m_IWidget->CreateFont("Arame-Mono.ttf", 24, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
 
 	std::string pos;
 	pos.append("POS: ");

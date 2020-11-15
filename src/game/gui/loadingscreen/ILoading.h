@@ -9,6 +9,8 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
+class IImageWidget;
+
 class IInterfaces;
 
 class ILoading : public LoadingScreen
@@ -40,6 +42,5 @@ protected:
         }
     }
 public:
-    wiSpriteFont m_Font;
-    wiSprite m_Image;
+    IImageWidget* m_Loading;
 };

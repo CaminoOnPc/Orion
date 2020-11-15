@@ -31,10 +31,11 @@ void IWidget::Run(float dt)
 }
 
 //-----------------------------------------------------------------------------
-// Returns a screen position
+// Sets a screen size
 //-----------------------------------------------------------------------------
-void IWidget::GetScreenPos(float& x, float& y)
+void IWidget::SetScreenSize(float height, float width)
 {
+	
 }
 
 //-----------------------------------------------------------------------------

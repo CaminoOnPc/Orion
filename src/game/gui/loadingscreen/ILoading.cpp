@@ -23,13 +23,13 @@ void ILoading::Load()
 {
 	m_Interface->m_Tier0->m_Rendering->m_RenderPath = this;
 
-	m_Interface->m_Tier2->m_ISurface->DrawBitmap("data/game/materials/textures/loadscreen/loading_1.png", 0, 0, wiRenderer::GetDevice()->GetScreenWidth(), wiRenderer::GetDevice()->GetScreenHeight(), 255);
+	m_Loading = new IImageWidget;
+	m_Loading->Start(m_Interface);
 
-	//static HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("Arial", 16, ISurface::EFontFlags::FONTFLAGS_OUTLINE);
-	//std::string version;
-	//version.append("Orion ");
-	//version.append(wiVersion::GetVersionString());
-	//m_Interface->m_Tier2->m_ISurface->DrawText(font, version.c_str(), 10, 10, Color(255, 255, 255));
+	m_Loading->SetImage("data/game/materials/textures/loadscreen/loading_1.png");
+
+	m_Loading->SetPos(0, 0);
+	m_Loading->SetSize(wiRenderer::GetDevice()->GetScreenWidth(), wiRenderer::GetDevice()->GetScreenHeight());
 
 	LoadingScreen::Load();
 }

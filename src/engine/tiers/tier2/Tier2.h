@@ -9,14 +9,13 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
-#include "../../public/interfaces/panel/surface/ISurface.h"
 #include "../../public/interfaces/console/console/IConsole.h"
 #include "../../public/systems/filesystem/filesystem/IFileSystem.h"
 #include "../../public/interfaces/world/IWorld.h"
 
 class IFileSystem;
-class ISurface;
 class IConsole;
+class IWidget;
 class IWorld;
 
 class IInterfaces;
@@ -48,7 +47,7 @@ protected:
 	}
 public:
 	IFileSystem* m_IFileSystem;
-	ISurface* m_ISurface;
 	IConsole* m_IConsole;
+	IWidget* m_IWidget;
 	IWorld* m_IWorld;
 };

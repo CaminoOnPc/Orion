@@ -18,13 +18,13 @@ void Tier2::Start(IInterfaces* interfaces)
 
 	m_IFileSystem->Start(m_Interface);
 
-	m_ISurface = new ISurface;
-	if (!m_ISurface)
+	m_IWidget = new IWidget;
+	if (!m_IWidget)
 	{
 		return;
 	}
 
-	m_ISurface->Start(m_Interface);
+	m_IWidget->Start(m_Interface);
 
 	m_IWorld = new IWorld;
 	if (!m_IWorld)
