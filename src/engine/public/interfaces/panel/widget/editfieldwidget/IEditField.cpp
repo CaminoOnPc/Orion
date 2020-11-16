@@ -225,6 +225,14 @@ void IEditField::Update(float dt)
 
 	if (intersectsPointer)
 	{
+		if (m_Flags != IWidget::EWidgetFlags::FONTFLAGS_FOCUSED)
+		{
+			if ((m_Data.m_Color.r() + 15) < 255 && (m_Data.m_Color.g() + 15) < 255 && (m_Data.m_Color.b() + 15) < 255)
+			{
+				m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase() + 0.025f, m_Data.m_Color.gBase() + 0.025f, m_Data.m_Color.bBase() + 0.025f, m_Data.m_Color.aBase());
+			}
+		}
+
 		if (wiInput::Press(wiInput::MOUSE_BUTTON_LEFT))
 		{
 			m_Flags = IWidget::EWidgetFlags::FONTFLAGS_FOCUSED;
@@ -242,6 +250,11 @@ void IEditField::Update(float dt)
 	{
 		if (m_Flags && IWidget::EWidgetFlags::FONTFLAGS_FOCUSED)
 		{
+			if ((m_Data.m_Color.r() + 15) < 255 && (m_Data.m_Color.g() + 15) < 255 && (m_Data.m_Color.b() + 15) < 255)
+			{
+				m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase() + 0.05f, m_Data.m_Color.gBase() + 0.05f, m_Data.m_Color.bBase() + 0.05f, m_Data.m_Color.aBase());
+			}
+
 			if (m_Data.m_Hidden)
 			{
 				m_Flags = IWidget::EWidgetFlags::WIDGETFLAGS_IDLE;
@@ -436,6 +449,10 @@ void IEditField::Update(float dt)
 		}
 		else
 		{
+			if (!intersectsPointer)
+			{
+				m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase(), m_Data.m_Color.gBase(), m_Data.m_Color.bBase(), m_Data.m_Color.aBase());
+			}
 		}
 	}
 }
