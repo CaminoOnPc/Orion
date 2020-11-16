@@ -46,17 +46,36 @@ void IGame::Start(IInterfaces* interfaces)
 	//IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("zuccini", Vector(float(0) * 4, 0, float(0) * 4), Vector(0, 0, 0));
 	//object->SetScale(Vector(100, 100, 100));
 
-	m_UI = wiSprite("data/game/materials/textures/ui/ui.png");
-	m_UI.params.sampleFlag = SAMPLEMODE_CLAMP;
-	m_UI.params.blendFlag = BLENDMODE_ALPHA;
-	m_UI.params.quality = QUALITY_LINEAR;
-	m_UI.params.pos = XMFLOAT3(0, 0, 0.0f);
-	m_UI.params.enableFullScreen();
+	m_UI = new IImageWidget;
+	m_UI->Start(m_Interface);
 
-	RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
-	path->AddSprite(&m_UI);
+	m_UI->SetImage("data/game/materials/textures/ui/ui.png");
 
-	//m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
+	m_UI->SetPos(0, 0);
+	m_UI->SetSize(m_Interface->m_Base->m_Settings->m_width, m_Interface->m_Base->m_Settings->m_height);
+
+	//ui->SetColor(Color(255, 255, 0));
+	//ui->SetImage("data/game/materials/textures/effects/flare_9.png");
+	//ui->SetPos(0, 0);
+	//ui->SetSize(100, 100);
+
+#if DEVELOPER
+	m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
+#endif
+
+	HFont* consoleFont = m_Interface->m_Tier2->m_IWidget->CreateFont("Arame-Mono.ttf", 16, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+
+
+	//IEditField* m_InputTest = new IEditField;
+	//m_InputTest->Start(m_Interface);
+
+	//m_InputTest->SetColor(Color(255, 255, 255, 255));
+
+	//m_InputTest->SetFont(consoleFont);
+	//m_InputTest->SetText("test");
+
+	//m_InputTest->SetPos(20, 550);
+	//m_InputTest->SetSize(m_Interface->m_Base->m_Settings->m_width - 40, 25);
 
 	//ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
 	//music->SetVolume(0.1f);
@@ -82,19 +101,19 @@ void IGame::Start(IInterfaces* interfaces)
 
 
 
-	IGradientWidget* gradient = new IGradientWidget;
-	gradient->Start(m_Interface);
+	//IGradientWidget* gradient = new IGradientWidget;
+	//gradient->Start(m_Interface);
 
-	gradient->SetColor(Color(255, 255, 0), Color(255, 0, 255));
-	gradient->SetPos(0, 100);
-	gradient->SetSize(100, 100);
+	//gradient->SetColor(Color(255, 255, 0), Color(255, 0, 255));
+	//gradient->SetPos(0, 100);
+	//gradient->SetSize(100, 100);
 
 	//gradient->SetHidden(true);
 	//gradient->SetHidden(false);
 
-	m_Interface->m_Tier2->m_IConsole->ExecuteCommand("r_vsync", 1);
+	//m_Interface->m_Tier2->m_IConsole->ExecuteCommand("r_vsync", 1);
 
-	m_Interface->m_Tier2->m_IConsole->ExecuteCommand("fff", 1);
+	//m_Interface->m_Tier2->m_IConsole->ExecuteCommand("fff", 1);
 
 
 	// TODO:
@@ -105,6 +124,18 @@ void IGame::Start(IInterfaces* interfaces)
 	// Finish console functionallity
 
 	// Fix/tests shadow and outline for text
+	// Add *bool update* flag for each operation such as SetText, SetColor etc for widget so that if SetText is used in a 
+	// loop it wont hurt performance
+	/*
+	* if (!update)
+	* {
+	*	widget->SetText(...)
+	* }
+	* else
+	* {
+	*	update();
+	* }
+	*/
 	
 
 	/*
@@ -140,7 +171,10 @@ void IGame::Run(float dt)
 	{
 		if (m_DebugCamera)
 		{
-			m_DebugCamera->Run(dt);
+			if (!m_Interface->m_Tier2->m_IConsole->m_Active)
+			{
+				m_DebugCamera->Run(dt);
+			}
 		}
 
 		if (m_DebugDisplay)

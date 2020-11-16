@@ -186,7 +186,7 @@ void IDebugDisplay::Run(float dt)
 	pos.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Position.y));
 	pos.append(" ");
 	pos.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Position.z));
-	m_PositionText->SetText(pos);
+	m_PositionText->SetText(pos, false);
 
 	std::string rot;
 	rot.append("rot: ");
@@ -195,7 +195,7 @@ void IDebugDisplay::Run(float dt)
 	rot.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Rotation.y));
 	rot.append(" ");
 	rot.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Rotation.z));
-	m_RotationText->SetText(rot);
+	m_RotationText->SetText(rot, false);
 
 	std::string fps;
 	fps.append(std::to_string(m_Fps));
@@ -203,19 +203,19 @@ void IDebugDisplay::Run(float dt)
 	fps.append(" +- ");
 	fps.append(Utils::string_round(m_DeltaTime));
 	fps.append("ms");
-	m_FpsText->SetText(fps);
+	m_FpsText->SetText(fps, false);
 
 	std::string serverCpu;
 	serverCpu.append(std::to_string(m_CpuUsage));
 	serverCpu.append("% server CPU");
-	m_ServerCpuText->SetText(serverCpu);
+	m_ServerCpuText->SetText(serverCpu, false);
 
 	std::string clientCpu;
 	clientCpu.append(std::to_string(m_CpuUsage));
 	clientCpu.append("% client CPU");
-	m_ClientCpuText->SetText(clientCpu);
+	m_ClientCpuText->SetText(clientCpu, false);
 
 	std::string worldName;
 	worldName.append(m_Interface->m_Tier2->m_IWorld->m_WorldName);
-	m_WorldNameText->SetText(worldName);
+	m_WorldNameText->SetText(worldName, false);
 }

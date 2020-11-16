@@ -195,6 +195,7 @@
     <ClInclude Include="engine\public\interfaces\debug\debugcamera\IDebugCamera.h" />
     <ClInclude Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.h" />
     <ClInclude Include="engine\public\interfaces\panel\HFont.h" />
+    <ClInclude Include="engine\public\interfaces\panel\widget\editfieldwidget\IEditField.h" />
     <ClInclude Include="engine\public\interfaces\panel\widget\gradientwidget\IGradientWidget.h" />
     <ClInclude Include="engine\public\interfaces\panel\widget\imagewidget\IImageWidget.h" />
     <ClInclude Include="engine\public\interfaces\panel\widget\IWidget.h" />
@@ -231,6 +232,7 @@
     <ClCompile Include="engine\public\interfaces\debug\debugcamera\IDebugCamera.cpp" />
     <ClCompile Include="engine\public\interfaces\debug\debugdisplay\IDebugDisplay.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\HFont.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\widget\editfieldwidget\IEditField.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\widget\gradientwidget\IGradientWidget.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\widget\imagewidget\IImageWidget.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\widget\IWidget.cpp" />

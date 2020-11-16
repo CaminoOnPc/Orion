@@ -56,6 +56,7 @@
     <ClInclude Include="engine\public\interfaces\panel\widget\imagewidget\IImageWidget.h" />
     <ClInclude Include="engine\public\interfaces\panel\widget\textwidget\ITextWidget.h" />
     <ClInclude Include="engine\public\interfaces\panel\widget\gradientwidget\IGradientWidget.h" />
+    <ClInclude Include="engine\public\interfaces\panel\widget\editfieldwidget\IEditField.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\WinMain.cpp">
@@ -95,6 +96,7 @@
     <ClCompile Include="engine\public\interfaces\panel\widget\imagewidget\IImageWidget.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\widget\textwidget\ITextWidget.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\widget\gradientwidget\IGradientWidget.cpp" />
+    <ClCompile Include="engine\public\interfaces\panel\widget\editfieldwidget\IEditField.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

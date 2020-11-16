@@ -11,6 +11,8 @@
 
 #include "../HCvar.h"
 
+class IEditField;
+class IGradientWidget;
 class IImageWidget;
 class ITextWidget;
 class HCvar;
@@ -38,11 +40,14 @@ public:
     void ExecuteCommand(const char* command, const char* args);
     void ExecuteCommand(const char* command, float args);
     void ExecuteCommand(const char* command, int args);
+    void ProcessCommand(const char* command);
 
     void InternalExecuteCommand(const char* command, const char* args, float fargs, int iargs);
     void LogCommand(const char* text);
 public:
     void Callback_r_vsync(int value);   
+    void Callback_clear();
+    void Callback_quit();
 protected:
     IInterfaces* m_Interface;
 protected:
@@ -54,19 +59,22 @@ protected:
         }
     }
 public:
+    HCvar* r_vsync;
+    HCvar* clear;
+    HCvar* quit;
+public:
     std::vector< HCvar* > m_Cvars;
 public:
-    HCvar* r_vsync;
+    ITextWidget* m_TitleWidget;
+
+    IGradientWidget* m_BackgroundWidget;
+    IGradientWidget* m_HeaderWidget;
+
+    ITextWidget* m_OutputWidget;
+    IEditField* m_InputWidget;
 public:
     bool m_Active;
-
-    ITextWidget* m_OutputText;
-    ITextWidget* m_InputText;
-    IImageWidget* m_Background;
-    IImageWidget* m_Input;
-
-   
-
+ 
     std::string m_FirstOutput;
     std::string m_Output;
     int m_Lines;

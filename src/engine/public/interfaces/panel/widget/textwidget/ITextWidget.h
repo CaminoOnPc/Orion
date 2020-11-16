@@ -31,22 +31,22 @@ public:
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------
 
-    void SetPos(float x, float y);
+    void SetPos(float x, float y, bool immedUpdate = true);
     void GetPos(float& x, float& y);
 
-    void SetSize(int size);
+    void SetSize(int size, bool immedUpdate = true);
     void GetSize(int& size);
 
-    void SetHidden(bool hidden);
+    void SetHidden(bool hidden, bool immedUpdate = true);
     void GetHidden(bool& hidden);
 
-    void SetText(std::string text);
+    void SetText(std::string text, bool immedUpdate = true);
     void GetText(std::string& text);
 
-    void SetColor(Color color);
+    void SetColor(Color color, bool immedUpdate = true);
     void GetColor(Color& color);
 
-    void SetFont(HFont* font);
+    void SetFont(HFont* font, bool immedUpdate = true);
     void GetFont(HFont*& font);
 
     void Update();

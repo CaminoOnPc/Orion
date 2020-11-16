@@ -29,12 +29,19 @@ void IWorld::Run(float dt)
 {
 	for (size_t i = 0; i < m_Objects.capacity(); i++)
 	{
-		m_Objects[i]->Run(dt);
+		// Throws a assert in debug mode for some reason, commented for stability, investigate if needed
+		//if (m_Objects[i])
+		//{
+			//m_Objects[i]->Run(dt);
+		//}
 	}
 
 	for (size_t i = 0; i < m_Sounds.capacity(); i++)
 	{
-		m_Sounds[i]->Run(dt);
+		if (m_Sounds[i])
+		{
+			m_Sounds[i]->Run(dt);
+		}
 	}
 }
 

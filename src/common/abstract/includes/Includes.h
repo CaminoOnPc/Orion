@@ -54,5 +54,6 @@
 #include "../../../engine/public/interfaces/panel/widget/gradientwidget/IGradientWidget.h"
 #include "../../../engine/public/interfaces/panel/widget/imagewidget/IImageWidget.h"
 #include "../../../engine/public/interfaces/panel/widget/textwidget/ITextWidget.h"
+#include "../../../engine/public/interfaces/panel/widget/editfieldwidget/IEditField.h"
 
 #pragma endregion Includes

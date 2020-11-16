@@ -37,9 +37,22 @@ void ITextWidget::Run(float dt)
 //-----------------------------------------------------------------------------
 // Sets a widget position
 //-----------------------------------------------------------------------------
-void ITextWidget::SetPos(float x, float y)
+void ITextWidget::SetPos(float x, float y, bool immedUpdate)
 {
 	m_Data.m_Position = Vector(x, y, 0.0f);
+
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+		if (m_Widget)
+		{
+			m_Widget->params.posX = m_Data.m_Position.x;
+			m_Widget->params.posY = m_Data.m_Position.y;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -54,11 +67,24 @@ void ITextWidget::GetPos(float& x, float& y)
 //-----------------------------------------------------------------------------
 // Sets a widget size
 //-----------------------------------------------------------------------------
-void ITextWidget::SetSize(int size)
+void ITextWidget::SetSize(int size, bool immedUpdate)
 {
 	m_Data.m_Size = size;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+		if (m_Widget)
+		{
+			if (m_Data.m_Size > 0)
+			{
+				m_Widget->params.size = m_Data.m_Size;
+			}
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -72,11 +98,21 @@ void ITextWidget::GetSize(int& size)
 //-----------------------------------------------------------------------------
 // Sets a widget visibility
 //-----------------------------------------------------------------------------
-void ITextWidget::SetHidden(bool hidden)
+void ITextWidget::SetHidden(bool hidden, bool immedUpdate)
 {
 	m_Data.m_Hidden = hidden;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+		if (m_Widget)
+		{
+			m_Widget->SetHidden(m_Data.m_Hidden);
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -90,11 +126,24 @@ void ITextWidget::GetHidden(bool& hidden)
 //-----------------------------------------------------------------------------
 // Sets a widget text
 //-----------------------------------------------------------------------------
-void ITextWidget::SetText(std::string text)
+void ITextWidget::SetText(std::string text, bool immedUpdate)
 {
 	m_Data.m_Text = text;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+		if (!m_Data.m_Text.empty())
+		{
+			if (m_Widget)
+			{
+				m_Widget->SetText(m_Data.m_Text);
+			}
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -108,11 +157,21 @@ void ITextWidget::GetText(std::string& text)
 //-----------------------------------------------------------------------------
 // Sets a widget color
 //-----------------------------------------------------------------------------
-void ITextWidget::SetColor(Color color)
+void ITextWidget::SetColor(Color color, bool immedUpdate)
 {
 	m_Data.m_Color = color;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+		if (m_Widget)
+		{
+			m_Widget->params.color = wiColor(m_Data.m_Color.r(), m_Data.m_Color.g(), m_Data.m_Color.b(), m_Data.m_Color.a());
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -126,11 +185,35 @@ void ITextWidget::GetColor(Color& color)
 //-----------------------------------------------------------------------------
 // Sets a widget font
 //-----------------------------------------------------------------------------
-void ITextWidget::SetFont(HFont* font)
+void ITextWidget::SetFont(HFont* font, bool immedUpdate)
 {
 	m_Data.m_Font = font;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+		if (m_Widget)
+		{
+			if (m_Data.m_Font)
+			{
+				m_Widget->params.style = m_Data.m_Font->m_Font.m_Style;
+				m_Widget->params.size = m_Data.m_Font->m_Font.m_Size;
+
+				if (m_Data.m_Font->m_Font.m_Flag && IWidget::EFontFlags::FONTFLAGS_OUTLINE)
+				{
+					m_Widget->params.outlineColor = wiColor::Black();
+				}
+
+				if (m_Data.m_Font->m_Font.m_Flag && IWidget::EFontFlags::FONTFLAGS_SHADOW)
+				{
+					m_Widget->params.shadowColor = wiColor::Black();
+				}
+			}
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

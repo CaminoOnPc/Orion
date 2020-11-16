@@ -38,6 +38,6 @@ protected:
 	}
 public:
 	ISettings* m_Settings;
-}; static IBase* m_Base;
+}; extern IBase* m_Base;
 
 static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);

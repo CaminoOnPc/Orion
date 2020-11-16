@@ -8,6 +8,8 @@
 
 #include "../../common/WinMain.h"
 
+IBase* m_Base;
+
 //-----------------------------------------------------------------------------
 // Activates IBase initalization process
 //-----------------------------------------------------------------------------
@@ -131,7 +133,46 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
                 wiBackLog::input(c);
             }
 
+
+            
+
             wiTextInputField::AddInput(c);
+
+            for (size_t i = 0; i < m_Base->m_Interfaces->m_Tier2->m_IWidget->m_EditFields.capacity(); i++)
+            {
+                IEditField* editField = m_Base->m_Interfaces->m_Tier2->m_IWidget->m_EditFields[i];
+                if (editField)
+                {
+                    if (editField->m_Flags & IWidget::EWidgetFlags::FONTFLAGS_FOCUSED)
+                    {
+                        if (!wiInput::Press(wiInput::KEYBOARD_BUTTON_BACKSPACE))
+                        {
+                            //std::string input(1, c); 
+                            //editField->SetInput(input.c_str());
+
+                            
+                            
+
+                            /*
+                            std::string value_new = editField->m_EditData.m_Text;
+                            value_new.push_back(c);
+                            editField->m_EditData.m_Text = value_new;
+                            editField->m_EditWidget->SetText(editField->m_EditData.m_Text);
+
+                            if (wiInput::Press(wiInput::KEYBOARD_BUTTON_ENTER))
+                            {
+                                std::cout << "output: " << wiBackLog::getText() << std::endl;
+
+                                editField->m_Callback(editField->m_EditData.m_Text.c_str());
+
+                                editField->m_EditData.m_Text.clear();
+                                editField->m_EditWidget->SetText(editField->m_EditData.m_Text);
+                            }
+                            */
+                        }
+                    }
+                }
+            }
         }
         break;
         }

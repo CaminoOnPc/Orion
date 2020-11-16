@@ -56,5 +56,7 @@ void Tier2::Run(float dt)
 {
 	m_IWorld->Run(dt);
 
+	m_IWidget->Run(dt);
+
 	return;
 }

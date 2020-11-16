@@ -35,11 +35,18 @@ void IGradientWidget::Run(float dt)
 //-----------------------------------------------------------------------------
 // Sets a widget position
 //-----------------------------------------------------------------------------
-void IGradientWidget::SetPos(float x, float y)
+void IGradientWidget::SetPos(float x, float y, bool immedUpdate)
 {
 	m_Data.m_Position = Vector(x, y, 0.0f);
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -54,11 +61,18 @@ void IGradientWidget::GetPos(float& x, float& y)
 //-----------------------------------------------------------------------------
 // Sets a widget size
 //-----------------------------------------------------------------------------
-void IGradientWidget::SetSize(float width, float height)
+void IGradientWidget::SetSize(float width, float height, bool immedUpdate)
 {
 	m_Data.m_Size = Vector(width, height, 0.0f);
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -73,11 +87,24 @@ void IGradientWidget::GetSize(float& width, float& height)
 //-----------------------------------------------------------------------------
 // Sets a widget visibility
 //-----------------------------------------------------------------------------
-void IGradientWidget::SetHidden(bool hidden)
+void IGradientWidget::SetHidden(bool hidden, bool immedUpdate)
 {
 	m_Data.m_Hidden = hidden;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+		for (size_t i = 0; i < m_Widgets.capacity(); i++)
+		{
+			if (m_Widgets[i])
+			{
+				m_Widgets[i]->SetHidden(hidden);
+			}
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -91,12 +118,19 @@ void IGradientWidget::GetHidden(bool& hidden)
 //-----------------------------------------------------------------------------
 // Sets a widget color
 //-----------------------------------------------------------------------------
-void IGradientWidget::SetColor(Color start, Color end)
+void IGradientWidget::SetColor(Color start, Color end, bool immedUpdate)
 {
 	m_Data.m_Start = start;
 	m_Data.m_End = end;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
+	else
+	{
+		
+	}
 }
 
 //-----------------------------------------------------------------------------

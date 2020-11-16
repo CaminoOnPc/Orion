@@ -11,6 +11,8 @@
 
 #include "../HFont.h"
     
+class IEditField;
+
 class HFont;
 
 class IInterfaces;
@@ -33,6 +35,12 @@ public:
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------
 
+    enum EWidgetFlags
+    {
+        WIDGETFLAGS_IDLE,
+        FONTFLAGS_FOCUSED = 0x001,
+    };
+
     enum EFontFlags
     {
         FONTFLAGS_NONE,
@@ -54,4 +62,6 @@ protected:
             *ppT = nullptr;
         }
     }
+public:
+    std::vector<IEditField*> m_EditFields;
 };

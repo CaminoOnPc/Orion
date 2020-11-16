@@ -29,19 +29,19 @@ public:
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------
 
-    void SetPos(float x, float y);
+    void SetPos(float x, float y, bool immedUpdate = true);
     void GetPos(float& x, float& y);
 
-    void SetSize(float width, float height);
+    void SetSize(float width, float height, bool immedUpdate = true);
     void GetSize(float& width, float& height);
 
-    void SetHidden(bool hidden);
+    void SetHidden(bool hidden, bool immedUpdate = true);
     void GetHidden(bool& hidden);
 
-    void SetImage(std::string image);
+    void SetImage(std::string image, bool immedUpdate = true);
     void GetImage(std::string& image);
 
-    void SetColor(Color color);
+    void SetColor(Color color, bool immedUpdate = true);
     void GetColor(Color& color);
 
     void Update();

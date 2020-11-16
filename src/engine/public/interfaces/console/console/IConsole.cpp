@@ -15,34 +15,69 @@ void IConsole::Start(IInterfaces* interfaces)
 
 	r_vsync = new HCvar("r_vsync");
 	r_vsync->m_Cvar.m_IntValue = 0;
-	
+	m_Cvars.push_back(r_vsync);
 
-	m_Background = new IImageWidget;
-	m_Background->Start(m_Interface);
+	clear = new HCvar("clear");
+	m_Cvars.push_back(clear);
 
-	m_Background->SetColor(Color(75, 75, 75, 255));
-	m_Background->SetPos(10, 10);
-	m_Background->SetSize(m_Interface->m_Base->m_Settings->m_width - 20, (m_Interface->m_Base->m_Settings->m_height / 2) - 10);
+	quit = new HCvar("quit");
+	m_Cvars.push_back(quit);
 
-	m_Input = new IImageWidget;
-	m_Input->Start(m_Interface);
-	
-	m_Input->SetColor(Color(50, 50, 50, 255));
-	m_Input->SetPos(10, (m_Interface->m_Base->m_Settings->m_height / 2) + 10.f);
-	m_Input->SetSize(m_Interface->m_Base->m_Settings->m_width - 20, 25);
+	m_HeaderWidget = new IGradientWidget;
+	m_HeaderWidget->Start(m_Interface);
 
-	HFont* font = m_Interface->m_Tier2->m_IWidget->CreateFont("ApexMk2-Regular.otf", 16, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+	m_HeaderWidget->SetColor(Color(55, 55, 55, 225), Color(15, 15, 15, 225));
 
-	std::string outputText;
-	outputText.append(m_Output);
+	m_HeaderWidget->SetPos(10, 10);
+	m_HeaderWidget->SetSize(m_Interface->m_Base->m_Settings->m_width - 20, 25);
 
-	m_OutputText = new ITextWidget;
-	m_OutputText->Start(m_Interface);
+	m_BackgroundWidget = new IGradientWidget;
+	m_BackgroundWidget->Start(m_Interface);
 
-	m_OutputText->SetFont(font);
-	m_OutputText->SetPos(20, 20);
+	m_BackgroundWidget->SetColor(Color(35, 35, 35, 225), Color(5, 5, 5, 225));
 
-	m_Active = true;
+	m_BackgroundWidget->SetPos(10, 35);
+	m_BackgroundWidget->SetSize(m_Interface->m_Base->m_Settings->m_width - 20, 350);
+
+	HFont* headerFont = m_Interface->m_Tier2->m_IWidget->CreateFont("Arame-Mono.ttf", 20, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+
+	m_TitleWidget = new ITextWidget;
+	m_TitleWidget->Start(m_Interface);
+
+	m_TitleWidget->SetFont(headerFont);
+	m_TitleWidget->SetText("Console");
+
+	m_TitleWidget->SetPos(15, 12.5);
+
+	HFont* consoleFont = m_Interface->m_Tier2->m_IWidget->CreateFont("Arame-Mono.ttf", 16, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+
+	m_InputWidget = new IEditField;
+	m_InputWidget->Start(m_Interface);
+
+	m_InputWidget->SetColor(Color(25, 25, 25, 255));
+	m_InputWidget->SetFont(consoleFont);
+
+	m_InputWidget->SetEvent(std::bind(&IConsole::ProcessCommand, this, std::placeholders::_1));
+
+	m_InputWidget->SetPos(20, (m_Interface->m_Base->m_Settings->m_height / 2) - 10.f);
+	m_InputWidget->SetSize(m_Interface->m_Base->m_Settings->m_width - 40, 25);
+
+	m_OutputWidget = new ITextWidget;
+	m_OutputWidget->Start(m_Interface);
+
+	m_OutputWidget->SetFont(consoleFont);
+
+	m_OutputWidget->SetPos(20, 40);
+
+	m_Active = false;
+
+	m_HeaderWidget->SetHidden(true);
+	m_BackgroundWidget->SetHidden(true);
+
+	m_TitleWidget->SetHidden(true);
+
+	m_InputWidget->SetHidden(true);
+	m_OutputWidget->SetHidden(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -53,69 +88,48 @@ void IConsole::Stop()
 	m_Interface = nullptr;
 }
 
-void RemoveLine(std::string& source, const std::string& to_remove)
-{
-	size_t m = source.find(to_remove);
-	size_t n = source.find_first_of("\n", m + to_remove.length());
-	source.erase(m, n - m + 1);
-}
-
 //-----------------------------------------------------------------------------
 // Processing a single frame of IConsole
 //-----------------------------------------------------------------------------
 void IConsole::Run(float dt)
 {
-	if (wiInput::Down((wiInput::BUTTON)'S'))
-	{
-		ExecuteCommand("vvv", 1);
-	}
-
 	if (wiInput::Press(wiInput::BUTTON::KEYBOARD_BUTTON_F1))
 	{
-		RenderPath2D* path = (RenderPath2D*)m_Interface->m_Tier0->m_Rendering->m_RenderPath;
-
 		m_Active = !m_Active;
 		if (m_Active)
 		{
-			//path->AddFont(&m_OutputText);
-			//path->AddFont(&m_InputText);
-			//path->AddSprite(&m_Background);
-			//path->AddSprite(&m_Input);
+			m_HeaderWidget->SetHidden(false);
+			m_BackgroundWidget->SetHidden(false);
+
+			m_TitleWidget->SetHidden(false);
+
+			m_InputWidget->SetHidden(false);
+			m_OutputWidget->SetHidden(false);
+
+			m_InputWidget->m_Flags = IWidget::EWidgetFlags::FONTFLAGS_FOCUSED;
 		}
 		else
 		{
-			//path->RemoveFont(&m_OutputText);
-			//path->RemoveFont(&m_InputText);
-			//path->RemoveSprite(&m_Background);
-			//path->RemoveSprite(&m_Input);
+			m_HeaderWidget->SetHidden(true);
+			m_BackgroundWidget->SetHidden(true);
+
+			m_TitleWidget->SetHidden(true);
+
+			m_InputWidget->SetHidden(true);
+			m_OutputWidget->SetHidden(true);
 		}
-		// 19 lines should be the limit
-
-
-		//m_Output.erase('\n');
 	}
-
-	// Bugs:
-	// F1 causes everything to break
-	// Last line is cleaned when it shouldnt
 
 	if (m_Active)
 	{
-		m_OutputText->SetText(m_Output.c_str());
-		if (m_Lines >= 19)
+		while (m_Lines >= 19)
 		{
-
 			std::string wherestr = m_Output.substr(0, m_Output.find_first_of("\n"));
-			RemoveLine(m_Output, wherestr);
-
-			std::cout << wherestr << std::endl;
-			//m_Output.erase(0, m_Output.find_first_of("\n"));
-			//m_Output.erase(1, m_Output.find_first_of("\n"));
+			Utils::string_remove_line(m_Output, wherestr);
 			m_Lines--;
 		}
+		m_OutputWidget->SetText(m_Output.c_str());
 	}
-
-	//std::cout << m_Lines << std::endl;
 }
 
 //-----------------------------------------------------------------------------
@@ -143,15 +157,89 @@ void IConsole::ExecuteCommand(const char* command, int args)
 }
 
 //-----------------------------------------------------------------------------
+// Processing a given command
+//-----------------------------------------------------------------------------
+void IConsole::ProcessCommand(const char* command)
+{
+	bool skip = false;
+
+	std::string commandToProcess = command;
+	std::string commandNoArgs = commandToProcess.substr(0, commandToProcess.find(" ", 0));
+	for (size_t i = 0; i < m_Cvars.capacity(); i++)
+	{
+		std::string cvar = m_Cvars[i]->m_Cvar.m_Command;
+		if (commandNoArgs == cvar)
+		{
+			std::string commandArgs;
+			if (commandToProcess.length() > commandNoArgs.length())
+			{
+				commandArgs = commandToProcess.substr(commandNoArgs.length() + 1);
+			}
+
+			if (Utils::is_string_float(commandArgs) && !Utils::is_string_int(commandArgs))
+			{
+				ExecuteCommand(cvar.c_str(), std::stof(commandArgs.c_str()));
+			}
+			else if (Utils::is_string_int(commandArgs))
+			{
+				ExecuteCommand(cvar.c_str(), std::stoi(commandArgs.c_str()));
+			}
+			else
+			{
+				ExecuteCommand(cvar.c_str(), commandArgs.c_str());
+			}
+		}
+		else
+		{
+			bool found = false;
+
+			if (!skip)
+			{
+				for (size_t i = 0; i < m_Cvars.capacity(); i++)
+				{
+					std::string cvarToSearch = m_Cvars[i]->m_Cvar.m_Command;
+					if (commandNoArgs == cvarToSearch)
+					{
+						found = true;
+					}
+				}
+
+				if (!found)
+				{
+					std::string error;
+					error.append("Unknown command ");
+					error.append(commandNoArgs);
+					LogCommand(error.c_str());
+
+					skip = true;
+				}
+			}
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
 // Executes a given command
 //-----------------------------------------------------------------------------
 void IConsole::InternalExecuteCommand(const char* command, const char* args, float fargs, int iargs)
 {
+	std::string commandStr = command;
+
 	bool found = false;
 
-	if (command == "r_vsync")
+	if (commandStr == "r_vsync")
 	{
 		Callback_r_vsync(iargs);
+		found = true;
+	}
+	if (commandStr == "clear")
+	{
+		Callback_clear();
+		found = true;
+	}
+	if (commandStr == "quit")
+	{
+		Callback_quit();
 		found = true;
 	}
 
@@ -160,6 +248,20 @@ void IConsole::InternalExecuteCommand(const char* command, const char* args, flo
 		std::string info;
 		info.append("] ");
 		info.append(command);
+		info.append(" ");
+		if (Utils::is_string_float(args) && !Utils::is_string_int(args))
+		{
+			info.append(std::to_string(fargs));
+		}
+		else if (Utils::is_string_int(args))
+		{
+			info.append(std::to_string(iargs));
+		}
+		else
+		{
+			info.append(args);
+		}
+
 		LogCommand(info.c_str());
 	}
 	else
@@ -194,4 +296,15 @@ void IConsole::Callback_r_vsync(int value)
 	{
 		wiRenderer::GetDevice()->SetVSyncEnabled(false);
 	}
+}
+
+void IConsole::Callback_clear()
+{
+	m_Output.clear();
+	m_Lines = 0;
+}
+
+void IConsole::Callback_quit()
+{
+	exit(0);
 }

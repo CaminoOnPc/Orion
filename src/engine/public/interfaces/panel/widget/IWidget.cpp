@@ -27,7 +27,13 @@ void IWidget::Stop()
 //-----------------------------------------------------------------------------
 void IWidget::Run(float dt)
 {
-	return;
+	for (size_t i = 0; i < m_EditFields.capacity(); i++)
+	{
+		if (m_EditFields[i] != nullptr)
+		{
+			m_EditFields[i]->Update(dt);
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

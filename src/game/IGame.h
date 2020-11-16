@@ -50,5 +50,5 @@ public:
     IDebugDisplay* m_DebugDisplay;
     IDebugCamera* m_DebugCamera;
 public:
-    wiSprite m_UI;
+    IImageWidget* m_UI;
 };

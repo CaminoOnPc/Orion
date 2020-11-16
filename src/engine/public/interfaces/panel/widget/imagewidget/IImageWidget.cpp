@@ -35,11 +35,14 @@ void IImageWidget::Run(float dt)
 //-----------------------------------------------------------------------------
 // Sets a widget position
 //-----------------------------------------------------------------------------
-void IImageWidget::SetPos(float x, float y)
+void IImageWidget::SetPos(float x, float y, bool immedUpdate)
 {
 	m_Data.m_Position = Vector(x, y, 0.0f);
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -54,11 +57,14 @@ void IImageWidget::GetPos(float& x, float& y)
 //-----------------------------------------------------------------------------
 // Sets a widget size
 //-----------------------------------------------------------------------------
-void IImageWidget::SetSize(float width, float height)
+void IImageWidget::SetSize(float width, float height, bool immedUpdate)
 {
 	m_Data.m_Size = Vector(width, height, 0.0f);
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -73,11 +79,14 @@ void IImageWidget::GetSize(float& width, float& height)
 //-----------------------------------------------------------------------------
 // Sets a widget visibility
 //-----------------------------------------------------------------------------
-void IImageWidget::SetHidden(bool hidden)
+void IImageWidget::SetHidden(bool hidden, bool immedUpdate)
 {
 	m_Data.m_Hidden = hidden;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -91,11 +100,14 @@ void IImageWidget::GetHidden(bool& hidden)
 //-----------------------------------------------------------------------------
 // Sets a widget image
 //-----------------------------------------------------------------------------
-void IImageWidget::SetImage(std::string image)
+void IImageWidget::SetImage(std::string image, bool immedUpdate)
 {
 	m_Data.m_Image = image;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -109,11 +121,14 @@ void IImageWidget::GetImage(std::string& image)
 //-----------------------------------------------------------------------------
 // Sets a widget color
 //-----------------------------------------------------------------------------
-void IImageWidget::SetColor(Color color)
+void IImageWidget::SetColor(Color color, bool immedUpdate)
 {
 	m_Data.m_Color = color;
 	
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
