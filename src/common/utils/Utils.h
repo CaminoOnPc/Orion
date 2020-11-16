@@ -72,4 +72,177 @@ namespace Utils
 
 		return std::string(wsFontFile.begin(), wsFontFile.end());
 	}
+
+	static std::string get_key()
+	{
+		std::string key;
+
+		if (wiInput::Press((wiInput::BUTTON)'1'))
+		{
+			key.append("1");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'2'))
+		{
+			key.append("2");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'3'))
+		{
+			key.append("3");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'4'))
+		{
+			key.append("4");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'5'))
+		{
+			key.append("5");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'6'))
+		{
+			key.append("6");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'7'))
+		{
+			key.append("7");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'8'))
+		{
+			key.append("8");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'9'))
+		{
+			key.append("9");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'0'))
+		{
+			key.append("0");
+		}
+
+		if (wiInput::Press((wiInput::BUTTON)'A'))
+		{
+			key.append("a");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'B'))
+		{
+			key.append("b");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'C'))
+		{
+			key.append("c");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'D'))
+		{
+			key.append("d");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'E'))
+		{
+			key.append("e");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'F'))
+		{
+			key.append("f");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'G'))
+		{
+			key.append("g");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'H'))
+		{
+			key.append("h");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'I'))
+		{
+			key.append("i");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'J'))
+		{
+			key.append("j");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'K'))
+		{
+			key.append("k");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'L'))
+		{
+			key.append("l");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'M'))
+		{
+			key.append("m");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'N'))
+		{
+			key.append("n");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'O'))
+		{
+			key.append("o");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'P'))
+		{
+			key.append("p");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'Q'))
+		{
+			key.append("q");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'R'))
+		{
+			key.append("r");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'S'))
+		{
+			key.append("s");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'T'))
+		{
+			key.append("t");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'U'))
+		{
+			key.append("u");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'V'))
+		{
+			key.append("v");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'W'))
+		{
+			key.append("w");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'X'))
+		{
+			key.append("x");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'Y'))
+		{
+			key.append("y");
+		}
+		else if (wiInput::Press((wiInput::BUTTON)'Z'))
+		{
+			key.append("z");
+		}
+
+		if (wiInput::Press(wiInput::BUTTON::KEYBOARD_BUTTON_SPACE))
+		{
+			key.append(" ");
+		}
+
+		if (wiInput::Down(wiInput::BUTTON::KEYBOARD_BUTTON_LSHIFT) || wiInput::Down(wiInput::BUTTON::KEYBOARD_BUTTON_RSHIFT))
+		{
+			if (wiInput::Press((wiInput::BUTTON)VK_OEM_MINUS))
+			{
+				key.append("_");
+			}
+		}
+
+		if (wiInput::Press((wiInput::BUTTON)VK_OEM_PERIOD))
+		{
+			key.append(".");
+		}
+
+		
+
+		return key;
+	}
 }

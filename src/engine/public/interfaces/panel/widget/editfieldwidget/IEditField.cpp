@@ -231,6 +231,10 @@ void IEditField::Update(float dt)
 			{
 				m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase() + 0.025f, m_Data.m_Color.gBase() + 0.025f, m_Data.m_Color.bBase() + 0.025f, m_Data.m_Color.aBase());
 			}
+			else
+			{
+				m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase() - 0.025f, m_Data.m_Color.gBase() - 0.025f, m_Data.m_Color.bBase() - 0.025f, m_Data.m_Color.aBase());
+			}
 		}
 
 		if (wiInput::Press(wiInput::MOUSE_BUTTON_LEFT))
@@ -250,182 +254,24 @@ void IEditField::Update(float dt)
 	{
 		if (m_Flags && IWidget::EWidgetFlags::FONTFLAGS_FOCUSED)
 		{
+			m_EditData.m_Text.append(Utils::get_key());
+
+			m_EditWidget->SetText(m_EditData.m_Text);
+
 			if ((m_Data.m_Color.r() + 15) < 255 && (m_Data.m_Color.g() + 15) < 255 && (m_Data.m_Color.b() + 15) < 255)
 			{
 				m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase() + 0.05f, m_Data.m_Color.gBase() + 0.05f, m_Data.m_Color.bBase() + 0.05f, m_Data.m_Color.aBase());
+			}
+			else
+			{
+				m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase() - 0.05f, m_Data.m_Color.gBase() - 0.05f, m_Data.m_Color.bBase() - 0.05f, m_Data.m_Color.aBase());
 			}
 
 			if (m_Data.m_Hidden)
 			{
 				m_Flags = IWidget::EWidgetFlags::WIDGETFLAGS_IDLE;
 			}
-
-			if (wiInput::Press((wiInput::BUTTON)'A'))
-			{
-				m_EditData.m_Text.append("a");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'B'))
-			{
-				m_EditData.m_Text.append("b");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'C'))
-			{
-				m_EditData.m_Text.append("c");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'D'))
-			{
-				m_EditData.m_Text.append("d");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'E'))
-			{
-				m_EditData.m_Text.append("e");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'F'))
-			{
-				m_EditData.m_Text.append("f");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'G'))
-			{
-				m_EditData.m_Text.append("g");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'H'))
-			{
-				m_EditData.m_Text.append("h");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'I'))
-			{
-				m_EditData.m_Text.append("i");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'J'))
-			{
-				m_EditData.m_Text.append("j");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'K'))
-			{
-				m_EditData.m_Text.append("k");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'L'))
-			{
-				m_EditData.m_Text.append("l");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'M'))
-			{
-				m_EditData.m_Text.append("m");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'N'))
-			{
-				m_EditData.m_Text.append("n");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'O'))
-			{
-				m_EditData.m_Text.append("o");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'P'))
-			{
-				m_EditData.m_Text.append("p");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'Q'))
-			{
-				m_EditData.m_Text.append("q");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'R'))
-			{
-				m_EditData.m_Text.append("r");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'S'))
-			{
-				m_EditData.m_Text.append("s");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'T'))
-			{
-				m_EditData.m_Text.append("t");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'U'))
-			{
-				m_EditData.m_Text.append("u");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'V'))
-			{
-				m_EditData.m_Text.append("v");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'W'))
-			{
-				m_EditData.m_Text.append("w");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'X'))
-			{
-				m_EditData.m_Text.append("x");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'Y'))
-			{
-				m_EditData.m_Text.append("y");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'Z'))
-			{
-				m_EditData.m_Text.append("z");
-			}
-
-			if (wiInput::Down(wiInput::BUTTON::KEYBOARD_BUTTON_LSHIFT) || wiInput::Down(wiInput::BUTTON::KEYBOARD_BUTTON_RSHIFT))
-			{
-				if (wiInput::Press((wiInput::BUTTON)VK_OEM_MINUS))
-				{
-					m_EditData.m_Text.append("_");
-				}
-			}
-
-			if (wiInput::Press(wiInput::BUTTON::KEYBOARD_BUTTON_SPACE))
-			{
-				m_EditData.m_Text.append(" ");
-			}
-
-			if (wiInput::Press((wiInput::BUTTON)'1'))
-			{
-				m_EditData.m_Text.append("1");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'2'))
-			{
-				m_EditData.m_Text.append("2");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'3'))
-			{
-				m_EditData.m_Text.append("3");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'4'))
-			{
-				m_EditData.m_Text.append("4");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'5'))
-			{
-				m_EditData.m_Text.append("5");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'6'))
-			{
-				m_EditData.m_Text.append("6");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'7'))
-			{
-				m_EditData.m_Text.append("7");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'8'))
-			{
-				m_EditData.m_Text.append("8");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'9'))
-			{
-				m_EditData.m_Text.append("9");
-			}
-			else if (wiInput::Press((wiInput::BUTTON)'0'))
-			{
-				m_EditData.m_Text.append("0");
-			}
-
-			if (wiInput::Press((wiInput::BUTTON)VK_OEM_PERIOD))
-			{
-				m_EditData.m_Text.append(".");
-			}
-
-			m_EditWidget->SetText(m_EditData.m_Text);
-
+			
 			if (wiInput::Press(wiInput::KEYBOARD_BUTTON_BACKSPACE))
 			{
 				if (!m_EditData.m_Text.empty())
