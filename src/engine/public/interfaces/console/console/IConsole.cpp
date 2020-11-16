@@ -13,9 +13,13 @@ void IConsole::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
 
-	r_vsync = new HCvar("r_vsync");
-	r_vsync->m_Cvar.m_IntValue = 0;
-	m_Cvars.push_back(r_vsync);
+	mat_vsync = new HCvar("mat_vsync");
+	mat_vsync->m_Cvar.m_IntValue = 0;
+	m_Cvars.push_back(mat_vsync);
+
+	mat_mode = new HCvar("mat_mode");
+	mat_mode->m_Cvar.m_IntValue = 0;
+	m_Cvars.push_back(mat_mode);
 
 	clear = new HCvar("clear");
 	m_Cvars.push_back(clear);
@@ -227,9 +231,14 @@ void IConsole::InternalExecuteCommand(const char* command, const char* args, flo
 
 	bool found = false;
 
-	if (commandStr == "r_vsync")
+	if (commandStr == "mat_vsync")
 	{
-		Callback_r_vsync(iargs);
+		Callback_mat_vsync(iargs);
+		found = true;
+	}
+	if (commandStr == "mat_mode")
+	{
+		Callback_mat_mode(iargs);
 		found = true;
 	}
 	if (commandStr == "clear")
@@ -262,7 +271,10 @@ void IConsole::InternalExecuteCommand(const char* command, const char* args, flo
 			info.append(args);
 		}
 
-		LogCommand(info.c_str());
+		if (commandStr != "clear")
+		{
+			LogCommand(info.c_str());
+		}
 	}
 	else
 	{
@@ -286,7 +298,7 @@ void IConsole::LogCommand(const char* text)
 //-----------------------------------------------------------------------------
 // Callbacks for given commands
 //-----------------------------------------------------------------------------
-void IConsole::Callback_r_vsync(int value)
+void IConsole::Callback_mat_vsync(int value)
 {
 	if (value > 0)
 	{
@@ -295,6 +307,18 @@ void IConsole::Callback_r_vsync(int value)
 	else
 	{
 		wiRenderer::GetDevice()->SetVSyncEnabled(false);
+	}
+}
+
+void IConsole::Callback_mat_mode(int value)
+{
+	if (value > 0)
+	{
+		wiRenderer::SetWireRender(true);
+	}
+	else
+	{
+		wiRenderer::SetWireRender(false);
 	}
 }
 

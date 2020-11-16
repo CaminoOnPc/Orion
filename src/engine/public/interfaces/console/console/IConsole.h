@@ -45,7 +45,8 @@ public:
     void InternalExecuteCommand(const char* command, const char* args, float fargs, int iargs);
     void LogCommand(const char* text);
 public:
-    void Callback_r_vsync(int value);   
+    void Callback_mat_vsync(int value);   
+    void Callback_mat_mode(int value);
     void Callback_clear();
     void Callback_quit();
 protected:
@@ -59,7 +60,8 @@ protected:
         }
     }
 public:
-    HCvar* r_vsync;
+    HCvar* mat_vsync;
+    HCvar* mat_mode;
     HCvar* clear;
     HCvar* quit;
 public:

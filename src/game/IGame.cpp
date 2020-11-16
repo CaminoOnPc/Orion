@@ -41,8 +41,6 @@ void IGame::Start(IInterfaces* interfaces)
 		}
 	}
 
-	
-
 	//IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("zuccini", Vector(float(0) * 4, 0, float(0) * 4), Vector(0, 0, 0));
 	//object->SetScale(Vector(100, 100, 100));
 
@@ -54,28 +52,9 @@ void IGame::Start(IInterfaces* interfaces)
 	m_UI->SetPos(0, 0);
 	m_UI->SetSize(m_Interface->m_Base->m_Settings->m_width, m_Interface->m_Base->m_Settings->m_height);
 
-	//ui->SetColor(Color(255, 255, 0));
-	//ui->SetImage("data/game/materials/textures/effects/flare_9.png");
-	//ui->SetPos(0, 0);
-	//ui->SetSize(100, 100);
-
 #if DEVELOPER
 	m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
 #endif
-
-	HFont* consoleFont = m_Interface->m_Tier2->m_IWidget->CreateFont("Arame-Mono.ttf", 16, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
-
-
-	//IEditField* m_InputTest = new IEditField;
-	//m_InputTest->Start(m_Interface);
-
-	//m_InputTest->SetColor(Color(255, 255, 255, 255));
-
-	//m_InputTest->SetFont(consoleFont);
-	//m_InputTest->SetText("test");
-
-	//m_InputTest->SetPos(20, 550);
-	//m_InputTest->SetSize(m_Interface->m_Base->m_Settings->m_width - 40, 25);
 
 	//ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
 	//music->SetVolume(0.1f);
@@ -120,8 +99,8 @@ void IGame::Start(IInterfaces* interfaces)
 
 	// https://i.ytimg.com/vi/4xHuXq4VvGE/maxresdefault.jpg
 	// https://www.youtube.com/watch?v=uk6-Oq-lr2Y
-	// Gradient for console title like that
-	// Finish console functionallity
+	// Gradient for console title like that [Done]
+	// Finish console functionallity [Done, some improvements such as having multipile args for 3d vectors etc would be nice]
 
 	// Fix/tests shadow and outline for text
 	// Add *bool update* flag for each operation such as SetText, SetColor etc for widget so that if SetText is used in a 
