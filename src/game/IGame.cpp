@@ -56,6 +56,8 @@ void IGame::Start(IInterfaces* interfaces)
 	m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
 #endif
 
+	//m_UI->SetPriority(0);
+
 	//ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
 	//music->SetVolume(0.1f);
 

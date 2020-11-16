@@ -140,6 +140,27 @@ void IImageWidget::GetColor(Color& color)
 }
 
 //-----------------------------------------------------------------------------
+// Sets a widget priority
+//-----------------------------------------------------------------------------
+void IImageWidget::SetPriority(int priority, bool immedUpdate)
+{
+	m_Data.m_Priority = priority;
+
+	if (immedUpdate)
+	{
+		Update();
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Returns a widget priority
+//-----------------------------------------------------------------------------
+void IImageWidget::GetPriority(int& priority)
+{
+	priority = m_Data.m_Priority;
+}
+
+//-----------------------------------------------------------------------------
 // Updates a widget
 //-----------------------------------------------------------------------------
 void IImageWidget::Update()
@@ -149,12 +170,16 @@ void IImageWidget::Update()
 	m_Widget = new wiSprite();
 	m_RenderPath->AddSprite(&*m_Widget);
 
+	m_RenderPath->SetSpriteOrder(m_Widget, m_Data.m_Priority);
+
 	if (!m_Data.m_Image.empty())
 	{
 		m_RenderPath->RemoveSprite(m_Widget);
 
 		m_Widget = new wiSprite(m_Data.m_Image);
 		m_RenderPath->AddSprite(&*m_Widget);
+
+		m_RenderPath->SetSpriteOrder(m_Widget, m_Data.m_Priority);
 	}
 	else
 	{

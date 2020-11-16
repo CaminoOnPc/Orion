@@ -41,6 +41,9 @@ public:
     void SetColor(Color start, Color end, bool immedUpdate = true);
     void GetColor(Color& start, Color& end);
 
+    void SetPriority(int priority, bool immedUpdate = true);
+    void GetPriority(int& priority);
+
     void Update();
 
 protected:
@@ -65,6 +68,7 @@ public:
         Color m_Start;
         Color m_End;
 
+        int m_Priority;
         bool m_Hidden;
     };
 

@@ -44,6 +44,9 @@ public:
     void SetColor(Color color, bool immedUpdate = true);
     void GetColor(Color& color);
 
+    void SetPriority(int priority, bool immedUpdate = true);
+    void GetPriority(int& priority);
+
     void Update();
 
 protected:
@@ -68,6 +71,7 @@ public:
         Vector m_Size;
         Color m_Color;
 
+        int m_Priority;
         bool m_Hidden;
     };
 

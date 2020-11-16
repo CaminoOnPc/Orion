@@ -234,6 +234,8 @@ void ITextWidget::Update()
 	m_Widget = new wiSpriteFont();
 	m_RenderPath->AddFont(&*m_Widget);
 
+	m_RenderPath->SetFontOrder(m_Widget, m_Data.m_Priority);
+
 	if (!m_Data.m_Text.empty())
 	{
 		m_Widget->SetText(m_Data.m_Text);

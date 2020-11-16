@@ -43,7 +43,10 @@ void IEditField::SetPos(float x, float y, bool immedUpdate)
 {
 	m_Data.m_Position = Vector(x, y, 0.0f);
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -62,7 +65,10 @@ void IEditField::SetSize(float width, float height, bool immedUpdate)
 {
 	m_Data.m_Size = Vector(width, height, 0.0f);
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -82,7 +88,10 @@ void IEditField::SetHidden(bool hidden, bool immedUpdate)
 	m_EditData.m_Hidden = hidden;
 	m_Data.m_Hidden = hidden;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -100,7 +109,10 @@ void IEditField::SetText(std::string text, bool immedUpdate)
 {
 	m_EditData.m_Text = text;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -118,7 +130,10 @@ void IEditField::SetColor(Color color, bool immedUpdate)
 {
 	m_Data.m_Color = color;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -136,7 +151,10 @@ void IEditField::SetFont(HFont* font, bool immedUpdate)
 {
 	m_EditData.m_Font = font;
 
-	Update();
+	if (immedUpdate)
+	{
+		Update();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -164,6 +182,27 @@ void IEditField::SetInput(const char* text)
 	value_new.append(text);
 	m_EditData.m_Text = value_new;
 	m_EditWidget->SetText(m_EditData.m_Text);
+}
+
+//-----------------------------------------------------------------------------
+// Sets a widget priority
+//-----------------------------------------------------------------------------
+void IEditField::SetPriority(int priority, bool immedUpdate)
+{
+	m_Data.m_Priority = priority;
+
+	if (immedUpdate)
+	{
+		Update();
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Returns a widget priority
+//-----------------------------------------------------------------------------
+void IEditField::GetPriority(int& priority)
+{
+	priority = m_Data.m_Priority;
 }
 
 //-----------------------------------------------------------------------------
@@ -411,6 +450,8 @@ void IEditField::Update()
 	m_Widget = new wiSprite();
 	m_RenderPath->AddSprite(&*m_Widget);
 
+	m_RenderPath->SetSpriteOrder(m_Widget, m_Data.m_Priority);
+
 	m_Widget->params.color = XMFLOAT4(m_Data.m_Color.rBase(), m_Data.m_Color.gBase(), m_Data.m_Color.bBase(), m_Data.m_Color.aBase());
 
 	m_Widget->params.pos = XMFLOAT3(m_Data.m_Position.x, m_Data.m_Position.y, 0.0f);
@@ -422,6 +463,8 @@ void IEditField::Update()
 
 	m_EditWidget = new wiSpriteFont();
 	m_RenderPath->AddFont(&*m_EditWidget);
+
+	m_RenderPath->SetFontOrder(m_EditWidget, m_Data.m_Priority);
 
 	if (!m_EditData.m_Text.empty())
 	{

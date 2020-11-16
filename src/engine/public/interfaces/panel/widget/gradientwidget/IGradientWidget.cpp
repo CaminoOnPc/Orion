@@ -143,6 +143,27 @@ void IGradientWidget::GetColor(Color& start, Color& end)
 }
 
 //-----------------------------------------------------------------------------
+// Sets a widget priority
+//-----------------------------------------------------------------------------
+void IGradientWidget::SetPriority(int priority, bool immedUpdate)
+{
+	m_Data.m_Priority = priority;
+
+	if (immedUpdate)
+	{
+		Update();
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Returns a widget priority
+//-----------------------------------------------------------------------------
+void IGradientWidget::GetPriority(int& priority)
+{
+	priority = m_Data.m_Priority;
+}
+
+//-----------------------------------------------------------------------------
 // Updates a widget
 //-----------------------------------------------------------------------------
 void IGradientWidget::Update()
@@ -165,6 +186,8 @@ void IGradientWidget::Update()
 		if (gradient)
 		{
 			m_RenderPath->AddSprite(&*gradient);
+			m_RenderPath->SetSpriteOrder(gradient, m_Data.m_Priority);
+
 			gradient->params.color = XMFLOAT4(color.rBase(), color.gBase(), color.bBase(), color.aBase());
 			gradient->params.pos = XMFLOAT3(m_Data.m_Position.x, m_Data.m_Position.y + i, 0.0f);
 			gradient->params.siz = XMFLOAT2(m_Data.m_Size.x, 1);

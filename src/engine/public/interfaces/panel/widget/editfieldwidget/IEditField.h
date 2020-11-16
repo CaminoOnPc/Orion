@@ -50,6 +50,9 @@ public:
     void SetEvent(std::function<void(const char*)> callback);
     void SetInput(const char* text);
 
+    void SetPriority(int priority, bool immedUpdate = true);
+    void GetPriority(int& priority);
+
     void Update(float dt);
     void Update();
 
@@ -94,6 +97,7 @@ public:
         Vector m_Size;
         Color m_Color;
 
+        int m_Priority;
         bool m_Hidden;
     };
 

@@ -49,6 +49,9 @@ public:
     void SetFont(HFont* font, bool immedUpdate = true);
     void GetFont(HFont*& font);
 
+    void SetPriority(int priority, bool immedUpdate = true);
+    void GetPriority(int& priority);
+
     void Update();
 
 protected:
@@ -74,6 +77,7 @@ public:
         int m_Size;
 
         HFont* m_Font;
+        int m_Priority;
         bool m_Hidden;
     };
 
