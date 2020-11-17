@@ -179,43 +179,69 @@ void IDebugDisplay::Run(float dt)
 		}
 	}
 
-	std::string pos;
-	pos.append("pos: ");
-	pos.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Position.x));
-	pos.append(" ");
-	pos.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Position.y));
-	pos.append(" ");
-	pos.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Position.z));
-	m_PositionText->SetText(pos, false);
+	if (m_Interface->m_Tier2->m_IConsole->cl_showpos->m_Cvar.m_IntValue > 0)
+	{
+		m_PositionText->SetHidden(false, false);
+		m_RotationText->SetHidden(false, false);
 
-	std::string rot;
-	rot.append("rot: ");
-	rot.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Rotation.x));
-	rot.append(" ");
-	rot.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Rotation.y));
-	rot.append(" ");
-	rot.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Rotation.z));
-	m_RotationText->SetText(rot, false);
+		std::string pos;
+		pos.append("pos: ");
+		pos.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Position.x));
+		pos.append(" ");
+		pos.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Position.y));
+		pos.append(" ");
+		pos.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Position.z));
+		m_PositionText->SetText(pos, false);
 
-	std::string fps;
-	fps.append(std::to_string(m_Fps));
-	fps.append(" ");
-	fps.append(" +- ");
-	fps.append(Utils::string_round(m_DeltaTime));
-	fps.append("ms");
-	m_FpsText->SetText(fps, false);
+		std::string rot;
+		rot.append("rot: ");
+		rot.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Rotation.x));
+		rot.append(" ");
+		rot.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Rotation.y));
+		rot.append(" ");
+		rot.append(Utils::string_round(m_Interface->m_Tier3->m_IGame->m_DebugCamera->m_Camera->m_Rotation.z));
+		m_RotationText->SetText(rot, false);
+	}
+	else
+	{
+		m_PositionText->SetHidden(true, false);
+		m_RotationText->SetHidden(true, false);
+	}
+	
+	if (m_Interface->m_Tier2->m_IConsole->cl_showfps->m_Cvar.m_IntValue > 0)
+	{
+		m_FpsText->SetHidden(false, false);
+		m_ServerCpuText->SetHidden(false, false);
+		m_ClientCpuText->SetHidden(false, false);
+		m_WorldNameText->SetHidden(false, false);
 
-	std::string serverCpu;
-	serverCpu.append(std::to_string(m_CpuUsage));
-	serverCpu.append("% server CPU");
-	m_ServerCpuText->SetText(serverCpu, false);
+		std::string fps;
+		fps.append(std::to_string(m_Fps));
+		fps.append(" ");
+		fps.append(" +- ");
+		fps.append(Utils::string_round(m_DeltaTime));
+		fps.append("ms");
+		m_FpsText->SetText(fps, false);
 
-	std::string clientCpu;
-	clientCpu.append(std::to_string(m_CpuUsage));
-	clientCpu.append("% client CPU");
-	m_ClientCpuText->SetText(clientCpu, false);
+		std::string serverCpu;
+		serverCpu.append(std::to_string(m_CpuUsage));
+		serverCpu.append("% server CPU");
+		m_ServerCpuText->SetText(serverCpu, false);
 
-	std::string worldName;
-	worldName.append(m_Interface->m_Tier2->m_IWorld->m_WorldName);
-	m_WorldNameText->SetText(worldName, false);
+		std::string clientCpu;
+		clientCpu.append(std::to_string(m_CpuUsage));
+		clientCpu.append("% client CPU");
+		m_ClientCpuText->SetText(clientCpu, false);
+
+		std::string worldName;
+		worldName.append(m_Interface->m_Tier2->m_IWorld->m_WorldName);
+		m_WorldNameText->SetText(worldName, false);
+	}
+	else
+	{
+		m_FpsText->SetHidden(true, false);
+		m_ServerCpuText->SetHidden(true, false);
+		m_ClientCpuText->SetHidden(true, false);
+		m_WorldNameText->SetHidden(true, false);
+	}
 }

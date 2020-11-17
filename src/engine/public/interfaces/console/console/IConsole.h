@@ -60,6 +60,9 @@ protected:
         }
     }
 public:
+    HCvar* cl_showfps;
+    HCvar* cl_showpos;
+
     HCvar* mat_vsync;
     HCvar* mat_mode;
     HCvar* clear;

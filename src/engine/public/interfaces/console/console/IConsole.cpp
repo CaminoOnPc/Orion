@@ -13,6 +13,14 @@ void IConsole::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
 
+	cl_showfps = new HCvar("cl_showfps");
+	cl_showfps->m_Cvar.m_IntValue = 1;
+	m_Cvars.push_back(cl_showfps);
+
+	cl_showpos = new HCvar("cl_showpos");
+	cl_showpos->m_Cvar.m_IntValue = 1;
+	m_Cvars.push_back(cl_showpos);
+
 	mat_vsync = new HCvar("mat_vsync");
 	mat_vsync->m_Cvar.m_IntValue = 0;
 	m_Cvars.push_back(mat_vsync);
@@ -231,25 +239,43 @@ void IConsole::InternalExecuteCommand(const char* command, const char* args, flo
 
 	bool found = false;
 
+	// TODO: Set callback function in the same place where i registed HCvar
+
+	if (commandStr == "cl_showfps")
+	{
+		cl_showfps->m_Cvar.m_IntValue = iargs;
+	}
+	if (commandStr == "cl_showpos")
+	{
+		cl_showpos->m_Cvar.m_IntValue = iargs;
+	}
 	if (commandStr == "mat_vsync")
 	{
 		Callback_mat_vsync(iargs);
-		found = true;
 	}
 	if (commandStr == "mat_mode")
 	{
 		Callback_mat_mode(iargs);
-		found = true;
 	}
 	if (commandStr == "clear")
 	{
 		Callback_clear();
-		found = true;
 	}
 	if (commandStr == "quit")
 	{
 		Callback_quit();
-		found = true;
+	}
+
+	for (size_t i = 0; i < m_Cvars.capacity(); i++)
+	{
+		if (!found)
+		{
+			std::string cvar = m_Cvars[i]->m_Cvar.m_Command;
+			if (commandStr == cvar)
+			{
+				found = true;
+			}
+		}
 	}
 
 	if (found)
