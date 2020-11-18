@@ -13,6 +13,10 @@ void IConsole::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
 
+	//sv_vectest = new HCvar("sv_vectest");
+	//sv_vectest->m_Cvar.m_VecValue = Vector(1, 2, 3);
+	//m_Cvars.push_back(sv_vectest);
+
 	cl_showfps = new HCvar("cl_showfps");
 	cl_showfps->m_Cvar.m_IntValue = 1;
 	m_Cvars.push_back(cl_showfps);
@@ -181,7 +185,7 @@ void IConsole::ProcessCommand(const char* command)
 	{
 		std::string cvar = m_Cvars[i]->m_Cvar.m_Command;
 		if (commandNoArgs == cvar)
-		{
+		{	
 			std::string commandArgs;
 			if (commandToProcess.length() > commandNoArgs.length())
 			{
@@ -200,6 +204,8 @@ void IConsole::ProcessCommand(const char* command)
 			{
 				ExecuteCommand(cvar.c_str(), commandArgs.c_str());
 			}
+
+			//std::cout << "Args: " << commandArgs << std::endl;
 		}
 		else
 		{

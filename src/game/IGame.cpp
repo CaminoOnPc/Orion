@@ -56,6 +56,8 @@ void IGame::Start(IInterfaces* interfaces)
 	m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
 #endif
 
+	
+
 	//m_UI->SetPriority(0);
 
 	//ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
@@ -121,12 +123,10 @@ void IGame::Start(IInterfaces* interfaces)
 
 	/*
 	* TODO@: 
+	* Physics class + Vehicle demo + Helicopter demo + Player collider + Do noclip/debug camera command when ready
 	* Lod support
 	* Support for relative paths that go backwards in editor 
-	* 
-	* Console [Execution done] TODO: GUI console
-	* Rework surface interface to behave more like a widget
-	* Pottentially add Direct2D back and use it as a widget instead of dynamic panel to save fps (TODO@: Test in Orion V1.0 if that will actually help with fps)
+	* Video support
 	* 
 	* Add scripting language support - squirrel
 	* Add archieve system to store assets in them rather than trying to access files dirrectly

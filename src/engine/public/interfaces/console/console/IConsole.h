@@ -60,6 +60,8 @@ protected:
         }
     }
 public:
+    HCvar* sv_vectest;
+
     HCvar* cl_showfps;
     HCvar* cl_showpos;
 
