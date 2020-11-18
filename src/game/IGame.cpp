@@ -75,12 +75,12 @@ void IGame::Start(IInterfaces* interfaces)
 	//ITextWidget* text = new ITextWidget;
 	//text->Start(m_Interface);
 
-	//HFont* font = m_Interface->m_Tier2->m_ISurface->CreateFont("ApexMk2-Regular.otf", 72, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
+	//HFont* font = m_Interface->m_Tier2->m_IWidget->CreateFont("ApexMk2-Regular.otf", 72, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
 	//text->SetFont(font);
 
 	//text->SetText("test");
 
-	//text->SetPos(100, 100);
+	//text->SetPos(500, 500);
 
 
 
