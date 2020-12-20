@@ -1,3 +1,4 @@
 [submodule "WickedEngine"]
 	path = WickedEngine
 	url = https://github.com/CaminoOnPc/WickedEngine
+	branch = cw
