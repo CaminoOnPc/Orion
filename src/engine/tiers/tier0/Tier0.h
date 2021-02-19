@@ -10,8 +10,10 @@
 #include <Includes.h>
 
 #include "../../public/systems/rendering/IRendering.h"
+#include "../../public/systems/vr/IVR.h"
 
 class IRendering;
+class IVR;
 
 class IInterfaces;
 
@@ -42,4 +44,5 @@ protected:
 	}
 public:
 	IRendering* m_Rendering;
+	IVR* m_VR;
 };

@@ -57,6 +57,10 @@
     <ClInclude Include="engine\public\interfaces\panel\widget\textwidget\ITextWidget.h" />
     <ClInclude Include="engine\public\interfaces\panel\widget\gradientwidget\IGradientWidget.h" />
     <ClInclude Include="engine\public\interfaces\panel\widget\editfieldwidget\IEditField.h" />
+    <ClInclude Include="engine\entities\object\physics\IPhysics.h" />
+    <ClInclude Include="common\abstract\includes\bullet\IncludesBullet.h" />
+    <ClInclude Include="engine\entities\object\physics\vehicles\helicopter\IHelicopter.h" />
+    <ClInclude Include="engine\public\systems\vr\IVR.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\WinMain.cpp">
@@ -97,6 +101,9 @@
     <ClCompile Include="engine\public\interfaces\panel\widget\textwidget\ITextWidget.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\widget\gradientwidget\IGradientWidget.cpp" />
     <ClCompile Include="engine\public\interfaces\panel\widget\editfieldwidget\IEditField.cpp" />
+    <ClCompile Include="engine\entities\object\physics\IPhysics.cpp" />
+    <ClCompile Include="engine\entities\object\physics\vehicles\helicopter\IHelicopter.cpp" />
+    <ClCompile Include="engine\public\systems\vr\IVR.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

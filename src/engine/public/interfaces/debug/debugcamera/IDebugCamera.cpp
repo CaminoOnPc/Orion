@@ -41,7 +41,7 @@ void IDebugCamera::Stop()
 //-----------------------------------------------------------------------------
 void IDebugCamera::Run(float dt)
 {
-	wiScene::CameraComponent& camera = wiRenderer::GetCamera();
+	wiScene::CameraComponent& camera = wiScene::GetCamera();
 
 	float sensitivity = 0.1f;
 	float speed = 6.0f * dt;

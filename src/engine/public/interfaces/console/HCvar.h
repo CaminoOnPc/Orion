@@ -20,7 +20,6 @@ public:
         const char* m_Value;
         float m_FloatValue;
         int m_IntValue;
-        //Vector m_VecValue;
     };
 
     ECvarData m_Cvar;

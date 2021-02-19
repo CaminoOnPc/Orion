@@ -100,6 +100,22 @@ void IWorld::CreateWorld(const char* world)
 }
 
 //-----------------------------------------------------------------------------
+// Sets a world gravity
+//-----------------------------------------------------------------------------
+void IWorld::SetGravity(float gravity)
+{
+	m_Gravity = gravity;
+}
+
+//-----------------------------------------------------------------------------
+// Returns a world gravity
+//-----------------------------------------------------------------------------
+float IWorld::GetGravity()
+{
+	return m_Gravity;
+}
+
+//-----------------------------------------------------------------------------
 // Creates and loads new object
 //-----------------------------------------------------------------------------
 IObject* IWorld::CreateObject(const char* model, Vector position, Vector rotation)
@@ -107,7 +123,7 @@ IObject* IWorld::CreateObject(const char* model, Vector position, Vector rotatio
 	IObject* object = new IObject;
 	if (!object)
 	{
-		// TODO@: Add assert message (Warning)
+		// TODO@: Add assert message
 		return nullptr;
 	}
 
@@ -154,7 +170,7 @@ ISound* IWorld::CreateSoundObject(const char* audio, float distance, Vector posi
 	ISound* sound = new ISound;
 	if (!sound)
 	{
-		// TODO@: Add assert message (Warning)
+		// TODO@: Add assert message
 		return nullptr;
 	}
 
@@ -179,7 +195,7 @@ ISound * IWorld::CreateSoundObject2D(const char* audio)
 	ISound* sound = new ISound;
 	if (!sound)
 	{
-		// TODO@: Add assert message (Warning)
+		// TODO@: Add assert message
 		return nullptr;
 	}
 

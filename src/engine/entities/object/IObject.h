@@ -9,7 +9,11 @@
 #include <IInterfaces.h>
 #include <Includes.h>
 
+#include "physics/IPhysics.h"
+
 class IInterfaces;
+
+class IPhysics;
 
 class IObject
 {
@@ -29,6 +33,7 @@ public:
     // * Those are calls that are accessible by everyone 
     // ---------------------------------------------
 
+    //! Transform components
     void SetScale(Vector scale);
     Vector GetScale();
 
@@ -37,6 +42,10 @@ public:
 
     void SetPosition(Vector position);
     Vector GetPosition();
+
+    //! Physics system
+    void CreatePhysics();
+    IPhysics* GetPhysics();
 
     struct EData
     {
@@ -61,4 +70,6 @@ public:
     Vector m_Position;
     Vector m_Rotation;
     Vector m_Scale;
+public:
+    IPhysics* m_Physics;
 };

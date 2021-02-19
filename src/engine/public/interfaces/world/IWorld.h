@@ -38,6 +38,18 @@ public:
         
     void CreateWorld(const char* world);
 
+    void SetGravity(float gravity);
+    float GetGravity();
+
+    void SetHorizon(float horizon);
+    float GetHorizon();
+
+    void SetAmbient(float ambient);
+    float GetAmbient();
+
+    void SetZenith(float zenith);
+    float GetZenith();
+
     IObject* CreateObject(const char* model, Vector position, Vector rotation);
     void ObjectDelete(IObject* object);
 
@@ -61,6 +73,8 @@ public:
     std::vector< IObject* > m_Objects;
     std::vector< ISound* > m_Sounds;
     std::vector< ICache* > m_Cache;
+public:
+    float m_Gravity;
 };
 
 class ICache

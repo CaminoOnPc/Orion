@@ -54,6 +54,8 @@ void IObject::Start(IInterfaces* interfaces)
 	cached->m_Entity = m_Entity;
 
 	m_Interface->m_Tier2->m_IWorld->m_Cache.push_back(cached);
+
+	CreatePhysics();
 }
 
 //-----------------------------------------------------------------------------
@@ -135,4 +137,24 @@ void IObject::SetPosition(Vector position)
 Vector IObject::GetPosition()
 {
 	return m_Position;
+}
+
+//-----------------------------------------------------------------------------
+// Creates an object physics instance
+//-----------------------------------------------------------------------------
+void IObject::CreatePhysics()
+{
+	m_Physics = new IPhysics;
+	if (m_Physics)
+	{
+		m_Physics->Start(m_Interface, this);
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Returns an object physics instance
+//-----------------------------------------------------------------------------
+IPhysics* IObject::GetPhysics()
+{
+	return m_Physics;
 }

@@ -36,104 +36,14 @@ void IGame::Start(IInterfaces* interfaces)
 	{
 		for (int j = 0; j < count; ++j)
 		{
-			IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 4, 0, float(j) * 4), Vector(-90, 0, 0));
-			object->SetScale(Vector(1, 1, 1));
+			//IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 4, 0, float(j) * 4), Vector(-90, 0, 0));
+			//object->SetScale(Vector(1, 1, 1));
 		}
 	}
-
-	//IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("zuccini", Vector(float(0) * 4, 0, float(0) * 4), Vector(0, 0, 0));
-	//object->SetScale(Vector(100, 100, 100));
-
-	m_UI = new IImageWidget;
-	m_UI->Start(m_Interface);
-
-	m_UI->SetImage("data/game/materials/textures/ui/ui.png");
-
-	m_UI->SetPos(0, 0);
-	m_UI->SetSize(m_Interface->m_Base->m_Settings->m_width, m_Interface->m_Base->m_Settings->m_height);
 
 #if DEVELOPER
 	m_Interface->m_Tier2->m_IConsole->Start(m_Interface);
 #endif
-
-	
-
-	//m_UI->SetPriority(0);
-
-	//ISound* music = m_Interface->m_Tier2->m_IWorld->CreateSoundObject2D("data/game/sounds/sound_music_ambient_1.ogg");
-	//music->SetVolume(0.1f);
-
-	//IImageWidget* ui = new IImageWidget;
-	//ui->Start(m_Interface);
-	//ui->SetColor(Color(255, 255, 0));
-	//ui->SetImage("data/game/materials/textures/effects/flare_9.png");
-	//ui->SetPos(0, 0);
-	//ui->SetSize(100, 100);
-
-	//ui->SetHidden(true);
-
-	//ITextWidget* text = new ITextWidget;
-	//text->Start(m_Interface);
-
-	//HFont* font = m_Interface->m_Tier2->m_IWidget->CreateFont("ApexMk2-Regular.otf", 72, IWidget::EFontFlags::FONTFLAGS_OUTLINE);
-	//text->SetFont(font);
-
-	//text->SetText("test");
-
-	//text->SetPos(500, 500);
-
-
-
-	//IGradientWidget* gradient = new IGradientWidget;
-	//gradient->Start(m_Interface);
-
-	//gradient->SetColor(Color(255, 255, 0), Color(255, 0, 255));
-	//gradient->SetPos(0, 100);
-	//gradient->SetSize(100, 100);
-
-	//gradient->SetHidden(true);
-	//gradient->SetHidden(false);
-
-	//m_Interface->m_Tier2->m_IConsole->ExecuteCommand("r_vsync", 1);
-
-	//m_Interface->m_Tier2->m_IConsole->ExecuteCommand("fff", 1);
-
-
-	// TODO:
-
-	// https://i.ytimg.com/vi/4xHuXq4VvGE/maxresdefault.jpg
-	// https://www.youtube.com/watch?v=uk6-Oq-lr2Y
-	// Gradient for console title like that [Done]
-	// Finish console functionallity [Done, some improvements such as having multipile args for 3d vectors etc would be nice]
-
-	// Fix/tests shadow and outline for text
-	// Add *bool update* flag for each operation such as SetText, SetColor etc for widget so that if SetText is used in a 
-	// loop it wont hurt performance
-	/*
-	* if (!update)
-	* {
-	*	widget->SetText(...)
-	* }
-	* else
-	* {
-	*	update();
-	* }
-	*/
-	
-
-	/*
-	* TODO@: 
-	* Physics class + Vehicle demo + Helicopter demo + Player collider + Do noclip/debug camera command when ready
-	* Lod support
-	* Support for relative paths that go backwards in editor 
-	* Video support
-	* 
-	* Add scripting language support - squirrel
-	* Add archieve system to store assets in them rather than trying to access files dirrectly
-	* 
-	* Terrain with full support of features that DayZ/Arma supports
-	* Tool that converts all DayZ models to usable format
-	*/
 }
 
 //-----------------------------------------------------------------------------
@@ -163,6 +73,6 @@ void IGame::Run(float dt)
 			m_DebugDisplay->Run(dt);
 		}	
 
-		m_Interface->m_Tier2->m_IConsole->Run(dt);
+		//m_Interface->m_Tier2->m_IConsole->Run(dt);
 	}
 }

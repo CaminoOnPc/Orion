@@ -13,10 +13,6 @@ void IConsole::Start(IInterfaces* interfaces)
 {
 	m_Interface = interfaces;
 
-	//sv_vectest = new HCvar("sv_vectest");
-	//sv_vectest->m_Cvar.m_VecValue = Vector(1, 2, 3);
-	//m_Cvars.push_back(sv_vectest);
-
 	cl_showfps = new HCvar("cl_showfps");
 	cl_showfps->m_Cvar.m_IntValue = 1;
 	m_Cvars.push_back(cl_showfps);
@@ -24,6 +20,10 @@ void IConsole::Start(IInterfaces* interfaces)
 	cl_showpos = new HCvar("cl_showpos");
 	cl_showpos->m_Cvar.m_IntValue = 1;
 	m_Cvars.push_back(cl_showpos);
+
+	sv_physics = new HCvar("sv_physics");
+	sv_physics->m_Cvar.m_IntValue = 1;
+	m_Cvars.push_back(sv_physics);
 
 	mat_vsync = new HCvar("mat_vsync");
 	mat_vsync->m_Cvar.m_IntValue = 0;
@@ -255,6 +255,10 @@ void IConsole::InternalExecuteCommand(const char* command, const char* args, flo
 	{
 		cl_showpos->m_Cvar.m_IntValue = iargs;
 	}
+	if (commandStr == "sv_physics")
+	{
+		Callback_sv_physics(iargs);
+	}
 	if (commandStr == "mat_vsync")
 	{
 		Callback_mat_vsync(iargs);
@@ -330,6 +334,18 @@ void IConsole::LogCommand(const char* text)
 //-----------------------------------------------------------------------------
 // Callbacks for given commands
 //-----------------------------------------------------------------------------
+void IConsole::Callback_sv_physics(int value)
+{
+	if (value > 0)
+	{
+		wiPhysicsEngine::SetEnabled(true);
+	}
+	else
+	{
+		wiPhysicsEngine::SetEnabled(false);
+	}
+}
+
 void IConsole::Callback_mat_vsync(int value)
 {
 	if (value > 0)

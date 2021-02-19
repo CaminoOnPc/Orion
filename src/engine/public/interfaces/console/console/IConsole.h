@@ -45,6 +45,7 @@ public:
     void InternalExecuteCommand(const char* command, const char* args, float fargs, int iargs);
     void LogCommand(const char* text);
 public:
+    void Callback_sv_physics(int value);
     void Callback_mat_vsync(int value);   
     void Callback_mat_mode(int value);
     void Callback_clear();
@@ -60,10 +61,10 @@ protected:
         }
     }
 public:
-    HCvar* sv_vectest;
-
     HCvar* cl_showfps;
     HCvar* cl_showpos;
+
+    HCvar* sv_physics;
 
     HCvar* mat_vsync;
     HCvar* mat_mode;

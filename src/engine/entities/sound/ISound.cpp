@@ -61,7 +61,7 @@ void ISound::Run(float dt)
 	{
 		if (m_SoundComponent)
 		{
-			wiScene::CameraComponent& camera = wiRenderer::GetCamera();
+			wiScene::CameraComponent& camera = wiScene::GetCamera();
 
 			float volume = (
 				m_Data.m_SoundDistance - m_Position.Distance(

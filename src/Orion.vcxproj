@@ -76,7 +76,8 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Release</OutDir>
-    <IncludePath>D:\Sources\Orion\src;D:\Sources\Orion\src\engine\public;D:\Sources\Orion\src\common\abstract\includes;D:\Sources\Orion\dependencies\Ini\inipp;D:\Sources\Orion\dependencies\RapidXml;D:\Sources\Orion\WickedEngine\WickedEngine;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Sources\Orion\src;D:\Sources\Orion\src\engine\public;D:\Sources\Orion\src\common\abstract\includes;D:\Sources\Orion\dependencies\Ini\inipp;D:\Sources\Orion\dependencies\RapidXml;D:\Sources\Orion\WickedEngine\WickedEngine;D:\Sources\Orion\WickedEngine\WickedEngine\BULLET;D:\Sources\Orion\dependencies\VR\headers;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Sources\Orion\dependencies\VR\lib\win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,7 +90,8 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>..\cache\template</IntDir>
     <OutDir>..\build\Debug</OutDir>
-    <IncludePath>D:\Sources\Orion\src;D:\Sources\Orion\src\engine\public;D:\Sources\Orion\src\common\abstract\includes;D:\Sources\Orion\dependencies\Ini\inipp;D:\Sources\Orion\dependencies\RapidXml;D:\Sources\Orion\WickedEngine\WickedEngine;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Sources\Orion\src;D:\Sources\Orion\src\engine\public;D:\Sources\Orion\src\common\abstract\includes;D:\Sources\Orion\dependencies\Ini\inipp;D:\Sources\Orion\dependencies\RapidXml;D:\Sources\Orion\WickedEngine\WickedEngine;D:\Sources\Orion\WickedEngine\WickedEngine\BULLET;D:\Sources\Orion\dependencies\VR\headers;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Sources\Orion\dependencies\VR\lib\win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -176,6 +178,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="common\abstract\includes\bullet\IncludesBullet.h" />
     <ClInclude Include="common\abstract\includes\Includes.h" />
     <ClInclude Include="common\abstract\includes\math\IncludesMath.h" />
     <ClInclude Include="common\abstract\includes\utils\IncludesUtils.h" />
@@ -187,6 +190,8 @@
     <ClInclude Include="common\WinMain.h" />
     <ClInclude Include="engine\entities\camera\ICamera.h" />
     <ClInclude Include="engine\entities\object\IObject.h" />
+    <ClInclude Include="engine\entities\object\physics\IPhysics.h" />
+    <ClInclude Include="engine\entities\object\physics\vehicles\helicopter\IHelicopter.h" />
     <ClInclude Include="engine\entities\sound\ISound.h" />
     <ClInclude Include="engine\public\IBase.h" />
     <ClInclude Include="engine\public\IInterfaces.h" />
@@ -203,6 +208,7 @@
     <ClInclude Include="engine\public\interfaces\world\IWorld.h" />
     <ClInclude Include="engine\public\systems\filesystem\filesystem\IFileSystem.h" />
     <ClInclude Include="engine\public\systems\filesystem\HObject.h" />
+    <ClInclude Include="engine\public\systems\vr\IVR.h" />
     <ClInclude Include="game\gui\loadingscreen\ILoading.h" />
     <ClInclude Include="engine\public\systems\rendering\IRendering.h" />
     <ClInclude Include="engine\public\systems\rendering\IWicked.h" />
@@ -224,6 +230,8 @@
     <ClCompile Include="common\WinMain.cpp" />
     <ClCompile Include="engine\entities\camera\ICamera.cpp" />
     <ClCompile Include="engine\entities\object\IObject.cpp" />
+    <ClCompile Include="engine\entities\object\physics\IPhysics.cpp" />
+    <ClCompile Include="engine\entities\object\physics\vehicles\helicopter\IHelicopter.cpp" />
     <ClCompile Include="engine\entities\sound\ISound.cpp" />
     <ClCompile Include="engine\public\IBase.cpp" />
     <ClCompile Include="engine\public\IInterfaces.cpp" />
@@ -240,6 +248,7 @@
     <ClCompile Include="engine\public\interfaces\world\IWorld.cpp" />
     <ClCompile Include="engine\public\systems\filesystem\filesystem\IFileSystem.cpp" />
     <ClCompile Include="engine\public\systems\filesystem\HObject.cpp" />
+    <ClCompile Include="engine\public\systems\vr\IVR.cpp" />
     <ClCompile Include="game\gui\loadingscreen\ILoading.cpp" />
     <ClCompile Include="engine\public\systems\rendering\IRendering.cpp" />
     <ClCompile Include="engine\public\systems\rendering\IWicked.cpp" />
