@@ -36,8 +36,8 @@ void IGame::Start(IInterfaces* interfaces)
 	{
 		for (int j = 0; j < count; ++j)
 		{
-			//IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 4, 0, float(j) * 4), Vector(-90, 0, 0));
-			//object->SetScale(Vector(1, 1, 1));
+			// IObject* object = m_Interface->m_Tier2->m_IWorld->CreateObject("character_marvin_noai", Vector(float(i) * 4, 0, float(j) * 4), Vector(-90, 0, 0));
+			// object->SetScale(Vector(1, 1, 1));
 		}
 	}
 

@@ -26,7 +26,7 @@ void ILoading::Load()
 	m_Loading = new IImageWidget;
 	m_Loading->Start(m_Interface);
 
-	m_Loading->SetImage("data/game/materials/textures/loadscreen/loading_1.png");
+	m_Loading->SetImage("data/game/materials/textures/loading_1.png");
 
 	m_Loading->SetPos(0, 0);
 	m_Loading->SetSize(wiRenderer::GetDevice()->GetScreenWidth(), wiRenderer::GetDevice()->GetScreenHeight());
